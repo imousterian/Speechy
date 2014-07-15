@@ -36,6 +36,12 @@ group :test do
 
 end
 
+group :development, :test do
+    gem 'railroady' # generates model and controller UTML diagrams
+    gem 'rspec-rails', '~> 3.0.0'
+    gem "factory_girl_rails"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
