@@ -1,0 +1,36 @@
+<h1>Listing contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Is public</th>
+      <th>Dblink</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= content.type %></td>
+        <td><%= content.is_public %></td>
+        <td><%= content.dblink %></td>
+        <td><%= content.user_id %></td>
+        <td><%= link_to 'Show', content %></td>
+            <% if user_signed_in? %>
+                <% if current_user.id == content.user_id %>
+
+                    <td><%= link_to 'Edit', edit_content_path(content) %></td>
+                    <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+            <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Content', new_content_path %>

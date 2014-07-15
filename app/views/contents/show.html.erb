@@ -1,0 +1,22 @@
+<p>
+  <strong>Type:</strong>
+  <%= @content.type %>
+</p>
+
+<p>
+  <strong>Is public:</strong>
+  <%= @content.is_public %>
+</p>
+
+<p>
+  <strong>Dblink:</strong>
+  <%= @content.dblink %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @content.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

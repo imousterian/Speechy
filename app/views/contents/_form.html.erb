@@ -1,0 +1,34 @@
+<%= form_for(@content) do |f| %>
+  <% if @content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+      <% @content.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :is_public %><br>
+    <%= f.check_box :is_public %>
+  </div>
+  <div class="field">
+    <%= f.label :dblink %><br>
+    <%= f.text_field :dblink %>
+  </div>
+  <!-- <div class="field"> -->
+    <%#= f.label :user_id %>
+    <%#= f.number_field :user_id %>
+  <!-- </div> -->
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
