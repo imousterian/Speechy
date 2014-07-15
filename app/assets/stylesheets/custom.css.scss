@@ -1,2 +1,285 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding: 60px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+  line-height: 150%;
+}
+
+.dropdown-menu{
+    min-width: 100px;
+}
+
+#whitecolored{
+    background-color: #ffffff;
+}
+
+#greycolored{
+    background-color: #F8F8F8 ;
+}
+
+#redcolored{
+    background-color: #FF0000 ;
+}
+
+#yelcolored{
+    background-color: #FFFF33; //#FFFF99;
+}
+
+#greencolored{
+    background-color: #66FF66; //#66FF99;
+    // text-align:center;
+}
+
+.extended{
+    display: block;
+    width:100%;
+}
+
+b.caret-right {
+  // border-right: 2px solid black;
+  border-top: 4px solid transparent;
+}
+
+p.line, p.line2{
+    width: 100%;
+    padding: 4px;
+}
+
+p.line{
+    border-top: 1px solid black;
+    margin-top: 50px;
+}
+
+p.line_edit{
+    width: 60%;
+    border-top: 1px solid black;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 4px;
+    text-align:center;
+}
+
+p.line2{
+    margin-top: -5px;
+}
+
+p.line-show{
+    width:97%;
+}
+
+p.colored{
+    text-align:center;
+    margin: 0px;
+}
+
+table#movies_delete, table#kanban{
+
+    border-collapse: separate;
+    border-spacing: 1px;
+    width: 100%;
+    table-layout: fixed;
+
+
+    th:first-child{
+        text-align: left;
+        a{
+            color: #ffffff;
+        }
+    }
+    td:first-child{
+        text-align: left;
+    }
+
+    th{
+        font-weight: bold;
+        background-color: #4c4c4c;
+        font-size: 11pt;
+        color: #ffffff;
+
+    }
+    td{
+        background-color: #F8F8F8;
+    }
+
+    th, td{
+        padding: 6px;
+        text-align: center;
+    }
+
+    tr:hover td {
+        background-color:rgba(255,255,255,0.1);
+    }
+
+}
+
+
+table#kanban.for-plus {
+    th:last-child{
+        width:3%;
+        white-space: nowrap;
+        background-color: transparent;
+    }
+    th:first-child{
+        width: 35%;
+        white-space: nowrap;
+    }
+}
+
+
+table#kanban_edit{
+    border-collapse: separate;
+    border-spacing: 1px;
+    width: 60%;
+    margin: 0 auto;
+
+    th, td{
+        padding: 1px;
+    }
+}
+
+/* Customize container-index */
+@media (min-width: 768px) {
+  .container-index {
+    max-width: 730px;
+    // background-color: red;
+  }
+}
+
+// // override error fields
+@media (min-width: 768px){
+    .has-error .form-control, .field_with_errors .form-control{
+        border-color: #FF0000;
+    }
+}
+
+/* Customize container */
+
+.container{
+    h1,h2,h3{
+        text-align: center;
+        padding-bottom: 60px;
+    }
+  }
+
+// tooltips:
+
+.tooltip.right {
+    .tooltip-inner {
+        background-color: #428bca;
+    }
+    .tooltip-arrow {
+        border-right-color: #428bca;
+    }
+}
+
+.tooltip.bottom {
+    .tooltip-arrow {
+        border-bottom-color: #428bca;
+    }
+    .tooltip-inner {
+        font-weight: bold;
+        background-color: #428bca;
+    }
+}
+
+div.labelled{
+     border-top: 4px solid transparent;
+}
+
+/* forms .uneditable-input*/
+// input, textarea, select {
+//     border: 1px solid #bbb;
+//     width: 100%;
+//     margin-bottom: 5px;
+//     margin-top: 5px;
+// }
+
+/* mixins, variables, etc */
+
+@mixin box_sizing{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+textarea, .textfield {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;  // used to be 5px
+    // margin-top: 5px;
+    @include box_sizing;
+}
+#error_explanation {
+    color: #f00;
+    ul {
+        list-style: none;
+        margin: 0 0 18px 0;
+    }
+}
+
+input {
+    // height: auto !important;
+}
+
+textarea{
+    // resize: vertical;
+    // height: 100%;
+    }
+
+// .field_with_errors {
+//   @extend .form-group;
+//   // @extend .error;
+//   @extend .has-error;
+//   @extend .control-label;
+// }
+
+
+/* header */
+
+#logo{
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    // font-weight: bold;
+    line-height: 1;
+
+    &:hover{
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+#span-style{
+    text-decoration: underline;
+}
+

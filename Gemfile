@@ -7,7 +7,7 @@ gem 'rails', '4.1.1'
 gem 'pg'
 
 # Use Boostrap saas
-gem 'bootstrap-sass', '~> 3.1.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 # use a recommended autoprefixer to add browser vendor prefixes automatically
 gem 'autoprefixer-rails'
