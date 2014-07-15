@@ -5,6 +5,13 @@ ruby '2.1.0'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
+
+# Use Boostrap saas
+gem 'bootstrap-sass', '~> 3.1.0'
+
+# use a recommended autoprefixer to add browser vendor prefixes automatically
+gem 'autoprefixer-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
