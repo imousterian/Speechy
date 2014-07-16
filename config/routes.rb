@@ -4,7 +4,24 @@ Rails.application.routes.draw do
   root :to => redirect('/contents')
   resources :contents
 
+
+
   devise_for :users
+
+  devise_scope :user do
+      # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
+      # match 'sessions/dropbox_callback', :controller => 'sessions', :action => 'dropbox_callback', via: :get
+  end
+    # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
+
+  get  "dropbox/authorize"
+  get  "dropbox/dropbox_callback"
+  get  "dropbox/upload"
+  post "dropbox/upload"
+
+  # match 'sessions/dropbox_callback', :controller => 'sessions', :action => 'dropbox_callback', via: :get
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

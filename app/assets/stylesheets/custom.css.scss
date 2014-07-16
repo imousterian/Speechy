@@ -235,6 +235,7 @@ textarea, .textfield {
     // margin-top: 5px;
     @include box_sizing;
 }
+
 #error_explanation {
     color: #f00;
     ul {
@@ -265,16 +266,17 @@ textarea{
 #logo{
     float: left;
     margin-right: 10px;
-    font-size: 1.7em;
+    font-size: 15px;
+    // font-size: 1.1em;
     color: #fff;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    padding-top: 9px;
+    // text-transform: uppercase;
+    // letter-spacing: -1px;
+    padding-top: 18px;
     // font-weight: bold;
     line-height: 1;
 
     &:hover{
-        color: #fff;
+        color: red;
         text-decoration: none;
     }
 }
@@ -283,3 +285,6 @@ textarea{
     text-decoration: underline;
 }
 
+.navbar-inverse .navbar-text {
+  // color: red;
+}

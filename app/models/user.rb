@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
     has_many :contents
     has_many :tags
+
+    validates :email, :presence => true, :uniqueness => true
 end

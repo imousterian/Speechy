@@ -1,11 +1,16 @@
+require 'dropbox_sdk'
+
 class ContentsController < ApplicationController
+
   before_action :set_content, only: [:show, :edit, :update, :destroy]
 
   # GET /contents
   # GET /contents.json
+
   def index
     # showing content only tagged as "public" to all
     # signed in users can see their own and public content
+
     if user_signed_in?
         @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true'])
     else

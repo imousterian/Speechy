@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <title>SLPassist | <%= content_for?(:title) ? yield(:title) : "File-sharing web app" %></title>
+
     <%= render 'layouts/header' %>
 
     <div class="container">

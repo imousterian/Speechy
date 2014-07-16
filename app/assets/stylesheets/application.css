@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+  font-size: 15px;
+}
+
+
