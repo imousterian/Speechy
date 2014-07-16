@@ -1,7 +1,7 @@
 class CreateContents < ActiveRecord::Migration
   def change
     create_table :contents do |t|
-      t.string :type
+      t.string :ctype
       t.boolean :is_public
       t.string :dblink
       t.integer :user_id

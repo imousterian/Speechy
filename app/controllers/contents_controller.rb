@@ -4,12 +4,22 @@ class ContentsController < ApplicationController
   # GET /contents
   # GET /contents.json
   def index
-    @contents = Content.all
+    # showing content only tagged as "public" to all
+    # signed in users can see their own and public content
+    if user_signed_in?
+        @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true'])
+    else
+        @contents = Content.where(is_public: 'true')
+    end
+
   end
 
   # GET /contents/1
   # GET /contents/1.json
   def show
+    @content = Content.find(params[:id])
+    @tags = @content.tags.all
+    @tag = @content.tags.build
   end
 
   # GET /contents/new
@@ -69,6 +79,6 @@ class ContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:type, :is_public, :dblink, :user_id)
+      params.require(:content).permit(:ctype, :is_public, :dblink, :user_id)
     end
 end

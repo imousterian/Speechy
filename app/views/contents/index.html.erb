@@ -14,9 +14,11 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= content.type %></td>
+        <td><%= content.ctype %></td>
         <td><%= content.is_public %></td>
-        <td><%= content.dblink %></td>
+        <!-- <td><a href="https://dl.dropbox.com/s/ctdfiakoayx5jvi/photo3a.jpeg">
+            <img src="https://dl.dropbox.com/s/ctdfiakoayx5jvi/photo3a.jpeg"></a></td> -->
+        <td><img src='<%= content.dblink %>'></td>
         <td><%= content.user_id %></td>
         <td><%= link_to 'Show', content %></td>
             <% if user_signed_in? %>

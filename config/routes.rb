@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
+
   root :to => redirect('/contents')
   resources :contents
 
