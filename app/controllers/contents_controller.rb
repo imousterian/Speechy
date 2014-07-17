@@ -30,6 +30,7 @@ class ContentsController < ApplicationController
   # GET /contents/new
   def new
     @content = Content.new
+    # @content = current_user.contents.new(params[:content])
   end
 
   # GET /contents/1/edit
