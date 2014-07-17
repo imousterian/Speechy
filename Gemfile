@@ -6,6 +6,9 @@ gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# for protecting api keys
+gem 'figaro'
+
 # for Dropbox access
 gem 'dropbox-sdk'
 
