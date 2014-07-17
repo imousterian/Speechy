@@ -9,6 +9,10 @@ gem 'pg'
 # for protecting api keys
 gem 'figaro'
 
+# for easier upload of contents to dropbox and elsewhere
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip-dropbox", ">= 1.1.7"
+
 # for Dropbox access
 gem 'dropbox-sdk'
 

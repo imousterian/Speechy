@@ -16,15 +16,7 @@
       <tr>
         <td><%= content.ctype %></td>
         <td><%= content.is_public %></td>
-        <!-- <td><a href="https://dl.dropbox.com/s/ctdfiakoayx5jvi/photo3a.jpeg">
-            <img src="https://dl.dropbox.com/s/ctdfiakoayx5jvi/photo3a.jpeg"></a></td> -->
-            <!-- https://dl.dropboxusercontent.com/u/5991997/photos/photo3a.jpeg -->
-            <!-- https://dl.dropboxusercontent.com/u/5991997/photos/image.jpeg -->
-            <!-- https://www.dropbox.com/s/6kjbkh3wj0x6qj7/image.jpeg -->
-            <!-- https://www.dropbox.com/s/pqssqpn7bhabz6v/photo3.png -->
-            <!-- https://www.dropbox.com/s/pqssqpn7bhabz6v/photo3.png -->
-            <!-- https://www.dropbox.com/s/uo2vhfk1mw8kc2o/photo3.png -->
-
+        <td><%= image_tag content.image.url(:small) %></td>
         <td><img src='<%= content.dblink %>'></td>
         <td><%= content.user_id %></td>
         <td><%= link_to 'Show', content %></td>
@@ -40,6 +32,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Content', new_content_path %>

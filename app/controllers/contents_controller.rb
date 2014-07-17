@@ -4,6 +4,8 @@ class ContentsController < ApplicationController
 
   before_action :set_content, only: [:show, :edit, :update, :destroy]
 
+  # before_filter :set_current_user
+
   # GET /contents
   # GET /contents.json
 
@@ -29,8 +31,10 @@ class ContentsController < ApplicationController
 
   # GET /contents/new
   def new
-    @content = Content.new
-    # @content = current_user.contents.new(params[:content])
+    puts "creates new content: begin"
+    # @content = Content.new
+    @content = current_user.contents.new(params[:content])
+    puts "creates new content"
   end
 
   # GET /contents/1/edit
@@ -40,7 +44,10 @@ class ContentsController < ApplicationController
   # POST /contents
   # POST /contents.json
   def create
-    @content = Content.new(content_params)
+    # @content = Content.new(content_params)
+    puts " create action for content before build"
+    @content = current_user.contents.build(content_params)
+    puts " create action for content after build"
 
     respond_to do |format|
       if @content.save
@@ -85,6 +92,6 @@ class ContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:ctype, :is_public, :dblink, :user_id)
+      params.require(:content).permit(:ctype, :is_public, :dblink, :user_id, :image)
     end
 end

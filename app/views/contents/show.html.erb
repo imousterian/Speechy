@@ -17,6 +17,9 @@
   <strong>User:</strong>
   <%= @content.user_id %>
 </p>
+<p>
+    <%= image_tag @content.image.url(:thumb) %>
+</p>
 
 <h3>Tags</h3>
 <% @tags.each do |tag| %>

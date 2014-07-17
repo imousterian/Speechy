@@ -11,6 +11,7 @@
                         <!-- <li><%#= link_to "Home", root_path %></li> -->
 
                         <% if user_signed_in? %>
+                            <li><%= link_to "Upload", new_content_path %></li>
                             <%# if current_user.admin? %>
                                 <!-- <li><%#= link_to "Users", users_path %></li> -->
                             <%# end %>
