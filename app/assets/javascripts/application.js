@@ -15,3 +15,8 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$('.carousel').carousel();
+$('.carousel').carousel({
+  interval: false;
+})

@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
   root :to => redirect('/contents')
 
+  # resources :contents, :path_names => { :set_new_content => 'new' }
+
+  # get '/contents/set_new_content', to: redirect('/contents/new')
+
   resources :contents do
     collection do
-        get  "set_new_content", :as => :set_new_content
+        # get  "set_new_content", :as => :set_new_content
         post "set_new_content", :action => :create
     end
   end

@@ -66,7 +66,7 @@ class Content < ActiveRecord::Base
 
             self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
                                                               :small => ["100x100#", :jpg],
-                                                              :thumb => ["200x200#", :jpg] },
+                                                              :thumb => ["100x100#", :jpg] },
                             :storage => :dropbox,
                             :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
                                                       :app_secret => DROPBOX_APP_KEY_SECRET,

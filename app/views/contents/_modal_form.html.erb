@@ -5,27 +5,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" align="center">Add a column</h4>
+        <h4 class="modal-title" align="center">Upload image</h4>
       </div>
 
         <div class="modal-body">
 
-            <!-- <table id="kanbans" align="center"> -->
+            <div class = "form-group">
+                <label> Select </label>
+                <%= f.file_field :image %>
+            </div>
 
-                <div class="field">
-                    <%= f.label :is_public %><br>
-                    <%= f.check_box :is_public %>
-                </div>
-
-                <li>
-                    <%= f.label :image, "Photo" %>
-                    <%= f.file_field :image %>
-                </li>
+            <div class = "checkbox">
+                <label>
+                    <%= f.check_box :is_public %> Check if public
+                </label>
+            </div>
 
                 <%= f.hidden_field :user_id, :value => current_user.id %>
 
-
-            <!-- </table> -->
         </div>
 
         <div class="modal-footer">
