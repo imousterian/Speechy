@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-        # get  "set_new_content", :as => :set_new_content
-        # post "set_new_content", :action => :create
+        get  "set_new_content", :as => :set_new_content
+        post "set_new_content", :action => :create
     end
   end
 

@@ -1,5 +1,5 @@
 
-<%= form_for current_user.contents.new(params[:content]), :remote => true, :html => { :multipart => true }  do |f| %>
+<%= form_for current_user.contents.new(params[:content]), :html => { :multipart => true }  do |f| %>
 
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -30,7 +30,6 @@
 
         <div class="modal-footer">
             <div class="row text-center">
-                    <!-- <div class="btn-group"> -->
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                     <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
             </div>
