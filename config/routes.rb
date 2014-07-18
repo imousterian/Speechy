@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   resources :tags
 
   root :to => redirect('/contents')
-  resources :contents
 
+  resources :contents do
+    collection do
+        # get  "set_new_content", :as => :set_new_content
+        # post "set_new_content", :action => :create
+    end
+  end
 
 
   devise_for :users
@@ -18,6 +23,8 @@ Rails.application.routes.draw do
   get  "dropbox/dropbox_callback"
   get  "dropbox/upload"
   post "dropbox/upload"
+
+  # match '/contents/set_new_content', to: "contents#set_new_content", via: 'get'
 
   # match 'sessions/dropbox_callback', :controller => 'sessions', :action => 'dropbox_callback', via: :get
 

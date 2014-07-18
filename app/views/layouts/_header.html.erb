@@ -11,7 +11,10 @@
                         <!-- <li><%#= link_to "Home", root_path %></li> -->
 
                         <% if user_signed_in? %>
-                            <li><%= link_to "Upload", new_content_path %></li>
+                             <!-- <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" > -->
+                                    <!-- <span> Upload </span> -->
+                                <!-- </a> -->
+                            <!-- </li> -->
                             <%# if current_user.admin? %>
                                 <!-- <li><%#= link_to "Users", users_path %></li> -->
                             <%# end %>
@@ -38,3 +41,15 @@
             </div>
         </div>
 </header>
+
+
+<div class="modal fade" id='test_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
+    <%#= render 'modal_form' %>
+</div>
+
+
+
+
+
+
+

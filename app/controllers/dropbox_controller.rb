@@ -18,7 +18,7 @@ class DropboxController < ApplicationController
         access = dbsession.get_access_token
         # http://localhost:3000/dropbox/dropbox_callback?oauth_token=kPsrzWUL9wuVsKzA&uid=318287546
         # puts "#{a.key}"
-        puts "#{params[:oauth_token]}"
+        # puts "#{params[:oauth_token]}"
         # access_token = dbsession.get_access_token(:oauth_verifier => params[:oauth_token])
         # puts "LLALALAL #{dbsession.access_token.serialize}" #{}" #{access_token.token} #{access_token.secret}"
         # Parameters: {"oauth_token"=>"mfQfCEh3XyVkfwO0", "uid"=>"5991997"}

@@ -1,0 +1,42 @@
+
+<%= form_for current_user.contents.new(params[:content]), :remote => true, :html => { :multipart => true }  do |f| %>
+
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" align="center">Add a column</h4>
+      </div>
+
+        <div class="modal-body">
+
+            <!-- <table id="kanbans" align="center"> -->
+
+                <div class="field">
+                    <%= f.label :is_public %><br>
+                    <%= f.check_box :is_public %>
+                </div>
+
+                <li>
+                    <%= f.label :image, "Photo" %>
+                    <%= f.file_field :image %>
+                </li>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+
+
+            <!-- </table> -->
+        </div>
+
+        <div class="modal-footer">
+            <div class="row text-center">
+                    <!-- <div class="btn-group"> -->
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
+            </div>
+        </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+
+<% end %>

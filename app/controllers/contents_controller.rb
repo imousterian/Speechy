@@ -37,6 +37,11 @@ class ContentsController < ApplicationController
     puts "creates new content"
   end
 
+  # GET /contents/set_new_content
+  def set_new_content
+    @content = current_user.contents.new(params[:content])
+  end
+
   # GET /contents/1/edit
   def edit
   end
