@@ -1,4 +1,4 @@
-<h2></h2>
+<!-- <h2> Stuff </h2> -->
 <!-- <table>
   <thead>
     <tr>
@@ -55,24 +55,29 @@
 
 <!-- Carousel
 ================================================== -->
-<div id="myCarousel" class="carousel slide">
-    <div class="carousel-inner">
+<div id="myCarousel" class="carousel slide" >
+    <div class="carousel-inner" >
         <% @contents.each_with_index do |content, index| %>
                 <div class="item <% if index == 0 %> active <% end %> ">
 
-                    <div class="container" style='height:400px'>
-
-                            <div class="carousel-caption">
+                    <!-- <div class="container container-caption"> not needed -->
+                            <!-- <div class="carousel-caption" > -->
+                            <!-- <div class="inner-item"> -->
                                 <%= image_tag content.image.url(:thumb) %>
-                            </div>
-                    </div>
+                            <!-- </div> -->
+                    <!-- </div> -->
                 </div>
         <% end %>
 
     </div>
 
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false"><span class="glyphicon glyphicon-chevron-left"></span></a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next" data-interval="false"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false">
+        <%= image_tag 'carousel-arrow-left-hover.png', :class => "chevron chevron-left" %>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next" data-interval="false">
+        <%= image_tag 'carousel-arrow-right-hover.png', :class => "chevron chevron-right" %>
+        <!-- <img class="chevron chevron-right" src="http://www.lutheranworld.org/sites/all/themes/custom/lwf/images/carousel-arrow-right-hover.png" /> -->
+    </a>
 
 </div><!-- /.carousel -->
 

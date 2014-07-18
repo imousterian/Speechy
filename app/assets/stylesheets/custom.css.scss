@@ -285,6 +285,97 @@ textarea{
     text-decoration: underline;
 }
 
-.navbar-inverse .navbar-text {
-  // color: red;
+.carousel-control{
+    width: 5%;
 }
+
+.carousel-control:hover,
+.carousel-control:focus {
+  // outline: none;
+  // color: #fff;
+  // text-decoration: none;
+  opacity: 100;
+  // filter: alpha(opacity=90);
+}
+
+.chevron {
+    // width:30%;
+    position:absolute;
+    top:40%;
+}
+.carousel-inner {
+    // background-color:#343432;
+}
+.chevron-left {
+    left:5%;
+}
+.chevron-right {
+    right:5%;
+}
+
+.carousel-control{
+    // opacity: 0
+}
+
+// .carousel-control.right {
+//   left: auto;
+//   right: 0;
+//   // background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+//   // background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+//   // background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.5)));
+//   // background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+//   // background-repeat: repeat-x;
+//   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+// }
+
+// .item{
+//     height: 400px;
+// }
+// .carousel-caption{
+//     border: 1px solid green;
+//     top: 10%;
+//     bottom: 10%;
+//     text-align: center;
+//     img{
+//         margin: 0 auto;
+//     }
+// }
+
+// .inner-item {
+//     text-align: center;
+//     border: 1px solid green;
+//     height: 100%;
+
+//     img {
+//         margin: 0 auto;
+//         padding-top: 150px;
+//         padding-bottom: 150px;
+//     }
+// }
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+ z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 400px;
+    background-color:white;
+ }
+
+.carousel img {
+    position: absolute;
+    top:auto;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+
+
