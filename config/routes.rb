@@ -7,14 +7,30 @@ Rails.application.routes.draw do
 
   # get '/contents/set_new_content', to: redirect('/contents/new')
 
+  # resources :contents do
+  #    resources: :tags
+  # end
+
+    scope 'contents' do
+        get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
+    end
+
+
   resources :contents do
     collection do
+        # get "summary"
         # get  "set_new_content", :as => :set_new_content
         post "set_new_content", :action => :create
     end
   end
 
 
+    # scope ":username" do
+    #     get '/', to: 'users#show', as: 'user_name'
+    #     get '/edit', to: 'users#edit', as: 'user_name_edit'
+    # end
+
+  # /contents/tagname
   devise_for :users
 
   devise_scope :user do

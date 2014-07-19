@@ -25,8 +25,16 @@ class ContentsController < ApplicationController
   # GET /contents/1.json
   def show
     @content = Content.find(params[:id])
-    @tags = @content.tags.all
-    @tag = @content.tags.build
+    # @tags = @content.tags.all
+    # @tag = @content.tags.build
+  end
+
+  def summary
+    #/contents/tag
+    # when I click on a tag
+    # it will take me to a controller
+    @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]})
+    puts "@contents"
   end
 
   # GET /contents/new
@@ -97,6 +105,6 @@ class ContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:ctype, :is_public, :dblink, :user_id, :image)
+      params.require(:content).permit(:ctype, :is_public, :dblink, :user_id, :image, :tag_list)
     end
 end

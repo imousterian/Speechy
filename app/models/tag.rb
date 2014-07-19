@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
-    belongs_to :content
+    has_many :taggings
+    has_many :contents, through: :taggings
     belongs_to :user
 end

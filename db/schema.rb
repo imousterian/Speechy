@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717013216) do
+ActiveRecord::Schema.define(version: 20140719010459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140717013216) do
     t.boolean  "is_public"
     t.string   "dblink"
     t.integer  "user_id"
+    t.text     "tag_list"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -28,6 +29,16 @@ ActiveRecord::Schema.define(version: 20140717013216) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "content_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["content_id"], name: "index_taggings_on_content_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "tagname"

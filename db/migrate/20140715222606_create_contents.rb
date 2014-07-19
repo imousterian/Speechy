@@ -5,6 +5,7 @@ class CreateContents < ActiveRecord::Migration
       t.boolean :is_public
       t.string :dblink
       t.integer :user_id
+      t.text :tag_list
 
       t.timestamps
     end
