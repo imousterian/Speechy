@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   # end
 
     scope 'contents' do
-        get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
+         get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
+         # put 'update_ctype',  :to => 'contents#update_ctype', :as => 'summary_update'
     end
 
 

@@ -12,11 +12,30 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 
-$('.carousel').carousel();
-$('.carousel').carousel({
-  interval: false;
-})
+// $('.carousel').carousel();
+// $('.carousel').carousel({
+//     interval: false
+// });
+
+$(function()
+{
+    $('#myCarousel').on('slid.bs.carousel', function (e) {
+
+        console.log("test");
+        var slideFrom = $(this).find('.active').index();
+        var slideTo = $(e.relatedTarget).index();
+        console.log(slideFrom + ' => ' + slideTo);
+
+        // var el = $(this).find('.active > img').innerHTML();
+        var el = $('.active > img').attr('src')
+        console.log(el);
+    });
+
+});
+
+

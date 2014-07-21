@@ -1,13 +1,34 @@
 <div id="myCarousel" class="carousel slide" >
     <div class="carousel-inner" >
         <% @contents.each_with_index do |content, index| %>
-                <div class="item <% if index == 0 %> active <% end %> ">
-
+                <div class="item <% if index == 0 %> active <% end %> id<%=index%> ">
                     <a href='<%= content_path(content) %>'>
                         <%= image_tag content.image.url(:thumb) %>
                     </a>
+                    <div class="carousel-caption">
+                        <div class = 'bs-example'>
+                            <div class="btn-toolbar" role="toolbar">
+
+
+                                <%= form_for content do |f| %>
+                                    <% 1.upto(10) do |c| %>
+
+                                        <%#= f.hidden_field :ctype, :value => c %>
+                                        <%= f.submit c, { :value => c, :class => "btn btn-primary btn-xs"} %>
+
+                                    <% end %>
+
+                            <% end %>
+
+                        </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-            <% end %>
+
+        <% end %>
     </div>
 
     <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false">
@@ -19,3 +40,8 @@
     </a>
 
 </div><!-- /.carousel -->
+
+</br>
+</br>
+
+

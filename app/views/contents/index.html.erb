@@ -3,6 +3,7 @@
         <%#= link_to tag.tagname, tag_path(tag.tagname), class: css_class %>
         <%#= link_to tag.tagname, {:controller => "contents", :action => "summary", :tag => tag.tagname}, class: css_class %>
         <%= link_to tag.tagname, summary_path(:tagname => tag.tagname), class: css_class %>
+
   <% end %>
 </div>
 </br>
