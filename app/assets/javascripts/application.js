@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.infinitescroll
 //= require bootstrap-sprockets
 //= require bootstrap/modal
 //= require bootstrap/dropdown
@@ -38,5 +39,6 @@ $(function()
     });
 
 });
+
 
 

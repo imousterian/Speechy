@@ -14,9 +14,9 @@ class ContentsController < ApplicationController
     # signed in users can see their own and public content
 
     if user_signed_in?
-        @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true'])
+        @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true']).page(params[:page])
     else
-        @contents = Content.where(is_public: 'true')
+        @contents = Content.where(is_public: 'true').page(params[:page])
     end
 
   end

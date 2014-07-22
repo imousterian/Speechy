@@ -8,25 +8,17 @@
 </div>
 </br>
 
-<div id="myCarousel" class="carousel slide" >
-    <div class="carousel-inner" >
-        <% @contents.each_with_index do |content, index| %>
-                <div class="item <% if index == 0 %> active <% end %> ">
-
-                    <a href='<%= content_path(content) %>'>
-                        <%= image_tag content.image.url(:thumb) %>
-                    </a>
-                </div>
+<table id ="contents" >
+    <thead><tr></tr></thead>
+    <tbody class="page">
+        <tr class="content">
+            <% @contents.each do |f| %>
+                <td style="padding-right:10px; padding-bottom:10px">  <%= image_tag f.image.url(:small) %> </td>
             <% end %>
-    </div>
+        </tr>
+        <%#= render @contents %>
+    </tbody>
 
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false">
-        <%= image_tag 'carousel-arrow-left-hover.png', :class => "chevron chevron-left" %>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next" data-interval="false">
-        <%= image_tag 'carousel-arrow-right-hover.png', :class => "chevron chevron-right" %>
-        <!-- <img class="chevron chevron-right" src="http://www.lutheranworld.org/sites/all/themes/custom/lwf/images/carousel-arrow-right-hover.png" /> -->
-    </a>
+</table>
 
-</div><!-- /.carousel -->
-
+<%= paginate @contents %>
