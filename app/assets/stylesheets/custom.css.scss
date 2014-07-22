@@ -1,5 +1,5 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
 
 
 /* universal */
@@ -285,7 +285,11 @@ textarea{
     text-decoration: underline;
 }
 
-.carousel-control{
+.carousel-control.right{
+    width: 5%;
+}
+
+.carousel-control.left{
     width: 5%;
 }
 
