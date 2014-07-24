@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.infinitescroll
+//= require jquery.masonry.min
 //= require bootstrap-sprockets
 //= require bootstrap/modal
 //= require bootstrap/dropdown
@@ -24,21 +25,42 @@
 //     interval: false
 // });
 
+//
+
 $(function()
 {
-    $('#myCarousel').on('slid.bs.carousel', function (e) {
+    var $container = $('.masonry-container');
 
-        console.log("test");
-        var slideFrom = $(this).find('.active').index();
-        var slideTo = $(e.relatedTarget).index();
-        console.log(slideFrom + ' => ' + slideTo);
+    $container.masonry({
+        isFitWidth: true,
+        // columnWidth: '.masonry-item',
+        itemSelector: '.masonry-item'
+        }).imagesLoaded(function(){
+            $container.masonry('reload');
+        });
 
-        // var el = $(this).find('.active > img').innerHTML();
-        var el = $('.active > img').attr('src')
-        console.log(el);
-    });
+    $container.infinitescroll({
+            navSelector  : "nav.pagination",
+            // selector for the paged navigation (it will be hidden)
+            nextSelector : "nav.pagination a[rel=next]",
+            // selector for the NEXT link (to page 2)
+            itemSelector : ".masonry-container div.masonry-item",
+
+        },
+        //trigger Masonry as a callback
+        function( newElements ) {
+
+            var $newElems = $(newElements).css({opacity: 0});
+
+            $newElems.imagesLoaded(function(){
+                $newElems.animate({opacity: 1});
+                $container.masonry('appended', $newElems, true);
+
+            });
+        }
+    );
+
+    $(window).scroll();
 
 });
-
-
 

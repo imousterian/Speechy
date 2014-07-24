@@ -2,13 +2,15 @@ require 'dropbox_sdk'
 
 class Content < ActiveRecord::Base
 
-    default_scope { order('updated_at DESC') }
+    # default_scope { order('updated_at DESC') }
+    scope :updated,   ->   { order('updated_at DESC') }
+    scope :by_height, ->   { order('height DESC') }
     paginates_per 6
 
     belongs_to :user
     has_many :taggings
 
-    has_many :tags, through: :taggings #:dependent => :destroy
+    has_many :tags, through: :taggings, :dependent => :destroy
 
     has_attached_file :image
     after_initialize :init_attachment
@@ -19,6 +21,12 @@ class Content < ActiveRecord::Base
     validates_attachment_presence :image
 
     validates_attachment_size :image, :less_than => 1.megabytes
+
+    before_save :extract_dimensions
+
+    serialize :dimensions
+
+
 
     def self.tagged_with(name)
         Tag.find_by_name!(tagname).contents
@@ -37,6 +45,12 @@ class Content < ActiveRecord::Base
         self.tags = tagnames.split(",").map do |n|
             Tag.where(tagname: n.strip).first_or_create!
         end
+    end
+
+    # Helper method to determine whether or not an attachment is an image.
+    # @note Use only if you have a generic asset-type model that can handle different file types.
+    def image?
+        upload_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
     end
 
 
@@ -59,6 +73,16 @@ class Content < ActiveRecord::Base
                             :unique_filename => true,
                             :dropbox_visibility => 'private'
 
+        end
+
+        def extract_dimensions
+            return unless image?
+            tempfile = image.queued_for_write[:original]
+            unless tempfile.nil?
+                geometry = Paperclip::Geometry.from_file(tempfile)
+                self.dimensions = [geometry.width.to_i, geometry.height.to_i]
+                self.height = geometry.height.to_i
+            end
         end
 
 end

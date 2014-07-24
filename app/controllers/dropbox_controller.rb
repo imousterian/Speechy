@@ -16,12 +16,6 @@ class DropboxController < ApplicationController
 
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
         access = dbsession.get_access_token
-        # http://localhost:3000/dropbox/dropbox_callback?oauth_token=kPsrzWUL9wuVsKzA&uid=318287546
-        # puts "#{a.key}"
-        # puts "#{params[:oauth_token]}"
-        # access_token = dbsession.get_access_token(:oauth_verifier => params[:oauth_token])
-        # puts "LLALALAL #{dbsession.access_token.serialize}" #{}" #{access_token.token} #{access_token.secret}"
-        # Parameters: {"oauth_token"=>"mfQfCEh3XyVkfwO0", "uid"=>"5991997"}
 
         # do I need to pass and/or store access_token etc somehow differently? In a binary format?
         session[:dropbox_session] = dbsession.serialize
@@ -32,10 +26,8 @@ class DropboxController < ApplicationController
             )
 
         # access_token_secret, access_token_token, request_token_secret, request_token_token, app_secret, app_key = str.delete("-").scan(/\S+/)
-        puts "#{current_user.dropbox_session}"
-        puts "#{current_user.access_token} #{current_user.access_secret}"
-
-        # session2 = DropboxOAuth2Session.new(access_token, nil)
+        # puts "#{current_user.dropbox_session}"
+        # puts "#{current_user.access_token} #{current_user.access_secret}"
 
         session.delete :dropbox_session
         flash[:notice] = "You have successfully authorized with dropbox."
