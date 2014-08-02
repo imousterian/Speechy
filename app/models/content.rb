@@ -13,6 +13,7 @@ class Content < ActiveRecord::Base
     has_many :tags, through: :taggings, :dependent => :destroy
 
     has_attached_file :image
+
     after_initialize :init_attachment
 
     validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg',
@@ -25,6 +26,12 @@ class Content < ActiveRecord::Base
     before_save :extract_dimensions
 
     serialize :dimensions
+
+    # after_find :delete_image
+
+    # after_save :delete_image
+
+    # after_commit :delete_image
 
 
 
@@ -58,20 +65,20 @@ class Content < ActiveRecord::Base
 
         def init_attachment
 
-            self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
-                                                              :small => ["100x100#", :jpg],
-                                                              :thumb => ["100x100#", :jpg] },
-                            :storage => :dropbox,
-                            :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
-                                                      :app_secret => DROPBOX_APP_KEY_SECRET,
-                                                      :access_token => self.user.access_token,#User.current.access_token,
-                                                      :access_token_secret => self.user.access_secret,#User.current.access_secret,
-                                                      :user_id => self.user.uid,#User.current.uid,
-                                                      :access_type => "dropbox" },
-                            :dropbox_options => {},
-                            :path => "SLPAPP/:style/:id_:filename",
-                            :unique_filename => true,
-                            :dropbox_visibility => 'private'
+                self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
+                                                                  :small => ["100x100#", :jpg],
+                                                                  :thumb => ["100x100#", :jpg] },
+                                :storage => :dropbox,
+                                :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
+                                                          :app_secret => DROPBOX_APP_KEY_SECRET,
+                                                          :access_token => self.user.access_token,#User.current.access_token,
+                                                          :access_token_secret => self.user.access_secret,#User.current.access_secret,
+                                                          :user_id => self.user.uid,#User.current.uid,
+                                                          :access_type => "dropbox" },
+                                :dropbox_options => {},
+                                :path => "SLPAPP/:style/:id_:filename",
+                                :unique_filename => true,
+                                :dropbox_visibility => 'private'
 
         end
 
@@ -84,5 +91,18 @@ class Content < ActiveRecord::Base
                 self.height = geometry.height.to_i
             end
         end
+
+        # def delete_image
+
+        #    if not self.changed?
+
+        #     # puts "gfd"
+        #     logger.debug "#{3}"
+
+        #         if not self.image.exists?(:original)
+        #             self.destroy!
+        #         end
+        #     end
+        # end
 
 end

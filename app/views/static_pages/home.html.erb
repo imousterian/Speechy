@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+
+    <%= render 'shared/content_index' %>
+
+<% else %>
+
+    <%= render 'main_home' %>
+
+<% end %>

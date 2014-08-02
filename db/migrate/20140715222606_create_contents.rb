@@ -9,5 +9,7 @@ class CreateContents < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :contents, :user_id
   end
+
 end

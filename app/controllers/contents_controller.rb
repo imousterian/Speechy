@@ -2,28 +2,18 @@ require 'dropbox_sdk'
 
 class ContentsController < ApplicationController
 
-  before_action :set_content, only: [:show, :edit, :update, :destroy]
-  before_action :delete_lost_image2, only: [:index]
-
+  before_action :set_content, only: [:show, :edit, :update, :destroy, :set_new_content]
 
   # GET /contents
   # GET /contents.json
 
   def index
-    # showing content only tagged as "public" to all
-    # signed in users can see their own and public content
-
     if user_signed_in?
-        @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true']).by_height.page(params[:page])
-        # @contents = delete_file_references
-        # @contents.by_height.page(params[:page])
+        # @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true']).by_height.page(params[:page])
     else
-        @contents = Content.where(is_public: 'true').by_height.page(params[:page])
+        # @contents = Content.where(is_public: 'true').by_height.page(params[:page])
     end
-    # respond_to do |format|
-    #     format.html
-    #     format.js
-    # end
+
 
   end
 
@@ -144,30 +134,4 @@ class ContentsController < ApplicationController
         submission = { :ctype => u }
     end
 
-    def delete_file_references
-        @contents = Content.all#.where(['user_id = ?', current_user.id])
-
-        @contents.each do |content|
-            if not content.image.exists?
-                content.image = nil
-                content.save
-            end
-        end
-
-        @contents
-    end
-
-    def delete_lost_image2
-
-        @contents = Content.all
-
-        @contents.each do |content|
-            if not content.image.exists?
-                # content.image = nil
-                # content.save
-                content.destroy!
-            end
-        end
-
-    end
 end

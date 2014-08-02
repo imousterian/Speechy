@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
     has_many :contents
     has_many :tags
+    has_many :students
 
     validates :email, :presence => true, :uniqueness => true
 

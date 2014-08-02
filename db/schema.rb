@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723020324) do
+ActiveRecord::Schema.define(version: 20140726063958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20140723020324) do
     t.string   "height"
   end
 
+  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
+
+  create_table "students", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id", using: :btree
+
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "content_id"
@@ -44,11 +55,12 @@ ActiveRecord::Schema.define(version: 20140723020324) do
 
   create_table "tags", force: true do |t|
     t.string   "tagname"
-    t.integer  "content_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["user_id"], name: "index_tags_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

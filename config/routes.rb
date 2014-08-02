@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
+
+  resources :students
+
+  # get 'static_pages/home'
+
+
   resources :tags
 
-  root :to => redirect('/contents')
+  # root :to => redirect('/contents')
 
   # resources :contents, :path_names => { :set_new_content => 'new' }
 
   # get '/contents/set_new_content', to: redirect('/contents/new')
 
-  # resources :contents do
-  #    resources: :tags
-  # end
 
     scope 'contents' do
          get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
+  root :to => "static_pages#home"
 
     # scope ":username" do
     #     get '/', to: 'users#show', as: 'user_name'
@@ -44,6 +48,15 @@ Rails.application.routes.draw do
   get  "dropbox/dropbox_callback"
   get  "dropbox/upload"
   post "dropbox/upload"
+
+  match '/help', to: "static_pages#help", via: 'get'
+  match '/about', to: "static_pages#about", via: 'get'
+  match '/contact', to: "static_pages#contact", via: 'get'
+
+
+  # match '/test', to: "students#new", via: 'get'
+
+
 
   # match '/contents/set_new_content', to: "contents#set_new_content", via: 'get'
 

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require jquery.infinitescroll
 //= require jquery.masonry.min
 //= require bootstrap-sprockets
@@ -61,6 +62,46 @@ $(function()
     );
 
     $(window).scroll();
+
+    // $( "#tabs" ).tabs();
+
+    // $( "#tabs" ).tabs({ selected: $("#tabs").data("selected") });
+
+    // console.log($("#tabs").attr("data-selected"));
+
+    // $( "#tabs" ).tabs({ active: $("#tabs").data("selected") });
+
+
+    $( "#tabs" ).tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.error(function() {
+          ui.panel.html(
+            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+            "If this wouldn't be a demo." );
+        });
+      }
+    });
+
+
+    // $('#ui-id-2').click(function(){
+    //     // $("#tab-2").append("<%= render :partial => 'form'%>");
+    //     console.log(this)
+    //     $("div#tab-2").html("<%= escape_javascript(render partial: 'form') %>");
+    // });
+
+
+    // $("#tabs").click(function(){
+    //         $.ajax({
+    //             dataType: 'html',
+    //             type: 'get',
+    //             url: $(this).attr('href'),
+    //             success: function(data){
+    //                        $("#test").html(data);
+    //                      }
+    //         })
+    //      });
+
+
 
 });
 

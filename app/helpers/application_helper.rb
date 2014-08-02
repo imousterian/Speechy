@@ -1,4 +1,5 @@
 module ApplicationHelper
+
     def tag_cloud(tags, classes)
         max = tags.sort_by(&:count).last
         tags.each do |tag|
@@ -6,4 +7,14 @@ module ApplicationHelper
           yield(tag, classes[index.round])
         end
     end
+
+    def full_title(page_title)
+        base_title = "SLP App"
+        if page_title.empty?
+            base_title
+        else
+            "#{base_title} | #{page_title}"
+        end
+    end
+
 end

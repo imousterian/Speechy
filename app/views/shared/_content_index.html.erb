@@ -1,0 +1,28 @@
+<div id="tag_cloud">
+  <% tag_cloud Content.tag_counts, %w{s m l} do |tag, css_class| %>
+        <%= link_to tag.tagname, summary_path(:tagname => tag.tagname), class: css_class %>
+  <% end %>
+</div>
+</br>
+
+<div id="contents">
+    <div class = "masonry-container">
+        <% @contents.each do |content| %>
+            <% if content.image.exists?(:original) %>
+                <div class = "masonry-item" >
+                    <%= image_tag content.image.url(:original) %>
+                </div>
+            <% else %>
+                <% content.destroy! %>
+            <% end %>
+
+        <% end %>
+    </div>
+</div>
+
+
+</br>
+</br>
+
+
+<%= paginate @contents %>
