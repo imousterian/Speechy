@@ -56,11 +56,12 @@
     <div class = "masonry-container">
         <% @contents.each do |content| %>
             <div class = "masonry-item" >
-                <%# if not content.image.exists?(:original) %>
+                <% if not content.image.exists?(:original) %>
                     <%#= 'Whoops' %>
-                <%# else %>
+                    <% content.destroy %>
+                <% else %>
                     <%= image_tag content.image.url(:original) %>
-                <%# end %>
+                <% end %>
             </div>
         <% end %>
     </div>
