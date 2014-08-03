@@ -11,6 +11,7 @@ class Content < ActiveRecord::Base
     has_many :taggings
 
     has_many :tags, through: :taggings, :dependent => :destroy
+    has_many :student_responses, through: :taggings
 
     has_attached_file :image
 

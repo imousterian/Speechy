@@ -44,9 +44,10 @@ class StudentsController < ApplicationController
     if @student.save
         flash[:notice] = "yes"
         respond_to do |format|
-            format.html {redirect_to students_url}
+            format.html { redirect_to students_url }
             format.json { render json: @student, status: :created, location: @student }
-            format.js
+            # format.js
+            format.js { render :js => "window.location = 'students'" }
         end
     else
         flash[:danger] = "boo"

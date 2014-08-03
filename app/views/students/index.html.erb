@@ -49,7 +49,7 @@
         <li><a href="#tabs-1">Information:</a></li>
         <li><a href="#tabs-2">Form:</a></li>
         <!-- <li> <a href="students/new" >Stuff</a></li> -->
-        <li><%= link_to "Messages", new_student_path, :remote => true %></li>
+        <li><%= link_to "Messages", new_student_path, :remote => true, "data-type" => :html %></li>
     </ul>
     <div id="tabs-1">
         <div class = "js-students">
@@ -64,9 +64,9 @@
 </div>
 
 
-<div id ="experiment">
-    <%= link_to "Messages", new_student_path, :remote => true, :id => "new_student_link"  %>
-</div>
+<!-- <div id ="experiment"> -->
+    <%#= link_to "Messages", new_student_path, :remote => true, :id => "new_student_link"  %>
+<!-- </div> -->
 
 <h1>Listing students</h1>
 
