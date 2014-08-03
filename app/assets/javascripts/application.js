@@ -101,7 +101,10 @@ $(function()
     //         })
     //      });
 
-
+    $('.remove_me').click(function(){
+        // console.log("I am called");
+        $('#alertid').remove();
+    });
 
 });
 

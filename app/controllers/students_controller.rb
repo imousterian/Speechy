@@ -10,6 +10,11 @@ class StudentsController < ApplicationController
     @students = Student.where(:user_id => current_user.id)
     # @student = current_user.students.new(params[:student])
 
+    # respond_to do |format|
+    #     format.html { render partial: 'new'}
+    #     format.js
+    # end
+
   end
 
   # GET /students/1
@@ -23,10 +28,11 @@ class StudentsController < ApplicationController
     @student = current_user.students.new(params[:student])
 
     respond_to do |format|
-        format.html {render :layout => false} # index.html.erb
+        format.html { render :layout => false }
+        # format.html(render partial: 'new')
         # format.xml  { render :xml => @messages }
-        format.json {render json: @student}
-        format.js
+        # format.json {render json: @student}
+        # format.js
     end
 
   end
@@ -42,15 +48,17 @@ class StudentsController < ApplicationController
     @student = current_user.students.build(student_params)
 
     if @student.save
-        flash[:notice] = "yes"
+        flash[:notice] = "You've successfully added a student #{@student.name}"
         respond_to do |format|
-            format.html { redirect_to students_url }
-            format.json { render json: @student, status: :created, location: @student }
+            # format.html { redirect_to students_url }
+            # format.json { render json: @student, status: :created, location: @student }
             # format.js
             format.js { render :js => "window.location = 'students'" }
         end
     else
         flash[:danger] = "boo"
+        # format.html { render :new }
+        # format.js { render :js => "window.location = 'new'" }
     end
 
     # respond_with(@student) do |f|

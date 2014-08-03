@@ -1,73 +1,39 @@
-
-<!-- <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-
-  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-
-    <li class="ui-state-default ui-corner-top" role="tab" tabindex="0" aria-controls="tabs-1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
-            <a href="#tabs-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Student List</a></li>
-
-    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-3" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
-            <a href = '#tabs-2' class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">New</a></li>
-
-    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-4" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
-            <a href='students/new' data-remote="true" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">New2</a></li>
-
-    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-4" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
-            <%#= link_to "Students", new_student_path, :remote => true %>
-
-    </li>
-
-
-
-    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-4" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
-            <a href='test' data-remote="true" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-43">New53</a>
-    </li>
-
-
-  </ul>
-
-  <br />
- -->
-<!--
-    <div class="post-list js-posts" id="tabs-1">
-      <%# if @students.any? %>
-        <%#= render @students %>
-      <%# else %>
-        No students yet!
-      <%# end %>
-    </div>
- -->
-   <!-- <div id="tabs-2"> -->
-        <%#= render partial: 'form' %>
-    <!-- </div> -->
-
-<!-- </div> -->
-
-
 <div id="tabs">
     <ul>
-        <li><a href="#tabs-1">Information:</a></li>
-        <li><a href="#tabs-2">Form:</a></li>
+        <li><a href="#tabs-1" class="remove_me">Students:</a></li>
+        <!-- <li><a href="#tabs-2">Form:</a></li> -->
         <!-- <li> <a href="students/new" >Stuff</a></li> -->
-        <li><%= link_to "Messages", new_student_path, :remote => true, "data-type" => :html %></li>
+        <li><%= link_to "Add a student", new_student_path, :remote => true, :class => "remove_me" %></li>
     </ul>
-    <div id="tabs-1">
-        <div class = "js-students">
-            <%= render @students %>
-        </div>
-    </div>
     <div id="tabs-2">
         <%#= render partial: 'new' %>
     </div>
-    <div id="test">
+    <div id="tabs-1">
+        <div class = "js-students">
+            <table>
+                <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th colspan="3"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% if !@students.nil? %>
+
+                        <%= render @students %>
+
+                    <% end %>
+                </body>
+            </table>
+
+        </div>
     </div>
+
 </div>
 
 
-<!-- <div id ="experiment"> -->
-    <%#= link_to "Messages", new_student_path, :remote => true, :id => "new_student_link"  %>
-<!-- </div> -->
-
+<!--
 <h1>Listing students</h1>
 
 <table>
@@ -79,18 +45,18 @@
   </thead>
 
   <tbody>
-    <% if !@students.nil? %>
-        <% @students.each do |student| %>
+    <%# if !@students.nil? %>
+        <%# @students.each do |student| %>
           <tr>
-            <td><%= student.name %> &nbsp;|</td>
-            <td> &nbsp; <%= link_to 'Show', student %></td>
-            <td> &nbsp; <%= link_to 'Edit', edit_student_path(student) %></td>
-            <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%#= student.name %> &nbsp;|</td>
+            <td> &nbsp; <%#= link_to 'Show', student %></td>
+            <td> &nbsp; <%#= link_to 'Edit', edit_student_path(student) %></td>
+            <td> &nbsp; <%#= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
-        <% end %>
-    <% end %>
+        <%# end %>
+    <%# end %>
   </tbody>
 </table>
-<br>
+<br> -->
 
 <%#= link_to 'New Student', new_student_path %>
