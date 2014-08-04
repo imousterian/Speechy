@@ -7,6 +7,7 @@ class ContentsController < ApplicationController
   # GET /contents
   # GET /contents.json
 
+  # this action is now called in static pages
   def index
     if user_signed_in?
         # @contents = Content.where(['user_id = ? OR is_public = ?', current_user.id, 'true']).by_height.page(params[:page])
@@ -29,10 +30,30 @@ class ContentsController < ApplicationController
     # it will take me to a controller
 
     @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]}).updated
-    # @contents = @contents.order('updated_at', 'asc')
-    # session[:updated].destroy
+    respond_to do |format|
+        format.html
+    end
 
-    # puts "@contents"
+  end
+
+  def selected_tags_for_students
+    # Tag.select("tags.*").joins(:taggings).group("tags.id")
+    # @contents = Content.joins(:tags).
+    # @all_contents = Content.select("contents.*").joins(:taggings).group("tags.id")
+    # redirect_to selected student
+
+    # puts "#{params[:tag_ids]}"
+    session[:collected_tag_ids] = Hash.new
+    session[:collected_tag_ids] = params[:tag_ids]
+
+    puts "#{session[:collected_tag_ids]}"
+
+    # @selected_contents = Content.joins(:tags).where(tags: {id: params[:tag_ids]}).updated
+
+    # respond_to do |format|
+    #     format.js
+    # end
+
   end
 
   # GET /contents/new

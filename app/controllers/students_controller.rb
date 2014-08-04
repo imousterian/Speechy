@@ -8,18 +8,18 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.where(:user_id => current_user.id)
-    # @student = current_user.students.new(params[:student])
-
-    # respond_to do |format|
-    #     format.html { render partial: 'new'}
-    #     format.js
-    # end
-
   end
 
   # GET /students/1
   # GET /students/1.json
   def show
+    session[:current_student] = Hash.new
+    session[:current_student] = @student.id
+
+    @student_response = @student.student_responses.build
+
+    @selected_contents = Content.joins(:tags).where(tags: {selected: '1'}).updated
+
   end
 
   # GET /students/new
@@ -88,15 +88,17 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    # respond_to do |format|
-    #   if @student.update(student_params)
-    #     format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @student }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @student.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @student.update(student_params)
+        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @student }
+        # format.js { render :location => "window.location = #{students_path(@student)}" }
+        # format.js
+      else
+        format.html { render :edit }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /students/1

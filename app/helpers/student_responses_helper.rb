@@ -1,0 +1,2 @@
+module StudentResponsesHelper
+end

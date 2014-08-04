@@ -1,6 +1,18 @@
 <tr>
-    <td><%= student.name %> &nbsp; </td>
+
+    <td><%= link_to student.name, student %> &nbsp; </td>
+    <!-- <td> &nbsp; <%#= link_to 'Select tags for ' + student.name, student %></td> -->
+    <td> &nbsp; <a href = '<%#= selected_tags_for_students_path %>'
+                    data-target="#tag_modal" data-toggle="modal"
+                    style="width:100%" > <span> Upload </span>
+                </a>
+    </td>
     <td> &nbsp; <%= link_to 'Show', student %></td>
-    <td> &nbsp; <%= link_to 'Edit', edit_student_path(student) %></td>
+    <td> &nbsp; <%= link_to 'Edit', edit_student_path(student)%></td>
     <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
 </tr>
+
+<div class="modal fade" id='tag_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
+    <%= render 'shared/contents_form' %>
+</div>

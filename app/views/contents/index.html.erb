@@ -8,50 +8,6 @@
 </div>
 </br>
 
-<!-- uses a 'table' view -->
-<!-- <table id ="contents" >
-    <thead><tr></tr></thead>
-    <tbody class="page">
-        <tr class="content">
-            <%# @contents.each do |f| %>
-                <td style="padding-right:10px; padding-bottom:10px">  <%#= image_tag f.image.url(:small) %> </td>
-            <%# end %>
-        </tr>
-    </tbody>
-</table> -->
-
-
-
-<!-- same as above but without table, uses bootstrap -->
-<!-- <div id='contents'>
-    <div class='row'>
-      <div class="col-lg-12 page">
-        <div class="content">
-          <%# @contents.each do |content| %>
-            <%#= render content %>
-          <%# end %>
-        </div>
-      </div>
-    </div>
-</div> -->
-
-<%#= paginate @contents %>
-
-
-<!-- masonry -->
-
-<!-- <div id="contents">
-  <div class="row masonry-container">
-        <div class="col-xs-4 col-sm-3 ">
-            <%# @contents.each do |content| %>
-                <div class="masonry-item">
-                    <%#= image_tag content.image.url(:original) %>
-                </div>
-            <%# end %>
-        </div>
-  </div>
-</div> -->
-
 <div id="contents">
     <div class = "masonry-container">
         <% @contents.each do |content| %>

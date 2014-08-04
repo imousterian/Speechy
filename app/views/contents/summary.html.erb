@@ -2,6 +2,7 @@
     <div class="carousel-inner" >
         <% @contents.each_with_index do |content, index| %>
                 <div class="item <% if index == 0 %> active <% end %> id<%=index%> ">
+
                     <a href='<%= content_path(content) %>'>
                         <%= image_tag content.image.url(:thumb) %>
                     </a>
@@ -43,5 +44,4 @@
 
 </br>
 </br>
-
 

@@ -45,6 +45,10 @@ class Content < ActiveRecord::Base
          # Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
     end
 
+    def self.select_tags
+        Tag.select("tags.*").joins(:taggings).group("tags.id")
+    end
+
     def tag_list
         tags.map(&:tagname).join(", ")
     end

@@ -1,0 +1,11 @@
+<%= form_for(@student_response, :remote => true) do |f| %>
+
+    <%= render 'shared/messages', object: f.object %>
+
+    <div class="field">
+        <%= f.text_field :emotion %>
+    </div>
+
+    <%= f.submit "Answer!", class: "btn btn-md btn-primary sm" %>
+
+<% end %>

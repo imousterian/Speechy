@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
    # before_filter :set_current_user
 
+    def current_student
+        Student.find_by(:id => session[:current_student])
+    end
+
 end

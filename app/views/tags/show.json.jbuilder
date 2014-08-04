@@ -1,1 +1,1 @@
-json.extract! @tag, :id, :tagname, :content_id, :created_at, :updated_at
+json.extract! @tag, :id, :tagname, :selected, :created_at, :updated_at

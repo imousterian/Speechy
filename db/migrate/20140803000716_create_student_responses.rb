@@ -2,8 +2,8 @@ class CreateStudentResponses < ActiveRecord::Migration
   def change
     create_table :student_responses do |t|
       t.string :emotion
-      t.belongs_to :student
-      t.belongs_to :tagging
+      t.integer :student_id
+      t.integer :tagging_id
 
       t.timestamps
     end

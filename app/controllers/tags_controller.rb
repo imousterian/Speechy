@@ -40,10 +40,13 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
+    puts "updating the tag"
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tag }
+        # format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @tag }
+        # format.js
+        format.js { render :js => "window.location = 'students'" }
       else
         format.html { render :edit }
         format.json { render json: @tag.errors, status: :unprocessable_entity }
@@ -69,6 +72,6 @@ class TagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params
-      params.require(:tag).permit(:tagname)
+      params.require(:tag).permit(:tagname, :selected)
     end
 end

@@ -17,4 +17,9 @@ module ApplicationHelper
         end
     end
 
+    def test(tags)
+        tags.each do |tag|
+            yield tag
+        end
+    end
 end
