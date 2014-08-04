@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :students
-  resources :student_responses, only: [:create]
+  resources :student_responses, only: [:create,:new]
 
   # get 'static_pages/home'
 
@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   match '/contact', to: "static_pages#contact", via: 'get'
 
   match 'selected_tags_for_students', to: "contents#selected_tags_for_students", via: 'get'
+
+  get 'students/:id/show_response' => "students#show_response", as: "show_response"
 
 
   # match '/test', to: "students#new", via: 'get'

@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
 
     respond_to :html, :js
 
-    before_action :set_student, only: [:show, :edit, :update, :destroy]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response]
 
   # GET /students
   # GET /students.json
@@ -16,9 +16,17 @@ class StudentsController < ApplicationController
     session[:current_student] = Hash.new
     session[:current_student] = @student.id
 
-    @student_response = @student.student_responses.build
+    # @student_response = @student.student_responses.build
 
     @selected_contents = Content.joins(:tags).where(tags: {selected: '1'}).updated
+
+  end
+
+  def show_response
+    @student_response = @student.student_responses.build
+    respond_to do |format|
+        format.js
+    end
 
   end
 

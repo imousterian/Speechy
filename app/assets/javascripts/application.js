@@ -117,31 +117,35 @@ $(function()
         // });
 
         console.log(url);
+        var pathname = window.location.pathname;
+        console.log(pathname);
 
         var data_id = $('.item.active').data('id');
         console.log(data_id);
 
+        // my_url = '/students/'+data_id+'/show_response';
+        my_url = pathname+'/show_response';
+
         $.ajax({
-            type: 'POST',
-            url: '/student_responses',
-            data: { 'passed_stid': data_id },
-            success: function(data)
+            type: 'GET',
+            url: my_url,
+            // data: { 'passed_stid': data_id },
+            success: function()
             {
-                $("#student_response").html("<%= escape_javascript(render(:partial => 'shared/student_response_form')) %>");
+                // $("#student_response").html("<%= escape_javascript(render(:partial => 'shared/student_response_form')) %>");
                 // console.log("est");
-                // return false;
+                return false;
             },
             error: function(){
                 alert('Error occurred');
             }
-
         });
 
     });
 
-    $('#myCarousel').on('click', function(){
-        console.log("clicked");
-    });
+    // $('#myCarousel').on('click', function(){
+    //     console.log("clicked");
+    // });
 
     $(window).load(function () {
         var url = $('.item.active').data('url');
