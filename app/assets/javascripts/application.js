@@ -153,8 +153,8 @@ $(function()
             $.ajax({
                 url: $('.edit_tag').attr('action'),
                 data: valuesToSubmit,
-                dataType: "JSON"
-            }).success(function(json){
+                // dataType: "JSON"
+            }).success(function(data){
                 $('.edit_tag').trigger('submit.rails');
             });
             return false;

@@ -16,7 +16,7 @@
                 <div class="modal-body">
                     <% test Content.select_tags do |tag| %>
                     <li>
-                        <%= form_for tag, url: tag_path(tag), remote: true do  |f| %>
+                        <%= form_for tag, remote: true do  |f| %>
                            <%#= check_box_tag "tag_ids[]", tag.id, :class => 'submittable' %>
                              <%= f.check_box "selected", :class => 'submittable' %>
                              <%= tag.tagname %>

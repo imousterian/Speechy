@@ -45,7 +45,6 @@ class TagsController < ApplicationController
       if @tag.update(tag_params)
         # format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
         # format.json { render :show, status: :ok, location: @tag }
-        # format.js
         format.js { render :js => "window.location = 'students'" }
       else
         format.html { render :edit }
