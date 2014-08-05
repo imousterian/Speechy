@@ -1,3 +1,15 @@
 // $('.item').html("<%#= escape_javascript(render 'date_step', :f => f ) %>");
 
 $("#student_response").html("<%= escape_javascript(render(:partial => 'shared/student_response_form')) %>");
+
+$('.submitanswer').on('click',function(){
+    $.ajax({
+        complete: function(){
+            $('.new_student_response').each(function(){
+                this.reset();   //Here form fields will be cleared.
+            });
+            // $(this).closest('form').find("input[type=text], textarea").val("");
+        }
+    });
+});
+

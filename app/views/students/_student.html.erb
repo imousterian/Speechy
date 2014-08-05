@@ -1,6 +1,6 @@
 <tr>
 
-    <td><%= link_to student.name, student %> &nbsp; </td>
+    <td><%= link_to student.name, student, 'data-no-turbolink' => true %> &nbsp; </td>
     <!-- <td> &nbsp; <%#= link_to 'Select tags for ' + student.name, student %></td> -->
     <td> &nbsp; <a href = '<%#= selected_tags_for_students_path %>'
                     data-target="#tag_modal" data-toggle="modal"

@@ -82,14 +82,6 @@ $(function()
       }
     });
 
-
-    // $('#ui-id-2').click(function(){
-    //     // $("#tab-2").append("<%= render :partial => 'form'%>");
-    //     console.log(this)
-    //     $("div#tab-2").html("<%= escape_javascript(render partial: 'form') %>");
-    // });
-
-
     // $("#tabs").click(function(){
     //         $.ajax({
     //             dataType: 'html',
@@ -106,25 +98,20 @@ $(function()
         $('#alertid').remove();
     });
 
-    // $('.carousel-control')
-
     $('#myCarousel').on('slid.bs.carousel', function () {
 
-        var idx = $('#myCarousel .item.active').index();
-        var url = $('.item.active').data('url');
-        // $('.item').load(url,function(result){
-        //     $('#myCarousel').carousel(idx);
-        // });
+        // var idx = $('#myCarousel .item.active').index();
+        // var url = $('.item.active').data('url');
 
-        console.log(url);
+        // console.log(url);
         var pathname = window.location.pathname;
-        console.log(pathname);
+        // console.log(pathname);
 
-        var data_id = $('.item.active').data('id');
-        console.log(data_id);
+        // var data_id = $('.item.active').data('id');
+        // console.log(data_id);
 
         // my_url = '/students/'+data_id+'/show_response';
-        my_url = pathname+'/show_response';
+        my_url = pathname + '/show_response';
 
         $.ajax({
             type: 'GET',
@@ -132,27 +119,41 @@ $(function()
             // data: { 'passed_stid': data_id },
             success: function()
             {
-                // $("#student_response").html("<%= escape_javascript(render(:partial => 'shared/student_response_form')) %>");
-                // console.log("est");
+                //alert('Success occurred');
+                // this.reset();
+                // $('input[type="text"],textarea').val('');
                 return false;
             },
             error: function(){
                 alert('Error occurred');
             }
+
         });
 
     });
 
-    // $('#myCarousel').on('click', function(){
-    //     console.log("clicked");
-    // });
-
     $(window).load(function () {
-        var url = $('.item.active').data('url');
-        console.log('calling ' + url);
+        // var url = $('.item.active').data('url');
+        // console.log('calling ' + url);
+        // var pathname = window.location.pathname;
+        // my_url = pathname + '/show_response';
+
+        // $.ajax({
+        //     type: 'GET',
+        //     url: my_url,
+        //     // data: { 'passed_stid': data_id },
+        //     success: function()
+        //     {
+        //         return false;
+        //     },
+        //     error: function(){
+        //         alert('Error occurred');
+        //     }
+        // });
     });
 
     $('.submitme').on('click',function(){
+
             var valuesToSubmit = $('.edit_tag').serialize();
             $.ajax({
                 url: $('.edit_tag').attr('action'),

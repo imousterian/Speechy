@@ -3,23 +3,18 @@ class StudentResponsesController < ApplicationController
     def create
         # current_student = Student.find_by(:id => session[:current_student])
         # current_student = session[:current_student]
-        # puts "#{current_student.class}"
         @student_response = current_student.student_responses.build(student_response_params)
-        # if @student_response.save
-        #     format.html #{ redirect_to current_student, notice: 'Response saved.' }
-        #     # format.json { render :show, status: :created, location: @content }
-        #     format.js { render :js => "window.location = 'students'" }
-        # else
-        #     # @feed_items = []
-        #     # render 'static_pages/home'
-        # end
-        stid = current_student.id
+
         respond_to do |format|
             if @student_response.save
-                format.html { redirect_to current_student, notice: 'Response saved.' }
-                format.js { render :js => "window.location = '#{stid}'" }
+                # somewhere here to get info on whether the answer is correct, then redirect/rerender page
+                # format.html { redirect_to current_student, notice: 'Response saved.' }
+                # format.js { render :js => "window.location = '#{stid}'" and return }
+                # format.js #{ render :js => :back and return }
+                # format.html { redirect_to :back and return }
+                format.js { render nothing: true }
+                # format.html { render plain: 'OK' }
             end
-
         end
     end
 

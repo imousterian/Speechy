@@ -96,11 +96,7 @@ class ContentsController < ApplicationController
   # PATCH/PUT /contents/1.json
   def update
 
-    # puts "Lalal #{params[:commit]} #{params[:commit].to_i.nil?} #{'a'.to_i.nil?}"
-
     if params[:commit].to_i > 0
-
-        # session[:updated] = params[:id]
 
         respond_to do |format|
           if @content.update_attributes(update_selected)
