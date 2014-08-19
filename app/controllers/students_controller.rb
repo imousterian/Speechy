@@ -13,21 +13,27 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    # session.clear
     session[:current_student] = Hash.new
     session[:current_student] = @student.id
 
     # @student_response = @student.student_responses.build
 
-    @selected_contents = Content.joins(:tags).where(tags: {selected: '1'}).updated
-
+    @selected_contents = Content.joins(:tags).where(tags: { selected: '1' })#.updated
+    # puts "#{@selected_contents}"
+    respond_to do |format|
+        format.html
+        # format.js { render nothing: true }
+    end
   end
 
   def show_response
+
     @student_response = @student.student_responses.build
+    puts "test #{@student_response.tagging_id}"
     respond_to do |format|
         format.js
     end
-
   end
 
   # GET /students/new

@@ -34,7 +34,9 @@ class Content < ActiveRecord::Base
 
     # after_commit :delete_image
 
-
+    def matching_taggings
+        taggings.map(&:id).join(', ')
+    end
 
     def self.tagged_with(name)
         Tag.find_by_name!(tagname).contents

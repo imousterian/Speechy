@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+
 //= require jquery.infinitescroll
 //= require jquery.masonry.min
 //= require bootstrap-sprockets
 //= require bootstrap/modal
 //= require bootstrap/dropdown
 //= require turbolinks
+//= require jquery.ui.all
 //= require_tree .
 
 // $('.carousel').carousel();
@@ -101,35 +102,38 @@ $(function()
     $('#myCarousel').on('slid.bs.carousel', function () {
 
         // var idx = $('#myCarousel .item.active').index();
-        // var url = $('.item.active').data('url');
+        // var url2 = $('.item.active').data('url');
+        // console.log(url2);
 
         // console.log(url);
         var pathname = window.location.pathname;
         // console.log(pathname);
 
-        // var data_id = $('.item.active').data('id');
+        var data_id = $('.item.active').data('id');
         // console.log(data_id);
+        taggings_data = $('.item.active').data('tagging');
+        console.log(taggings_data);
 
         // my_url = '/students/'+data_id+'/show_response';
         my_url = pathname + '/show_response';
-
+        // id = student_response_tagging_id
+        // name = student_response[tagging_id]
+        // $("input#student_response_tagging_id").val(data_id);
         $.ajax({
             type: 'GET',
             url: my_url,
-            // data: { 'passed_stid': data_id },
             success: function()
             {
                 //alert('Success occurred');
                 // this.reset();
                 // $('input[type="text"],textarea').val('');
-                return false;
+                $("input#student_response_taglist").val(taggings_data);
+                // return false;
             },
             error: function(){
                 alert('Error occurred');
             }
-
         });
-
     });
 
     $(window).load(function () {
@@ -153,8 +157,14 @@ $(function()
     });
 
     $('.submitme').on('click',function(){
+        // var url2 = $('.item.active').data('url');
+        // console.log("rest");
+        // console.log( "test " + url2);
+
+        // var data_id = $('.item.active').data('id');
 
             var valuesToSubmit = $('.edit_tag').serialize();
+            // console.log(valuesToSubmit);
             $.ajax({
                 url: $('.edit_tag').attr('action'),
                 data: valuesToSubmit,

@@ -1,7 +1,11 @@
 <div id="myCarousel" class="carousel slide" >
     <div class="carousel-inner" >
         <% @selected_contents.each_with_index do |content, index| %>
-                <div class="item <% if index == 0 %> active <% end %> id<%=index%> " data-url='<%= content_path(content) %>' data-id='<%=content.id%>'>
+                <div class="item <% if index == 0 %> active <% end %> id<%=index%> "
+                    data-url='<%= content_path(content) %>' data-id='<%=content.id%>'
+                    data-tagging='<%= content.matching_taggings %>'
+                    >
+
                     <a href='<%= content_path(content) %>' >
                         <%= image_tag content.image.url(:thumb) %>
                     </a>

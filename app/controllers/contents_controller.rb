@@ -25,7 +25,7 @@ class ContentsController < ApplicationController
   end
 
   def summary
-    #/contents/tag
+    # /contents/tag
     # when I click on a tag
     # it will take me to a controller
 

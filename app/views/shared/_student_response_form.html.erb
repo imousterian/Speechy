@@ -6,6 +6,8 @@
         <%= f.text_field :emotion %>
     </div>
 
+    <%= f.hidden_field :taglist %>
+
     <%= f.submit "Answer!", class: "btn btn-md btn-primary sm submitanswer", :remote => true %>
 
 <% end %>
