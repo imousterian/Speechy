@@ -3,12 +3,12 @@
         <% @selected_contents.each_with_index do |content, index| %>
                 <div class="item <% if index == 0 %> active <% end %> id<%=index%> "
                     data-url='<%= content_path(content) %>' data-id='<%=content.id%>'
-                    data-tagging='<%= content.matching_taggings %>'
-                    >
+                    data-tagging='<%= content.matching_taggings %>' >
 
                     <a href='<%= content_path(content) %>' >
-                        <%= image_tag content.image.url(:thumb) %>
+                        <%= image_tag content.image.url(:original) %>
                     </a>
+
                 </div>
         <% end %>
     </div>

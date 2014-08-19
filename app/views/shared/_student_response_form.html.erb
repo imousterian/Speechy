@@ -3,12 +3,12 @@
     <%= render 'shared/messages', object: f.object %>
 
     <div class="field">
-        <%= f.text_field :emotion %>
+        <%= f.text_field :emotion, :class => "form-control" %>
     </div>
 
     <%= f.hidden_field :taglist %>
 
-    <%= f.submit "Answer!", class: "btn btn-md btn-primary sm submitanswer", :remote => true %>
+    <%= f.submit "What do you think it is?", class: "btn btn-md btn-primary sm submitanswer form-control", :remote => true %>
 
 <% end %>
 

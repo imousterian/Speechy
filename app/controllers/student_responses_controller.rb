@@ -12,15 +12,15 @@ class StudentResponsesController < ApplicationController
                 # format.js #{ render :js => :back and return }
                 # format.html { redirect_to :back and return }
 
-                format.js { render nothing: true }
-                # format.html { render plain: 'OK' }
-
                 @response = @student_response.response_correct?
+
                 if !@response
-
+                    format.js { render :js => "alert('Oh no! Wrong :( ');" }
                 else
-
+                    format.js { render :js => "alert('Yahoo teepee tee little happy dance!');" }
                 end
+
+                format.js { render nothing: true }
 
             end
         end

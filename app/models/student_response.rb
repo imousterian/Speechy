@@ -10,7 +10,8 @@ class StudentResponse < ActiveRecord::Base
     def response_correct?
         new_list = []
         taglist.split(",").map do |n|
-            new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).map(&:tagname).join(", ")
+            # new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).map(&:tagname).join(", ")
+            new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).pluck(:tagname)#map(&:tagname).join(", ")
         end
         # print new_list
         # new_list
