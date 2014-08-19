@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   match 'selected_tags_for_students', to: "contents#selected_tags_for_students", via: 'get'
 
   get 'students/:id/show_response' => "students#show_response", as: "show_response"
+  get 'students/:id/summary_of_responses' => "students#summary_of_responses", as: "summary_of_responses"
 
 
   # match '/test', to: "students#new", via: 'get'
