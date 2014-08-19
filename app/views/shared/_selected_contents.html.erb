@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide" >
+<div id="myCarousel" class="carousel slide">
     <div class="carousel-inner" >
         <% @selected_contents.each_with_index do |content, index| %>
                 <div class="item <% if index == 0 %> active <% end %> id<%=index%> "
@@ -24,4 +24,6 @@
 
 </br>
 </br>
-
+<script type="text/javascript">
+   createResponseForm();
+</script>

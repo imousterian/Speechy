@@ -95,65 +95,11 @@ $(function()
     //      });
 
     $('.remove_me').click(function(){
-        // console.log("I am called");
         $('#alertid').remove();
     });
 
     $('#myCarousel').on('slid.bs.carousel', function () {
-
-        // var idx = $('#myCarousel .item.active').index();
-        // var url2 = $('.item.active').data('url');
-        // console.log(url2);
-
-        // console.log(url);
-        var pathname = window.location.pathname;
-        // console.log(pathname);
-
-        var data_id = $('.item.active').data('id');
-        // console.log(data_id);
-        taggings_data = $('.item.active').data('tagging');
-        console.log(taggings_data);
-
-        // my_url = '/students/'+data_id+'/show_response';
-        my_url = pathname + '/show_response';
-        // id = student_response_tagging_id
-        // name = student_response[tagging_id]
-        // $("input#student_response_tagging_id").val(data_id);
-        $.ajax({
-            type: 'GET',
-            url: my_url,
-            success: function()
-            {
-                //alert('Success occurred');
-                // this.reset();
-                // $('input[type="text"],textarea').val('');
-                $("input#student_response_taglist").val(taggings_data);
-                // return false;
-            },
-            error: function(){
-                alert('Error occurred');
-            }
-        });
-    });
-
-    $(window).load(function () {
-        // var url = $('.item.active').data('url');
-        // console.log('calling ' + url);
-        // var pathname = window.location.pathname;
-        // my_url = pathname + '/show_response';
-
-        // $.ajax({
-        //     type: 'GET',
-        //     url: my_url,
-        //     // data: { 'passed_stid': data_id },
-        //     success: function()
-        //     {
-        //         return false;
-        //     },
-        //     error: function(){
-        //         alert('Error occurred');
-        //     }
-        // });
+        createResponseForm();
     });
 
     $('.submitme').on('click',function(){
@@ -174,6 +120,27 @@ $(function()
             });
             return false;
     });
-
 });
 
+function createResponseForm(){
+    // console.log("loaded");
+    var pathname = window.location.pathname;
+    // var data_id = $('.item.active').data('id');
+    taggings_data = $('.item.active').data('tagging');
+    // my_url = '/students/'+data_id+'/show_response';
+    my_url = pathname + '/show_response';
+    $.ajax({
+        type: 'GET',
+        url: my_url,
+        success: function()
+        {
+            // this.reset();
+            // $('input[type="text"],textarea').val('');
+            $("input#student_response_taglist").val(taggings_data);
+            // return false;
+        },
+        error: function(){
+            alert('Error occurred');
+        }
+    });
+};
