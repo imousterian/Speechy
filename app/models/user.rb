@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     #     Thread.current[:user] = user
     # end
 
+    def guest?
+        self.guest
+    end
+
 end

@@ -5,6 +5,8 @@ class Content < ActiveRecord::Base
     # default_scope { order('updated_at DESC') }
     scope :updated,   ->   { order('updated_at DESC') }
     scope :by_height, ->   { order('height DESC') }
+    scope :belongs_to_user, ->(userid) { where(['contents.user_id = ? OR is_public = ?', userid, 'true']) }
+
     paginates_per 6
 
     belongs_to :user
@@ -33,6 +35,7 @@ class Content < ActiveRecord::Base
     # after_save :delete_image
 
     # after_commit :delete_image
+
 
     def matching_taggings
         taggings.map(&:id).join(', ')

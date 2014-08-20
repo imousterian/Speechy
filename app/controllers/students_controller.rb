@@ -16,11 +16,15 @@ class StudentsController < ApplicationController
     # session.clear
         session[:current_student] = Hash.new
         session[:current_student] = @student.id
+        # puts "#{current_user.id}"
+        # @student_response = @student.student_responses.build
 
-    # @student_response = @student.student_responses.build
+        @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)#.updated
 
-        @selected_contents = Content.joins(:tags).where(tags: { selected: '1' })#.updated
-    # puts "#{@selected_contents}"
+        # contents = Content.belongs_to_user(current_user.id)#.joins(:tags).where(tags: { selected: '1' })
+        # @selected_contents = contents.joins(:tags).where(tags: { selected: '1' })#.updated
+        # @selected_contents = Content.where(['contents.user_id = ? OR is_public = ?', current_user.id, 'true']).joins(:tags).where(tags: { selected: '1' })
+        # puts "#{@selected_contents}"
         respond_to do |format|
             format.html
         # format.js { render nothing: true }

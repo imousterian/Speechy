@@ -13,7 +13,7 @@ class StudentResponsesController < ApplicationController
                 # format.html { redirect_to :back and return }
 
                 @response = @student_response.response_correct?
-
+                # puts @response
                 if !@response
                     format.js { render :js => "alert('Oh no! Wrong :( ');" }
                 else

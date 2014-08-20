@@ -2,7 +2,8 @@ require 'dropbox_sdk'
 
 class ContentsController < ApplicationController
 
-  before_action :set_content, only: [:show, :edit, :update, :destroy, :set_new_content]
+    # around_filter :authorized_user?, only: [:show, :edit, :update, :destroy, :set_new_content]
+    before_action :set_content, only: [:show, :edit, :update, :destroy, :set_new_content]
 
   # GET /contents
   # GET /contents.json
@@ -14,26 +15,19 @@ class ContentsController < ApplicationController
     else
         # @contents = Content.where(is_public: 'true').by_height.page(params[:page])
     end
-
-
   end
 
   # GET /contents/1
   # GET /contents/1.json
   def show
-    @content = Content.find(params[:id])
+    # @content = Content.find(params[:id])
   end
 
   def summary
-    # /contents/tag
-    # when I click on a tag
-    # it will take me to a controller
-
     @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]}).updated
     respond_to do |format|
         format.html
     end
-
   end
 
   def selected_tags_for_students
@@ -138,7 +132,17 @@ class ContentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_content
-      @content = Content.find(params[:id])
+        if !current_user.guest?
+            @content = Content.find(params[:id])
+        else
+            render partial: 'shared/authorization_error'
+        end
+    end
+
+    def authorized_user?
+        if current_user.guest?
+            render partial: 'shared/authorization_error'
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

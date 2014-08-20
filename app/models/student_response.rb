@@ -15,7 +15,7 @@ class StudentResponse < ActiveRecord::Base
         end
         # print new_list
         # new_list
-        return new_list.include?(emotion)
+        return new_list.flatten.include?(emotion)
     end
 
 end

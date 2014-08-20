@@ -3,7 +3,11 @@
             <div class="container">
                 <div class="navbar-header" id='logo'>
                     <% if user_signed_in? %>
-                        Logged in as <%= current_user.email %>
+                        <% if current_user.guest? %>
+                            Logged in as Guest
+                        <% else %>
+                            Logged in as <%= current_user.email %>
+                        <% end %>
                     <% end %>
                 </div>
                 <div class="collapse navbar-collapse">
