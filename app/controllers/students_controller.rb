@@ -2,13 +2,19 @@ class StudentsController < ApplicationController
 
     respond_to :html, :js
 
-    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary]
 
   # GET /students
   # GET /students.json
-  def index
-    @students = Student.where(:user_id => current_user.id)
-  end
+    def index
+        @students = Student.where(:user_id => current_user.id)
+    end
+
+    def show_summary
+
+    end
+
+
 
   # GET /students/1
   # GET /students/1.json
@@ -37,10 +43,6 @@ class StudentsController < ApplicationController
         respond_to do |format|
             format.js
         end
-    end
-
-    def summary_of_responses
-
     end
 
   # GET /students/new

@@ -10,10 +10,11 @@ class ApplicationController < ActionController::Base
     def create_guest_user
         u = User.new { |user| user.guest = true }
         u.email = "guest_#{Time.now.to_i}#{rand(100)}@example.com"
-        u.password = "password"
-        u.password_confirmation = "password"
+        # u.password = "password"
+        # u.password_confirmation = "password"
         u.save!(:validate => false)
         sign_in(:user, u)
+        flash[:notice] = 'Welcome, Guest! Your guest account will be available for 24 hours or until you close the browser.'
         redirect_to root_path
     end
 
