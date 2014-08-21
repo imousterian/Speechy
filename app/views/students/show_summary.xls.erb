@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ss:Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <ss:Worksheet ss:Name="Sheet1">
+    <ss:Table>
+      <ss:Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Image ID</Data></Cell>
+        <Cell><Data ss:Type="String">Recorded Emotion</Data></Cell>
+        <Cell><Data ss:Type="String">Matched</Data></Cell>
+        <Cell><Data ss:Type="String">Possible Answers</Data></Cell>
+      </Row>
+    <% @responses.each do |response| %>
+        <ss:Row>
+            <Cell><Data ss:Type="DateTime"><%= l response.created_at, :format => :date_format %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= response.matched_image_id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= response.emotion %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= response.response_correct_as_string %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= response.possible_answers %></Data></Cell>
+        </Row>
+    <% end %>
+    </ss:Table>
+  </ss:Worksheet>
+</ss:Workbook>

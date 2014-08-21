@@ -58,6 +58,7 @@ Rails.application.routes.draw do
 
   get 'students/:id/show_response' => "students#show_response", as: "show_response"
   get 'students/:id/show_summary' => "students#show_summary", as: "show_summary"
+  get 'students/:id/show_graph' => "students#show_graph", as: "show_graph"
 
   match '/sign_in_guest', to: "application#create_guest_user", via: 'get'
 

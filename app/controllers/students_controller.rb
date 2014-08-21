@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
 
-    respond_to :html, :js
+    respond_to :html, :js, :json
 
-    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph]
 
   # GET /students
   # GET /students.json
@@ -11,10 +11,21 @@ class StudentsController < ApplicationController
     end
 
     def show_summary
-
+        @responses = @student.student_responses
+        respond_to do |format|
+            format.html
+            format.csv { send_data @student.to_csv}
+            format.xls
+        end
     end
 
+    def show_graph
 
+        # respond_to do |format|
+        #     # format.json { render :json => show_graph.data.to_json}
+        #     format.json { render :json => @student, location: @student }
+        # end
+    end
 
   # GET /students/1
   # GET /students/1.json

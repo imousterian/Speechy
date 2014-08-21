@@ -6,18 +6,30 @@ class StudentResponse < ActiveRecord::Base
 
     validates :student_id, presence: true
 
-    # StudentResponse.join(taggings: :tag).where('recorded_emotion != tag.tagged_emotion')
-    def response_correct?
+    def tagging_responses
         new_list = []
         taglist.split(",").map do |n|
             # new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).map(&:tagname).join(", ")
             new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).pluck(:tagname)#map(&:tagname).join(", ")
         end
-        # print new_list
-        # new_list
-        return new_list.flatten.include?(emotion)
+        new_list.flatten!
+    end
+
+    def possible_answers
+        tagging_responses.join(', ')
+    end
+
+    def response_correct?
+        tagging_responses.include?(emotion)
+    end
+
+    def response_correct_as_string
+        response_correct? ? "Yes" : "No"
+    end
+
+    def matched_image_id
+        this_tagging_id = taglist[0]
+        Content.joins(:taggings).where(taggings: {id: this_tagging_id}).map(&:id).join(", ")
     end
 
 end
-
-# has_many :student_responses, through: :taggings

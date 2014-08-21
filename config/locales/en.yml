@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+
+en:
+    time:
+        formats:
+            date_format: "%m/%d/%Y"

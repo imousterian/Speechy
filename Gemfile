@@ -9,6 +9,9 @@ gem 'rails', '4.1.1'
 #for pagination
 gem 'kaminari'
 
+# for d3 library
+gem 'd3_rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
