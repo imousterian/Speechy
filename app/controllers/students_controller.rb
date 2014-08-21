@@ -19,14 +19,6 @@ class StudentsController < ApplicationController
         end
     end
 
-    def show_graph
-
-        # respond_to do |format|
-        #     # format.json { render :json => show_graph.data.to_json}
-        #     format.json { render :json => @student, location: @student }
-        # end
-    end
-
   # GET /students/1
   # GET /students/1.json
     def show

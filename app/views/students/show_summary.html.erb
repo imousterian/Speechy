@@ -6,9 +6,47 @@
 <p>
     Download report:
     <%= link_to "CSV", show_summary_path(format: "csv") %> |
-    <%= link_to "Excel", show_summary_path(format: "xls") %> |
-    <%= link_to "Graph", show_graph_path(@student), :id => "graph" %>
+    <%= link_to "Excel", show_summary_path(format: "xls") %>
 </p>
+<p>
+    <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button>
+</p>
+<div id="responses_chart" style="width: 560px; height: 300px; display: none">
+     <script type="text/javascript" charset="utf-8">
+        new Highcharts.Chart({
+                chart: {
+                    type: 'column',
+                    renderTo: 'responses_chart' },
+                title: { text: 'Responses' },
+                xAxis: {
+                    // categories: ['<%=@student.name%>']
+                    type: 'datetime'
+                },
+                yAxis: {
+                  title: {
+                    min: 0,
+                    text: 'Percentage'}
+                },
+                tooltip: {
+                  formatter: function () {
+                    return Highcharts.dateFormat("%B %e %Y", this.x) + ': ' + Highcharts.numberFormat(this.y,0, '.', ',') + '%';
+                  }
+                },
+                series:
+                [
+                    <% ["Correct", "Wrong"].each_with_index do |iname,index| %>
+                        {
+                          name: '<%=iname%>',
+                          pointInterval: '<%= 1.day * 1000 %>',
+                          pointStart: '<%= 1.day.ago.at_midnight.to_i * 1000 %>',
+                          data: [<%= @student.percentage_of[index] %>]
+                        },
+                    <% end %>
+                ]
+
+            });
+    </script>
+</div>
 
 <table class='table table-striped'>
   <thead>

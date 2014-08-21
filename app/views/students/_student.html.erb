@@ -1,5 +1,4 @@
 <tr>
-
     <td><%= link_to student.name, student, 'data-no-turbolink' => true %> &nbsp; </td>
     <!-- <td> &nbsp; <%#= link_to 'Select tags for ' + student.name, student %></td> -->
     <td> &nbsp; <a href = '<%#= selected_tags_for_students_path %>'
@@ -7,7 +6,7 @@
                     style="width:100%" > <span> Select emotions </span>
                 </a>
     </td>
-    <td> &nbsp; | &nbsp; <%= link_to 'Show summary', show_summary_path(student) %></td>
+    <td> &nbsp; | &nbsp; <%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
     <td> &nbsp; | &nbsp; <%= link_to 'Edit', edit_student_path(student)%></td>
     <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 

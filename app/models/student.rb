@@ -12,4 +12,18 @@ class Student < ActiveRecord::Base
             end
         end
     end
+
+    def percentage_of
+        total = 0
+        truths = 0
+        self.student_responses.each do |response|
+            total += 1
+            if response.response_correct?
+                truths += 1
+            end
+        end
+        correct = (truths/total.to_f)*100.0
+        wrong = 100 - correct
+        return [ correct, wrong ]
+    end
 end

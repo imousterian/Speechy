@@ -20,7 +20,7 @@
 //= require bootstrap/dropdown
 //= require turbolinks
 //= require jquery.ui.all
-//= require d3
+//= require highcharts
 //= require_tree .
 
 // $('.carousel').carousel();
@@ -122,25 +122,11 @@ $(function()
             return false;
     });
 
-    // var data = <%=raw(show_graph.data.to_json) %>;
-    // console.log(data);
-    // console.log("teste data");
-    // d3.json("/show_graph", function(error, data){
-    //     //do sth
-    //     console.log("teste data");
-    //     console.log(data);
-    // });
+    $('#show_graph').click(function(){
+        $('#responses_chart').toggle("slow", function(){
 
-    $('#graph').on('click', function(){
-        var url = '/students/1/show_graph.json';
-        d3.json( url, function( error, data ) {
-            console.log( data );
-            console.log("test");
-            // do all actions required now that the data is retrieved
-        } );
+        });
     });
-
-
 
 });
 
