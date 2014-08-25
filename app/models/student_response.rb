@@ -19,12 +19,21 @@ class StudentResponse < ActiveRecord::Base
         tagging_responses.join(', ')
     end
 
+    def set_correct_answer
+        if response_correct?
+            self.correct = true
+        else
+            self.correct = false
+        end
+    end
+
     def response_correct?
         tagging_responses.include?(emotion)
     end
 
     def response_correct_as_string
-        response_correct? ? "Yes" : "No"
+        # response_correct? ? "Yes" : "No"
+        self.correct ? "Yes" : "No"
     end
 
     def matched_image_id

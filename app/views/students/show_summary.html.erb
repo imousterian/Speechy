@@ -6,45 +6,70 @@
 <p>
     Download report:
     <%= link_to "CSV", show_summary_path(format: "csv") %> |
-    <%= link_to "Excel", show_summary_path(format: "xls") %>
+    <%= link_to "Excel", show_summary_path(format: "xls"), 'data-no-turbolink' => true %>
 </p>
 <p>
     <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button>
 </p>
 <div id="responses_chart" style="width: 560px; height: 300px; display: none">
+
      <script type="text/javascript" charset="utf-8">
-        new Highcharts.Chart({
+
+     var cats = <%= raw @student.dates.to_json %>;
+
+        var chart = new Highcharts.Chart({
                 chart: {
                     type: 'column',
                     renderTo: 'responses_chart' },
                 title: { text: 'Responses' },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                },
                 xAxis: {
-                    // categories: ['<%=@student.name%>']
-                    type: 'datetime'
+                    categories: cats
                 },
                 yAxis: {
-                  title: {
                     min: 0,
-                    text: 'Percentage'}
+                    title: {
+                        text: 'Percentage'
+                    },
+
+                },
+                plotOptions:{
+                    column:{
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black, 0 0 3px black'
+                            }
+                        }
+                    }
                 },
                 tooltip: {
                   formatter: function () {
-                    return Highcharts.dateFormat("%B %e %Y", this.x) + ': ' + Highcharts.numberFormat(this.y,0, '.', ',') + '%';
+                    return '<b>' + this.series.name + ':</b> ' +
+                             + Highcharts.numberFormat(this.y,0, '.', ',') + '%';
                   }
                 },
                 series:
                 [
-                    <% ["Correct", "Wrong"].each_with_index do |iname,index| %>
+                    <% @student.percentages.each do |key| %>
                         {
-                          name: '<%=iname%>',
-                          pointInterval: '<%= 1.day * 1000 %>',
-                          pointStart: '<%= 1.day.ago.at_midnight.to_i * 1000 %>',
-                          data: [<%= @student.percentage_of[index] %>]
+                            name: '<%= key['name'] %>',
+                            data: <%= key['data'] %>
                         },
+
                     <% end %>
                 ]
-
             });
+
+
     </script>
 </div>
 
