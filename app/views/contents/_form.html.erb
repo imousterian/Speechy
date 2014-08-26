@@ -1,35 +1,41 @@
-<%= form_for @content, :html => { :multipart => true }  do |f| %>
-      <% if @content.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+<%= form_for @content, remote: true, :html => { :multipart => true }  do |f| %>
 
-          <ul>
-            <% @content.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" align="center">Upload a new image</h4>
+            </div>
+
+            <div class="modal-body" id="modal-body">
+
+                <ul class = "errors"></ul>
+
+                    <div class = "form-group" >
+                        <%= f.label "Please enter tags separated by comma:" %>
+                        <%= f.text_field :tag_list, :class => "form-control" %>
+                    </div>
+
+                    <div class = "form-group">
+                        <%= f.label "Select image:" %>
+                        <%= f.file_field :image %>
+                    </div>
+
+                    <div class = "checkbox">
+                        <label>
+                            <%= f.check_box :is_public %> Make publicly accessible
+                        </label>
+                    </div>
+
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row text-center">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
+                </div>
+            </div>
         </div>
-      <% end %>
-
-      <div class="field">
-        <%= f.label :ctype %><br>
-        <%= f.text_field :ctype %>
-      </div>
-      <div class="field">
-        <%= f.label :is_public %><br>
-        <%= f.check_box :is_public %>
-      </div>
-      <div class="field">
-        <%= f.label :dblink %><br>
-        <%= f.text_field :dblink %>
-      </div>
-      <li>
-            <%= f.label :image, "Photo" %>
-            <%= f.file_field :image %>
-        <li>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="actions">
-        <%= f.submit %>
-      </div>
-
+    </div>
 <% end %>

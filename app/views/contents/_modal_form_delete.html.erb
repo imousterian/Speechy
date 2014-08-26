@@ -1,29 +1,31 @@
-
-<%= form_for current_user.contents.new(params[:content]), :html => { :multipart => true }  do |f| %>
+<%= form_for @content, :html => { :multipart => true } do |f| %>
 
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" align="center">Upload image</h4>
+        <h4 class="modal-title" align="center">Upload a new image</h4>
       </div>
 
         <div class="modal-body">
 
-            <%= f.text_field :tag_list %>
+            <div class = "form-group" >
+                <%= f.label "Please enter tags separated by comma:" %>
+                <%= f.text_field :tag_list, :class => "form-control" %>
+            </div>
 
             <div class = "form-group">
-                <label> Select </label>
+                <%= f.label "Select image:" %>
                 <%= f.file_field :image %>
             </div>
 
             <div class = "checkbox">
                 <label>
-                    <%= f.check_box :is_public %> Check if public
+                    <%= f.check_box :is_public %> Make publicly accessible
                 </label>
             </div>
 
-                <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
 
         </div>
 
@@ -33,7 +35,6 @@
                     <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
             </div>
         </div>
-
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 

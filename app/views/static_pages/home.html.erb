@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
 
-    <%= render 'shared/content_index' %>
+    <%#= render 'shared/content_index' %>
+    <%= render :template => "contents/index" %>
 
 <% else %>
 

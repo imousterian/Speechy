@@ -15,33 +15,20 @@
                         <li><%= link_to "Home", root_path, "data-no-turbolink" => true %></li>
 
                         <% if user_signed_in? %>
-                            <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
+                            <!-- <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
                                     <span> Upload </span>
                                 </a>
-                            </li>
-                            <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
-                                    <span> Upload AWS </span>
-                                </a>
-                            </li>
-                            <li><%= link_to 'Students', students_path,"data-no-turbolink" => true %></li>
+                            </li> -->
+                            <li><%= link_to 'Upload', new_content_path, remote: true %></li>
 
-                            <!-- <li id="fat-menu" class="dropdown"> -->
-                                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Students <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><%#= link_to 'Add a student', new_student_path %></li>
-                                    <li><%#= link_to 'List all students', students_path,"data-no-turbolink" => true %></li>
-                                </ul> -->
-                            <!-- </li> closing off id = fat -->
+                            <li><%= link_to 'Students', students_path, "data-no-turbolink" => true %></li>
+
                             <li id="fat-menu" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     Account <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                                    <li><%= link_to 'Dropbox', dropbox_authorize_path %></li>
-                                    <!-- <li><%#= link_to 'Upload To Dropbox', dropbox_upload_path %></li> -->
                                     <li class="divider"></li>
                                     <li>
                                       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -58,16 +45,7 @@
         </div>
 </header>
 
-
-<div class="modal fade" id='test_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
-    <% if user_signed_in? %>
-        <%= render 'contents/modal_form' %>
-    <% end %>
-</div>
-
-
-
-
+<div id="content-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true"></div>
 
 
 

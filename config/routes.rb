@@ -2,10 +2,6 @@ Rails.application.routes.draw do
 
   resources :students
   resources :student_responses, only: [:create,:new]
-
-  # get 'static_pages/home'
-
-
   resources :tags
 
   # root :to => redirect('/contents')
@@ -23,9 +19,9 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-        # get "summary"
         # get  "set_new_content", :as => :set_new_content
-        post "set_new_content", :action => :create
+        # get "set_new_content", :action => :new
+        # post "set_new_content", :action => :create
     end
   end
 

@@ -2,7 +2,6 @@ require 'dropbox_sdk'
 
 class Content < ActiveRecord::Base
 
-    # default_scope { order('updated_at DESC') }
     scope :updated,   ->   { order('updated_at DESC') }
     scope :by_height, ->   { order('height DESC') }
     scope :belongs_to_user, ->(userid) { where(['contents.user_id = ? OR is_public = ?', userid, 'true']) }
@@ -66,6 +65,7 @@ class Content < ActiveRecord::Base
 
     private
 
+        # dropbox was replaced with AWS. Code is left here in case it will be decided to bring it back later.
         def init_attachment_dropbox
 
                 self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
@@ -74,9 +74,9 @@ class Content < ActiveRecord::Base
                                 :storage => :dropbox,
                                 :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
                                                           :app_secret => DROPBOX_APP_KEY_SECRET,
-                                                          :access_token => self.user.access_token,#User.current.access_token,
-                                                          :access_token_secret => self.user.access_secret,#User.current.access_secret,
-                                                          :user_id => self.user.uid,#User.current.uid,
+                                                          :access_token => self.user.access_token,
+                                                          :access_token_secret => self.user.access_secret,
+                                                          :user_id => self.user.uid,
                                                           :access_type => "dropbox" },
                                 :dropbox_options => {},
                                 :path => "SLPAPP/:style/:id_:filename",
