@@ -15,8 +15,12 @@
                         <li><%= link_to "Home", root_path, "data-no-turbolink" => true %></li>
 
                         <% if user_signed_in? %>
-                             <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
+                            <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
                                     <span> Upload </span>
+                                </a>
+                            </li>
+                            <li><a href = '/contents/set_new_content' data-target="#test_modal" data-toggle="modal" style="width:100%" >
+                                    <span> Upload AWS </span>
                                 </a>
                             </li>
                             <li><%= link_to 'Students', students_path,"data-no-turbolink" => true %></li>

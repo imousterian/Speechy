@@ -6,6 +6,9 @@ gem 'nokogiri'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 
+#for using AWS with paperclip
+gem 'aws-sdk'
+
 #for pagination
 gem 'kaminari'
 

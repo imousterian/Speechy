@@ -30,13 +30,6 @@ class Content < ActiveRecord::Base
 
     serialize :dimensions
 
-    # after_find :delete_image
-
-    # after_save :delete_image
-
-    # after_commit :delete_image
-
-
     def matching_taggings
         taggings.map(&:id).join(', ')
     end
@@ -73,7 +66,7 @@ class Content < ActiveRecord::Base
 
     private
 
-        def init_attachment
+        def init_attachment_dropbox
 
                 self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
                                                                   :small => ["100x100#", :jpg],
@@ -92,6 +85,18 @@ class Content < ActiveRecord::Base
 
         end
 
+        def init_attachment
+
+            self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
+                                                                  :small => ["100x100#", :jpg],
+                                                                  :thumb => ["100x100#", :jpg] },
+                                                    :storage => :s3,
+                                                    :s3_credentials => "#{Rails.root}/config/aws.yml",
+                                                    :path => '/:class/:attachment/:id_partition/:style/:filename',
+                                                    :url => ':s3_domain_url'
+
+        end
+
         def extract_dimensions
             return unless image?
             tempfile = image.queued_for_write[:original]
@@ -101,18 +106,4 @@ class Content < ActiveRecord::Base
                 self.height = geometry.height.to_i
             end
         end
-
-        # def delete_image
-
-        #    if not self.changed?
-
-        #     # puts "gfd"
-        #     logger.debug "#{3}"
-
-        #         if not self.image.exists?(:original)
-        #             self.destroy!
-        #         end
-        #     end
-        # end
-
 end
