@@ -39,8 +39,17 @@ Rails.application.routes.draw do
   devise_scope :user do
       # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
       # match 'sessions/dropbox_callback', :controller => 'sessions', :action => 'dropbox_callback', via: :get
+      # resources :adsget 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
+
   end
+
+  # resources :users do
+  #   resources :contents
+  # end
     # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
+
+    get 'users/:id/contents/summary_index', to: 'contents#summary_index', as: "summary_index"
+    # get 'users/:id/contents/edit/:id', to: 'contents#edit', as: "edit"
 
   get  "dropbox/authorize"
   get  "dropbox/dropbox_callback"

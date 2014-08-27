@@ -1,0 +1,25 @@
+<h3>All images</h3>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Publicly Available</th>
+      <th>Tagged Emotions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= image_tag content.image.url(:thumb) %></td>
+        <td><%= content.is_public %></td>
+        <td><%=raw content.tags.map(&:tagname).map { |t| t }.join(', ') %></td>
+        <!-- <td><%#= link_to 'Show', content_path(content), :class => 'btn btn-primary btn-sm' %></td> -->
+        <td><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Delete', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

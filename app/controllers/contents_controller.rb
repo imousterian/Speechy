@@ -9,6 +9,9 @@ class ContentsController < ApplicationController
 
   # GET /contents
   # GET /contents.json
+  def summary_index
+    @contents = current_user.contents
+  end
 
   def index
         # if user_signed_in?
@@ -78,6 +81,7 @@ class ContentsController < ApplicationController
 
   # GET /contents/1/edit
   def edit
+    @content = Content.find(params[:id])
   end
 
   # POST /contents
@@ -126,9 +130,11 @@ class ContentsController < ApplicationController
           if @content.update(content_params)
             format.html { redirect_to @content, notice: 'Content was successfully updated.' }
             format.json { render :show, status: :ok, location: @content }
+            format.js { render :js => "window.location.replace('#{url_for(:controller => :contents, :action => :summary_index)}');" }
           else
             format.html { render :edit }
             format.json { render json: @content.errors, status: :unprocessable_entity }
+            format.js
           end
         end
     end

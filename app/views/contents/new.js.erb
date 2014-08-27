@@ -1,2 +1,4 @@
-$("#content-modal").html("<%= escape_javascript(render 'new') %>")
+// $("#content-modal").html("<%#= escape_javascript(render 'new') %>")
+$("#content-modal-title").html("Upload an image");
+$("#modal-body").html("<%= escape_javascript(render 'new') %>")
 $("#content-modal").modal("show")

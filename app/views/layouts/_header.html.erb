@@ -29,6 +29,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                                    <li><%= link_to 'Edit images', summary_index_path(current_user), "data-no-turbolink" => true %></li>
                                     <li class="divider"></li>
                                     <li>
                                       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -45,6 +46,22 @@
         </div>
 </header>
 
-<div id="content-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true"></div>
+<!-- <div id="content-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true"></div> -->
 
-
+<div id="content-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" align="center" id="content-modal-title"></h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+            </div>
+            <div class="modal-footer">
+                <div class="row text-center">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

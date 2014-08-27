@@ -49,7 +49,7 @@ class Student < ActiveRecord::Base
 
             summ = total_responses_by_day.fetch(this_date).to_f
 
-            to_insert = (summary / summ) * 100.0
+            to_insert = ((summary / summ) * 100.0).round(0)
             if correctness
                 hsh['Correct'] += [ to_insert ]
                 if to_insert == 100
@@ -58,7 +58,7 @@ class Student < ActiveRecord::Base
             else
                 hsh['Not correct'] += [ to_insert ]
                 if to_insert == 100
-                    hsh['Correct'] += [ 100.0 - to_insert ]
+                    hsh['Correct'] += [ 100 - to_insert ]
                 end
             end
 

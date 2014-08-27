@@ -1,6 +1,12 @@
-$("div.errors").html("")
-    <% if @content.errors.any? %>
-        $("div.errors").append("<%= escape_javascript(render 'shared/messages', object: @content) %>");
-    <% else %>
-        $("#content-modal").modal("hide")
-    <% end %>
+// $("div.errors").html("")
+    <%# if @content.errors.any? %>
+        // $("div.errors").append("<%#= escape_javascript(render 'shared/messages', object: @content) %>");
+    <%# else %>
+        // $("#content-modal").modal("hide")
+    <%# end %>
+
+<% if @content.errors.any? %>
+    $("#modal-body").prepend("<%= escape_javascript(render 'shared/messages', object: @content) %>");
+<% else %>
+    $("#content-modal").modal("hide");
+<% end %>
