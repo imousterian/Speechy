@@ -91,17 +91,14 @@ class ContentsController < ApplicationController
 
     if @content.save
         respond_to do |format|
-
-            format.html { redirect_to @content, notice: 'Content was successfully created.' }
-            # format.json { render :show, status: :created, location: @content }
-            # format.js   #{ render action: 'show', status: :created, location: @content }
+            format.html { redirect_to :back, notice: 'Content was successfully created.' }
         end
     else
         flash[:danger] = "boo"
             # #format.html { render :new }
             ## format.json { render json: @content.errors, status: :unprocessable_entity }
             # format.js   { render json: @content.errors, status: :unprocessable_entity }
-          ## end
+            ## end
     end
   end
 
