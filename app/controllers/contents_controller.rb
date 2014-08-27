@@ -27,12 +27,13 @@ class ContentsController < ApplicationController
     @content = Content.find(params[:id])
   end
 
-  def summary
-    @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]}).updated
-    respond_to do |format|
-        format.html
-    end
-  end
+  # def summary
+  # not to be used anymore??, as of Tue 26
+  #   @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]}).updated
+  #   respond_to do |format|
+  #       format.html
+  #   end
+  # end
 
   # def selected_tags_for_students
   #   # Tag.select("tags.*").joins(:taggings).group("tags.id")

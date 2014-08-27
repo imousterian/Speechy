@@ -3,4 +3,5 @@ class Tag < ActiveRecord::Base
     has_many :contents, through: :taggings
     has_many :student_responses, through: :taggings
     belongs_to :user
+    validates :tagname, :presence => true
 end

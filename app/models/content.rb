@@ -25,6 +25,8 @@ class Content < ActiveRecord::Base
 
     validates_attachment_size :image, :less_than => 1.megabytes
 
+    validates :tag_list, :presence => true
+
     before_save :extract_dimensions
 
     serialize :dimensions
@@ -37,13 +39,16 @@ class Content < ActiveRecord::Base
         Tag.find_by_name!(tagname).contents
     end
 
-    def self.tag_counts
-         Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("tags.id")
-         # Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
+    def self.tag_counts(userid)
+         # Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("tags.id")
+        Tag.joins(:contents).where(['contents.user_id = ? OR contents.is_public = ?', userid, 'true']).
+            select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("tags.id")
     end
 
-    def self.select_tags
-        Tag.select("tags.*").joins(:taggings).group("tags.id")
+    def self.select_tags(userid)
+        # Tag.select("tags.*").joins(:taggings).group("tags.id")
+        Tag.joins(:contents).where(['contents.user_id = ? OR contents.is_public = ?', userid, 'true']).
+            select("tags.*").joins(:taggings).group("tags.id")
     end
 
     def tag_list
@@ -51,8 +56,15 @@ class Content < ActiveRecord::Base
     end
 
     def tag_list=(tagnames)
-        self.tags = tagnames.split(",").map do |n|
-            Tag.where(tagname: n.strip).first_or_create!
+        # self.tags = tagnames.split(",").map do |n|
+        #     Tag.where(tagname: n.strip).first_or_create!
+        # end
+        if !tagnames.nil?
+            tagnames.downcase!
+            tagnames = tagnames.split(',').collect(&:strip).uniq.join(',')
+            self.tags = tagnames.split(",").map do |t|
+                Tag.where(tagname: t.strip).first_or_create!
+            end
         end
     end
 

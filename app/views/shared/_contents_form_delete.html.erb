@@ -1,0 +1,33 @@
+<div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" align="center">Select tags <%= current_student.name %></h4>
+        </div>
+
+        <div class="modal-body">
+            <% test Content.select_tags do |tag| %>
+                <li>
+                    <%= form_for tag, remote: true do  |f| %>
+                           <%#= check_box_tag "tag_ids[]", tag.id, :class => 'submittable' %>
+                        <%= f.check_box "selected", :class => 'submittable' %>
+                        <%= tag.tagname %>
+
+                    <% end %>
+                </li>
+
+            <% end %>
+
+        </div>
+
+        <div class="modal-footer">
+            <div class="row text-center">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default btn-sm submitme" data-dismiss="modal">Select</button>
+                <%#= submit_tag "Mark as complete", class: "btn btn-primary btn-sm submitme", name: "add_column" %>
+            </div>
+        </div>
+        </div>
+</div>
+
+

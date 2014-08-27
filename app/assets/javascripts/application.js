@@ -95,8 +95,9 @@ $(function()
     //         })
     //      });
 
+    // to clear up an error form in students
     $('.remove_me').click(function(){
-        $('#alertid').remove();
+        $("#tabs-errors").html("");
     });
 
     $('#myCarousel').on('slid.bs.carousel', function () {

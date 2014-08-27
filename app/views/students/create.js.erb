@@ -1,28 +1,9 @@
-// $("#tabs-2").html("<%= escape_javascript(render partial: 'form') %>");
-
-// $('form').html('<%= escape_javascript(render partial: 'form') %>');
-
-
-// doesn't work :()
-console.log("called here");
-
-// $('#new_student_link').remove();
-
-// $('#new_student_link').show();
-
 <% if @student.valid? %>
 
     $(".js-students").prepend("<%= escape_javascript(render(@student)) %>");
 
-    console.log("calling create.js.erb before else");
-
-    // $("#tabs-2").html("<%= escape_javascript(render partial: 'form') %>");
-
 <% else %>
 
-    console.log("calling create.js.erb after else");
-
-    // $("#tabs-2").replaceWith("<%= escape_javascript(render 'new') %>");
-    $("#tabs-2").html("<%= escape_javascript(render 'shared/messages', object: @student) %>");
+    $("#tabs-errors").html("<%= escape_javascript(render 'shared/messages', object: @student) %>");
 
 <% end %>

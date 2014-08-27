@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :students
   resources :student_responses, only: [:create,:new]
-  resources :tags
+  # resources :tags
 
   # root :to => redirect('/contents')
 
@@ -12,9 +12,10 @@ Rails.application.routes.draw do
 
 
     scope 'contents' do
-         get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
-         # put 'update_ctype',  :to => 'contents#update_ctype', :as => 'summary_update'
+         # get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
     end
+
+    get 'tags/:tag', to: 'static_pages#home', as: :tag
 
 
   resources :contents do

@@ -1,8 +1,6 @@
-$("ul.errors").html("")
+$("div.errors").html("")
     <% if @content.errors.any? %>
-        <% @content.errors.full_messages.each do |message| %>
-            $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-        <% end %>
+        $("div.errors").append("<%= escape_javascript(render 'shared/messages', object: @content) %>");
     <% else %>
         $("#content-modal").modal("hide")
     <% end %>

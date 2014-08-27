@@ -66,6 +66,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @student = Student.find(params[:id])
   end
 
   # POST /students
@@ -118,12 +119,10 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @student }
-        # format.js { render :location => "window.location = #{students_path(@student)}" }
-        # format.js
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }
+        # format.js
       end
     end
   end

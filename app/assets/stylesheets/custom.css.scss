@@ -240,12 +240,9 @@ textarea, .textfield {
     @include box_sizing;
 }
 
-#error_explanation {
-    color: #f00;
-    ul {
-        list-style: none;
-        margin: 0 0 18px 0;
-    }
+#tabs-errors{
+    width:50%;
+    margin: 0 auto;
 }
 
 .errors{
@@ -391,13 +388,11 @@ textarea{
 
 #tag_cloud {
     // width: 400px;
-    line-height: 1.6em;
-    .s { font-size: 0.8em; color: blue; background-color: #fff;}
-    .m { font-size: 1.2em; color: blue; background-color: #fff;}
-    .l { font-size: 1.8em; color: blue; background-color: #fff;}
+    line-height: 1.8em;
+    .s { font-size: 1.0em; color: #21759b; background-color: #fff;}
+    .m { font-size: 1.4em; color: mediumblue; background-color: #fff;}
+    .l { font-size: 2.0em; color: darkblue; background-color: #fff;}
 }
-
-
 
 /* footer */
 

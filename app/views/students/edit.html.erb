@@ -1,6 +1,11 @@
-<h1>Editing student</h1>
+<div class="row">
+    <h1>Editing student</h1>
 
-<%= render 'form' %>
+    <div class="col-md-6 col-md-offset-4">
 
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+        <%= render 'form' %>
+
+        <%= link_to 'Show', @student %> |
+        <%= link_to 'Back', students_path, "data-no-turbolinks" => true %>
+    </div>
+</div>

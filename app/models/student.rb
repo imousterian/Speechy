@@ -2,7 +2,7 @@ class Student < ActiveRecord::Base
     belongs_to :user
     has_many :student_responses, :dependent => :destroy
 
-    validates :name, :presence => true, :uniqueness => true
+    validates :name, :presence => true
 
     def to_csv(options = {})
         CSV.generate(options) do |csv|
@@ -13,19 +13,19 @@ class Student < ActiveRecord::Base
         end
     end
 
-    def percentage_of
-        total = 0
-        truths = 0
-        self.student_responses.each do |response|
-            total += 1
-            if response.response_correct?
-                truths += 1
-            end
-        end
-        correct = (truths/total.to_f) * 100.0
-        wrong = 100 - correct
-        return [ correct, wrong ]
-    end
+    # def percentage_of
+    #     total = 0
+    #     truths = 0
+    #     self.student_responses.each do |response|
+    #         total += 1
+    #         if response.response_correct?
+    #             truths += 1
+    #         end
+    #     end
+    #     correct = (truths/total.to_f) * 100.0
+    #     wrong = 100 - correct
+    #     return [ correct, wrong ]
+    # end
 
     def dates
         results = self.student_responses.group("date(created_at)").count.keys

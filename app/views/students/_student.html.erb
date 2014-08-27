@@ -6,12 +6,12 @@
                     style="width:100%" > <span> Select emotions </span>
                 </a>
     </td>
-    <td> &nbsp; | &nbsp; <%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
-    <td> &nbsp; | &nbsp; <%= link_to 'Edit', edit_student_path(student)%></td>
+    <td> &nbsp;  &nbsp; <%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
+    <td> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student)%></td>
     <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
 </tr>
 
 <div class="modal fade" id='tag_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
-    <%= render 'shared/contents_form' %>
+    <%= render 'contents_form' %>
 </div>
