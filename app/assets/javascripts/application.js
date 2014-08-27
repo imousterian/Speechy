@@ -32,6 +32,38 @@
 
 $(function()
 {
+
+    $("#dialog-wrong").dialog({
+        autoOpen: false,
+        dialogClass:"dialog-wrong",
+        width: 550,
+        show: {
+            effect: "blind",
+            duration: 1000
+        },
+        hide: {
+            effect: "explode",
+            duration: 1000
+        }
+    });
+
+    $("#dialog-correct").dialog({
+        autoOpen: false,
+        dialogClass:"dialog-correct",
+        width: 550,
+        show: {
+            effect: "blind",
+            duration: 1000
+        },
+        hide: {
+            effect: "explode",
+            duration: 1000
+        }
+    });
+
+
+
+
     var $container = $('.masonry-container');
 
     $container.masonry({

@@ -1,7 +1,3 @@
-// @import "bootstrap-sprockets";
-// @import "bootstrap";
-
-
 /* universal */
 
 html {
@@ -450,6 +446,23 @@ footer{
     top:0;
     left:0;
     z-index: -1;
+}
+
+/* alert dialogs */
+.dialog-wrong.ui-widget{
+    background: red;
+    text-align: center;
+}
+.dialog-wrong.ui-dialog .ui-dialog-content{
+    padding: 5em 1em;
+}
+
+.dialog-correct.ui-widget{
+    background: lightgreen;
+    text-align: center;
+}
+.dialog-correct.ui-dialog .ui-dialog-content{
+    padding: 5em 1em;
 }
 
 

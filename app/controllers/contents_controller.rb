@@ -168,11 +168,13 @@ class ContentsController < ApplicationController
 
     def authorized_user?
         if current_user.guest?
-            # render partial: 'shared/authorization_error'
             respond_to do |format|
                 format.js { render :js => 'alert("Sorry, but you are not authorized to upload images."+
                     "\n\n"+"Please do sign up first!");' }
             end
+            # respond_to do |format|
+            #     format.js { render :js => '$( "#dialog" ).dialog( "open" );' }
+            # end
         end
     end
 
