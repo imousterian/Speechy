@@ -19,13 +19,15 @@
             </br>
         </div>
         <div class="col-md-2">
-            <h4> Tagged emotions </h4>
-            </br>
-                <div id="tag_cloud">
-                  <% tag_cloud Content.tag_counts(current_user.id), %w{s m l} do |tag, css_class| %>
-                        <%#= link_to tag.tagname, summary_path(:tagname => tag.tagname), class: css_class %>
-                        <%= link_to tag.tagname, tag_path(tag.tagname), class: css_class %>
-                  <% end %>
+            <div class="tags_in_place">
+                <h4> Tagged emotions </h4>
+                </br>
+                    <div id="tag_cloud">
+                      <% tag_cloud Content.tag_counts(current_user.id), %w{s m l} do |tag, css_class| %>
+                            <%#= link_to tag.tagname, summary_path(:tagname => tag.tagname), class: css_class %>
+                            <%= link_to tag.tagname, tag_path(tag.tagname), class: css_class %>
+                      <% end %>
+                    </div>
                 </div>
         </div>
     </div>
