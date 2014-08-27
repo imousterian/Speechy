@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 scrollit">
             <div id="contents">
                 <div class = "masonry-container">
                     <% @contents.each do |content| %>
@@ -18,8 +18,9 @@
             </br>
             </br>
         </div>
-        <div class="col-md-2">
-            <div class="tags_in_place">
+        <!-- <div class="tags_in_place"> -->
+        <div class="col-md-2 fixed">
+            <!-- <div class="tags_in_place"> -->
                 <h4> Tagged emotions </h4>
                 </br>
                     <div id="tag_cloud">
@@ -29,7 +30,7 @@
                       <% end %>
                     </div>
                 </div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 

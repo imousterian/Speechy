@@ -96,6 +96,7 @@ class ContentsController < ApplicationController
     if @content.save
         respond_to do |format|
             format.html { redirect_to :back, notice: 'Content was successfully created.' }
+            format.js
         end
     else
         flash[:danger] = "boo"
@@ -145,9 +146,10 @@ class ContentsController < ApplicationController
   # DELETE /contents/1.json
   def destroy
     @content.destroy
-    respond_to do |format|
-      format.html { redirect_to contents_url, notice: 'Content was successfully destroyed.' }
-      format.json { head :no_content }
+        respond_to do |format|
+          # format.html { redirect_to contents_url, notice: 'Content was successfully destroyed.' }
+          format.html { redirect_to :back, notice: 'Content was successfully destroyed.' }
+          format.json { head :no_content }
     end
   end
 

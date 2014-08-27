@@ -1,14 +1,22 @@
 <tr>
-    <td><%= link_to student.name, student, 'data-no-turbolink' => true %> &nbsp; </td>
-    <!-- <td> &nbsp; <%#= link_to 'Select tags for ' + student.name, student %></td> -->
-    <td> &nbsp; <a href = '<%#= selected_tags_for_students_path %>'
+    <td>
+        <%= link_to student, 'data-no-turbolink' => true do %>
+            Start lesson for
+            <span class="student-name"> <%= student.name %> </span>
+        <% end %>
+
+    &nbsp; </td>
+
+    <td class="col-sm-2"> &nbsp;  &nbsp; <%= link_to 'Show summary', show_summary_path(student),
+                                'data-no-turbolink' => true %></td>
+    <td class="col-sm-2"> &nbsp; <a href = ''
                     data-target="#tag_modal" data-toggle="modal"
-                    style="width:100%" > <span> Select emotions </span>
+                    style="width:100%"> Select emotions </span>
                 </a>
     </td>
-    <td> &nbsp;  &nbsp; <%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
-    <td> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student), remote: true %></td>
-    <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <td class="col-sm-1"> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student), remote: true, class: "btn btn-primary btn-xs btn-style" %></td>
+    <td class="col-sm-1"> &nbsp; <%= link_to 'Del', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs btn-style" %></td>
 
 </tr>
 

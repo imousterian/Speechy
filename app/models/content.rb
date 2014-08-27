@@ -74,6 +74,11 @@ class Content < ActiveRecord::Base
         upload_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
     end
 
+    def content_public_as_string
+        # response_correct? ? "Yes" : "No"
+        self.is_public ? "Yes" : "No"
+    end
+
 
     private
 

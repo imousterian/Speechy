@@ -18,6 +18,19 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+span.student-name{
+    font-weight:bold;
+}
+
+a.btn-style{
+    color: #fff;
+}
+
+.fixed {
+    position: fixed;
+    right:0;
+    margin-right: 40px;
+}
 
 .navbar-inverse .navbar-nav > li > a {
   color: #fff;
