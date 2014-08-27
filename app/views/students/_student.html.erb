@@ -7,11 +7,29 @@
                 </a>
     </td>
     <td> &nbsp;  &nbsp; <%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
-    <td> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student)%></td>
+    <td> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student), remote: true %></td>
     <td> &nbsp; <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
 </tr>
 
 <div class="modal fade" id='tag_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
     <%= render 'contents_form' %>
+</div>
+
+<div id="student-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" align="center">Editing student</h4>
+            </div>
+            <div class="modal-body" id="student-modal-body">
+            </div>
+            <div class="modal-footer">
+                <div class="row text-center">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
