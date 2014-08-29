@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :students
   resources :student_responses, only: [:create,:new]
   resources :tags, except: [:show]
-  devise_for :users
 
 
   # root :to => redirect('/contents')
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
     # end
 
   # /contents/tagname
-
+  devise_for :users
 
   devise_scope :user do
       # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
