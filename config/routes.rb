@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :students
   resources :student_responses, only: [:create,:new]
   resources :tags, except: [:show]
+  devise_for :users
 
 
   # root :to => redirect('/contents')
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
     # end
 
   # /contents/tagname
-  devise_for :users
+
 
   devise_scope :user do
       # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
@@ -52,16 +53,16 @@ Rails.application.routes.draw do
     get 'users/:id/contents/summary_index', to: 'contents#summary_index', as: "summary_index"
     # get 'users/:id/contents/edit/:id', to: 'contents#edit', as: "edit"
 
-  get  "dropbox/authorize"
-  get  "dropbox/dropbox_callback"
-  get  "dropbox/upload"
-  post "dropbox/upload"
+  # get  "dropbox/authorize"
+  # get  "dropbox/dropbox_callback"
+  # get  "dropbox/upload"
+  # post "dropbox/upload"
 
   match '/help', to: "static_pages#help", via: 'get'
   match '/about', to: "static_pages#about", via: 'get'
   match '/contact', to: "static_pages#contact", via: 'get'
 
-  match 'selected_tags_for_students', to: "contents#selected_tags_for_students", via: 'get'
+  # match 'selected_tags_for_students', to: "contents#selected_tags_for_students", via: 'get'
 
   get 'students/:id/show_response' => "students#show_response", as: "show_response"
   get 'students/:id/show_summary' => "students#show_summary", as: "show_summary"
