@@ -19,7 +19,6 @@
 /config/application.yml
 /config/dropbox.yml
 /config/aws.yml
-/config/secrets.yml
 
 # Ignore deprecations from Capybara
 /deprecations.txt
