@@ -102,7 +102,12 @@ class Content < ActiveRecord::Base
                                                                   :small => ["100x100#", :jpg],
                                                                   :thumb => ["100x100#", :jpg] },
                                                     :storage => :s3,
-                                                    :s3_credentials => "#{Rails.root}/config/aws.yml",
+                                                    :s3_credentials => {
+                                                        :bucket => S3_BUCKET_NAME,
+                                                        :access_key_id => AWS_ACCESS_KEY_ID,
+                                                        :secret_access_key => AWS_SECRET_ACCESS_KEY
+                                                    }, #"#{Rails.root}/config/aws.yml",
+
                                                     :path => '/:class/:attachment/:id_partition/:style/:filename',
                                                     :url => ':s3_domain_url'
 
