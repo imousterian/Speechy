@@ -153,6 +153,10 @@ $(function()
             parallax();
         });
 
+        setInterval(function(){
+        $('.alert').slideUp(500);
+      }, 1000);
+
 });
 
 function createResponseForm(){

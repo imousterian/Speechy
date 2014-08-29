@@ -1,15 +1,15 @@
 <div class="bg"></div>
+<div class="jumbotron2"></div>
 
-    <div class="jumbotron2"></div>
-    <div class = "jumbotron22 center">
+<div class = "jumbotron22 center">
 
     <h1> Welcome! </h1>
-    <p><small><%= link_to 'About SLPassistant', about_path %></small></p>
 
-    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary", id: "sign_up_button" %>
+    <p><%= link_to 'About SLPassistant', about_path %></p>
 
-    <%= link_to "Guest Login", sign_in_guest_path, class: "btn btn-lg btn-primary", id: "sign_up_button", "data-no-turbolink" => true %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-md btn-primary", id: "sign_up_button" %>
 
+    <%= link_to "Guest Login", sign_in_guest_path, class: "btn btn-md btn-primary", id: "sign_up_button", "data-no-turbolink" => true %>
 
 </div>
 

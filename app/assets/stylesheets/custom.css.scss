@@ -2,14 +2,106 @@
 /* universal */
 
 html {
-  overflow-y: scroll;
+  min-height:100%;
+  position: relative;
 }
 
 body {
-  padding: 60px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+  // padding-top: 60px;
+  /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+body > .container {
+    padding: 60px 15px 80px;
+}
+
+/* Customize container */
+
+.container {
+    h1,h2,h3{
+        text-align: center;
+        padding-bottom: 60px;
+    }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+
+      a{
+        color: #555;
+
+        &:hover{
+            color: #222;
+        }
+    }
+        small{
+        float:left;
+        font-size: 100%;
+        padding-top: 10px;
+    }
+
+    ul{
+        float: right;
+        list-style: none;
+
+        li{
+            float:left;
+            margin-left: 10px;
+            padding-top: 10px;
+        }
+    }
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.wrapper{
+    // text-color:blue;
+    color:#428bca;
+    font-weight: bold;
+}
+.other-color{
+    background: red;
+}
+
+// footer{
+//     margin-top: 45px;
+//     margin-left: 65px;
+//     margin-right: 65px;
+//     padding-top: 5px;
+//     border-top: 1px solid grey;
+//     height: 60px;
+
+//     a{
+//         color: #555;
+//         &:hover{
+//             color: #222;
+//         }
+//     }
+
+//     small{
+//         float:left;
+//         font-size: 100%;
+//     }
+
+//     ul{
+//         float: right;
+//         list-style: none;
+
+//         li{
+//             float:left;
+//             margin-left: 10px;
+//         }
+//     }
+// }
+
 
 section {
   overflow: auto;
@@ -32,29 +124,18 @@ textarea {
   line-height: 150%;
 }
 
+.center p{
+    padding-bottom: 15px;
+    a{
+        font-weight: bold;
+        color: mediumblue;
+        // text-decoration: none;
+    }
+
+}
+
 .dropdown-menu{
     min-width: 100px;
-}
-
-#whitecolored{
-    background-color: #ffffff;
-}
-
-#greycolored{
-    background-color: #F8F8F8 ;
-}
-
-#redcolored{
-    background-color: #FF0000 ;
-}
-
-#yelcolored{
-    background-color: #FFFF33; //#FFFF99;
-}
-
-#greencolored{
-    background-color: #66FF66; //#66FF99;
-    // text-align:center;
 }
 
 .extended{
@@ -63,106 +144,128 @@ textarea {
 }
 
 b.caret-right {
-  // border-right: 2px solid black;
   border-top: 4px solid transparent;
 }
 
-p.line, p.line2{
-    width: 100%;
-    padding: 4px;
-}
+// beginning of knabna stuff?
+// #whitecolored{
+//     background-color: #ffffff;
+// }
 
-p.line{
-    border-top: 1px solid black;
-    margin-top: 50px;
-}
+// #greycolored{
+//     background-color: #F8F8F8 ;
+// }
 
-p.line_edit{
-    width: 60%;
-    border-top: 1px solid black;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 4px;
-    text-align:center;
-}
+// #redcolored{
+//     background-color: #FF0000 ;
+// }
 
-p.line2{
-    margin-top: -5px;
-}
+// #yelcolored{
+//     background-color: #FFFF33; //#FFFF99;
+// }
 
-p.line-show{
-    width:97%;
-}
+// #greencolored{
+//     background-color: #66FF66; //#66FF99;
+// }
 
-p.colored{
-    text-align:center;
-    margin: 0px;
-}
+// p.line, p.line2{
+//     width: 100%;
+//     padding: 4px;
+// }
 
-table#movies_delete, table#kanban{
+// p.line{
+//     border-top: 1px solid black;
+//     margin-top: 50px;
+// }
 
-    border-collapse: separate;
-    border-spacing: 1px;
-    width: 100%;
-    table-layout: fixed;
+// p.line_edit{
+//     width: 60%;
+//     border-top: 1px solid black;
+//     margin: 0 auto;
+//     margin-top: 50px;
+//     padding: 4px;
+//     text-align:center;
+// }
 
+// p.line2{
+//     margin-top: -5px;
+// }
 
-    th:first-child{
-        text-align: left;
-        a{
-            color: #ffffff;
-        }
-    }
-    td:first-child{
-        text-align: left;
-    }
+// p.line-show{
+//     width:97%;
+// }
 
-    th{
-        font-weight: bold;
-        background-color: #4c4c4c;
-        font-size: 11pt;
-        color: #ffffff;
+// p.colored{
+//     text-align:center;
+//     margin: 0px;
+// }
 
-    }
-    td{
-        background-color: #F8F8F8;
-    }
+// end of kanban stuff
 
-    th, td{
-        padding: 6px;
-        text-align: center;
-    }
+// table#movies_delete, table#kanban{
 
-    tr:hover td {
-        background-color:rgba(255,255,255,0.1);
-    }
-
-}
+//     border-collapse: separate;
+//     border-spacing: 1px;
+//     width: 100%;
+//     table-layout: fixed;
 
 
-table#kanban.for-plus {
-    th:last-child{
-        width:3%;
-        white-space: nowrap;
-        background-color: transparent;
-    }
-    th:first-child{
-        width: 35%;
-        white-space: nowrap;
-    }
-}
+//     th:first-child{
+//         text-align: left;
+//         a{
+//             color: #ffffff;
+//         }
+//     }
+//     td:first-child{
+//         text-align: left;
+//     }
+
+//     th{
+//         font-weight: bold;
+//         background-color: #4c4c4c;
+//         font-size: 11pt;
+//         color: #ffffff;
+
+//     }
+//     td{
+//         background-color: #F8F8F8;
+//     }
+
+//     th, td{
+//         padding: 6px;
+//         text-align: center;
+//     }
+
+//     tr:hover td {
+//         background-color:rgba(255,255,255,0.1);
+//     }
+
+// }
 
 
-table#kanban_edit{
-    border-collapse: separate;
-    border-spacing: 1px;
-    width: 60%;
-    margin: 0 auto;
+// table#kanban.for-plus {
+//     th:last-child{
+//         width:3%;
+//         white-space: nowrap;
+//         background-color: transparent;
+//     }
+//     th:first-child{
+//         width: 35%;
+//         white-space: nowrap;
+//     }
+// }
 
-    th, td{
-        padding: 1px;
-    }
-}
+
+// table#kanban_edit{
+//     border-collapse: separate;
+//     border-spacing: 1px;
+//     width: 60%;
+//     margin: 0 auto;
+
+//     th, td{
+//         padding: 1px;
+//     }
+// }
 
 /* Customize container-index */
 @media (min-width: 768px) {
@@ -179,35 +282,27 @@ table#kanban_edit{
     }
 }
 
-/* Customize container */
 
-.container{
-    h1,h2,h3{
-        text-align: center;
-        padding-bottom: 60px;
-    }
-  }
+// tooltips: kanbans
 
-// tooltips:
+// .tooltip.right {
+//     .tooltip-inner {
+//         background-color: #428bca;
+//     }
+//     .tooltip-arrow {
+//         border-right-color: #428bca;
+//     }
+// }
 
-.tooltip.right {
-    .tooltip-inner {
-        background-color: #428bca;
-    }
-    .tooltip-arrow {
-        border-right-color: #428bca;
-    }
-}
-
-.tooltip.bottom {
-    .tooltip-arrow {
-        border-bottom-color: #428bca;
-    }
-    .tooltip-inner {
-        font-weight: bold;
-        background-color: #428bca;
-    }
-}
+// .tooltip.bottom {
+//     .tooltip-arrow {
+//         border-bottom-color: #428bca;
+//     }
+//     .tooltip-inner {
+//         font-weight: bold;
+//         background-color: #428bca;
+//     }
+// }
 
 div.labelled{
      border-top: 4px solid transparent;
@@ -241,23 +336,20 @@ textarea, .textfield {
 
 /* header */
 
-#logo{
-    float: left;
-    margin-right: 10px;
-    font-size: 15px;
-    // font-size: 1.1em;
-    color: #fff;
-    // text-transform: uppercase;
-    // letter-spacing: -1px;
-    padding-top: 18px;
-    // font-weight: bold;
-    line-height: 1;
+// took it out; now using a basic bootstrap header
+// #logo{
+//     float: left;
+//     margin-right: 10px;
+//     font-size: 15px;
+//     color: #fff;
+//     padding-top: 18px;
+//     line-height: 1;
 
-    &:hover{
-        color: red;
-        text-decoration: none;
-    }
-}
+//     &:hover{
+//         color: red;
+//         text-decoration: none;
+//     }
+// }
 
 #span-style{
     text-decoration: underline;
@@ -287,13 +379,14 @@ textarea, .textfield {
 .chevron-left {
     left:5%;
 }
+
 .chevron-right {
     right:5%;
 }
 
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
- z-index: 10;
+    z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
@@ -323,36 +416,7 @@ textarea, .textfield {
     .l { font-size: 2.0em; color: darkblue; background-color: #fff;}
 }
 
-/* footer */
 
-footer{
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid grey;
-    color: grey;
-
-    a{
-        color: #555;
-        &:hover{
-            color: #222;
-        }
-    }
-
-    small{
-        float:left;
-        font-size: 100%;
-    }
-
-    ul{
-        float: right;
-        list-style: none;
-
-        li{
-            float:left;
-            margin-left: 10px;
-        }
-    }
-}
 
 
 #student_response{
@@ -361,10 +425,8 @@ footer{
 }
 
 .jumbotron2 {
-  // margin-bottom: -140px;
   margin-top: -80px;
   height: 370px;
-  // text-shadow: black 0.3em 0.3em 0.3em;
   background:transparent;
 }
 
@@ -372,6 +434,7 @@ footer{
     // background: url('http://www.vishnudoerga.com/wp-content/uploads/2014/02/speech.jpg') no-repeat center center;
     // background: url('http://medicalcareerexploration.com/Images/speechart.png') no-repeat center center;
     // background: url('http://worditout.com/word-cloud/478461/private/9f8b19abc272786f3a3c7a984ca2254f') no-repeat center center;
+
     position: fixed;
     background: url('/assets/word_cloud5.png') no-repeat center center;
     width: 100%;
@@ -381,6 +444,18 @@ footer{
     z-index: -1;
 }
 
+.logo-image {
+    background: url('/assets/speech1.jpg') no-repeat center center;
+    height: 400px;
+}
+.logo-cheechart{
+    background: url('/assets/speechart1.png') no-repeat center center;
+    height: 400px;
+}
+.sign-in-form{
+    margin-top: 135px;
+    text-align: center;
+}
 /* alert dialogs */
 .dialog-wrong.ui-widget{
     background: red;
@@ -404,3 +479,8 @@ footer{
     vertical-align: middle;
 }
 
+/* main page buttons are spread slightly apart */
+#sign_up_button{
+    margin-left:10px;
+    margin-right:10px;
+}

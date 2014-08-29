@@ -19,6 +19,14 @@
  @import "bootstrap";
 
 
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+
+.other-color{
+    background: lighten(#428bca, 93.5%);
+}
+
 .selected {
     background:gray;
 }
@@ -119,5 +127,3 @@ a.btn-style{
     position:fixed;
     padding-bottom: 50px;
 }
-
-

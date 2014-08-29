@@ -1,19 +1,28 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="logo-image"> </div>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1">
+            <div class="sign-in-form">
+                <p class="wrapper"> Sign in </p>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div><%= f.label :email %><br />
+                    <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+                    <div><%= f.label :password %><br />
+                    <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <% if devise_mapping.rememberable? %>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
- </br>
-  <div><%= f.submit "Sign in" %></div>
+                    <% if devise_mapping.rememberable? %>
+                        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+                    <% end -%>
+                    </br>
+                    <div><%= f.submit "Sign in" %></div>
 
-<% end %>
+                <% end %>
 
-<%#= render "devise/shared/links" %>
-</br><%= link_to "Forgot your password?", new_password_path(resource_name) %>
+            </br><%#= link_to "Forgot your password?", new_password_path(resource_name) %>
+        </div>
+        </div>
+    </div>
+
