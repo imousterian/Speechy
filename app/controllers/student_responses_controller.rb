@@ -1,8 +1,6 @@
 class StudentResponsesController < ApplicationController
 
     def create
-        # current_student = Student.find_by(:id => session[:current_student])
-        # current_student = session[:current_student]
         @student_response = current_student.student_responses.build(student_response_params)
         @student_response.set_correct_answer
 
@@ -10,15 +8,11 @@ class StudentResponsesController < ApplicationController
             if @student_response.save
 
                 if !@student_response.correct
-                    # format.js { render :js => "alert('Oh no! Wrong :( ');" }
-                        format.js { render :js => '$( "#dialog-wrong" ).dialog( "open" );' }
+                    format.js { render :js => '$( "#dialog-wrong" ).dialog( "open" );' }
                 else
-                    # format.js { render :js => "alert('Yahoo teepee tee little happy dance!');" }
                     format.js { render :js => '$( "#dialog-correct" ).dialog( "open" );' }
                 end
-
                 format.js { render nothing: true }
-
             end
         end
     end
@@ -26,6 +20,6 @@ class StudentResponsesController < ApplicationController
     private
         # Never trust parameters from the scary internet, only allow the white list through.
         def student_response_params
-          params.require(:student_response).permit(:emotion, :taglist)
+            params.require(:student_response).permit(:emotion, :taglist)
         end
 end

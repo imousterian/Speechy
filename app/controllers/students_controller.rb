@@ -4,8 +4,6 @@ class StudentsController < ApplicationController
 
     before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph]
 
-  # GET /students
-  # GET /students.json
     def index
         @students = Student.where(:user_id => current_user.id)
     end
@@ -19,104 +17,77 @@ class StudentsController < ApplicationController
         end
     end
 
-  # GET /students/1
-  # GET /students/1.json
     def show
-
         session[:current_student] = Hash.new
         session[:current_student] = @student.id
-        # puts "#{current_user.id}"
-        # @student_response = @student.student_responses.build
-
-        @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)#.updated
-        # puts "contents: #{@selected_contents.count} contents: #{@selected_contents.any?}"
-        # contents = Content.belongs_to_user(current_user.id)#.joins(:tags).where(tags: { selected: '1' })
-        # @selected_contents = contents.joins(:tags).where(tags: { selected: '1' })#.updated
-        # @selected_contents = Content.where(['contents.user_id = ? OR is_public = ?', current_user.id, 'true']).joins(:tags).where(tags: { selected: '1' })
-        # puts "#{@selected_contents}"
+        @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)
         respond_to do |format|
             format.html
-        # format.js { render nothing: true }
         end
     end
 
     def show_response
-
         @student_response = @student.student_responses.build
         respond_to do |format|
             format.js
         end
     end
 
-  # GET /students/new
     def new
-
         @student = current_user.students.new(params[:student])
-
         respond_to do |format|
             format.html { render :layout => false }
         end
-
     end
 
-  # GET /students/1/edit
-  def edit
-    @student = Student.find(params[:id])
-    # respond_to do |format|
-    #     format.js
-    # end
-  end
+    def edit
+        @student = Student.find(params[:id])
+    end
 
-  # POST /students
-  # POST /students.json
-  def create
+    def create
 
-    @student = current_user.students.build(student_params)
+        @student = current_user.students.build(student_params)
 
-    if @student.save
-        flash[:notice] = "You've successfully added a student #{@student.name}"
-        respond_to do |format|
-            format.html { redirect_to :back }
-            format.js { render :js => "window.location = 'students'" }
+        if @student.save
+            flash[:notice] = "You've successfully added a student #{@student.name}"
+            respond_to do |format|
+                format.html { redirect_to :back }
+                format.js { render :js => "window.location = 'students'" }
+            end
+        else
+            flash[:danger] = "boo"
         end
-    else
-        flash[:danger] = "boo"
     end
-  end
 
-  # PATCH/PUT /students/1
-  # PATCH/PUT /students/1.json
-  def update
-    respond_to do |format|
-      if @student.update(student_params)
-        format.html { redirect_to students_url, notice: 'Student was successfully updated.' }
-        format.js { render :js => "window.location = 'students'" }
-      else
-        format.html { render :edit }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
-        format.js
-      end
+    def update
+        respond_to do |format|
+        if @student.update(student_params)
+            format.html { redirect_to students_url, notice: 'Student was successfully updated.' }
+            format.js { render :js => "window.location = 'students'" }
+        else
+            format.html { render :edit }
+            format.json { render json: @student.errors, status: :unprocessable_entity }
+            format.js
+        end
+        end
     end
-  end
 
-  # DELETE /students/1
-  # DELETE /students/1.json
-  def destroy
-    @student.destroy
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-      format.json { head :no_content }
+    def destroy
+        @student.destroy
+        respond_to do |format|
+            format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+            format.json { head :no_content }
+        end
     end
-  end
 
-  private
+    private
     # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
+        def set_student
+            @student = Student.find(params[:id])
+        end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def student_params
-      params.require(:student).permit(:name)
-    end
+        def student_params
+            params.require(:student).permit(:name)
+        end
 end

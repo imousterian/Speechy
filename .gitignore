@@ -26,3 +26,6 @@
 
 # ignore dropbox data
 /app/controllers/dropbox_controller.rb
+
+# ignore seed data
+/db/seeds.rb
