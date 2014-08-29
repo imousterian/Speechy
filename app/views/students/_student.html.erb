@@ -1,28 +1,16 @@
 <tr>
     <td>
         <%= link_to student, 'data-no-turbolink' => true do %>
-            Start lesson for
+            Start test for
             <span class="student-name"> <%= student.name %> </span>
         <% end %>
-
-    &nbsp; </td>
-
-    <td class="col-sm-2"> &nbsp;  &nbsp; <%= link_to 'Show summary', show_summary_path(student),
-                                'data-no-turbolink' => true %></td>
-    <td class="col-sm-2"> &nbsp; <a href = ''
-                    data-target="#tag_modal" data-toggle="modal"
-                    style="width:100%"> Select emotions </span>
-                </a>
     </td>
 
-    <td class="col-sm-1"> &nbsp;  &nbsp; <%= link_to 'Edit', edit_student_path(student), remote: true, class: "btn btn-primary btn-xs btn-style" %></td>
-    <td class="col-sm-1"> &nbsp; <%= link_to 'Del', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs btn-style" %></td>
+    <td class="col-sm-2"><%= link_to 'Show summary', show_summary_path(student), 'data-no-turbolink' => true %></td>
+    <td class="col-sm-1"> <%= link_to 'Edit', edit_student_path(student), remote: true, class: "btn btn-primary btn-xs btn-style" %></td>
+    <td class="col-sm-1"> <%= link_to 'Del', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs btn-style" %></td>
 
 </tr>
-
-<div class="modal fade" id='tag_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
-    <%= render 'contents_form' %>
-</div>
 
 <div id="student-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
     <div class="modal-dialog modal-sm">

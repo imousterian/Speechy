@@ -1,0 +1,10 @@
+<% if @tag.errors.any? %>
+    // $("#student-modal-body").prepend("<%#= escape_javascript(render 'shared/messages', object: @student) %>");
+<% else %>
+    // $('.submitme2').on('click', function(){
+        // $('#edit_tag_37').trigger('submit.rails');
+    // });
+
+    $("#tag_modal").modal("hide");
+
+<% end %>

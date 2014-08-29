@@ -2,8 +2,13 @@
   <strong>Name:</strong>
   <%= @student.name %>
 </p>
+<p><%= link_to 'Back', :back,  "data-no-turbolink" => true %></p>
 
-<%= render 'shared/selected_contents' %>
+<% if @selected_contents.count <= 0 %>
+    <%= render 'blank_response' %>
+<% else %>
+    <%= render 'shared/selected_contents' %>
+<% end %>
 
 <div id = "student_response">
     <%#= render 'shared/student_response_form' %>

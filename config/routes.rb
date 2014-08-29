@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :students
   resources :student_responses, only: [:create,:new]
-  # resources :tags
+  resources :tags, except: [:show]
+
 
   # root :to => redirect('/contents')
 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
          # get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
     end
 
-    get 'tags/:tag', to: 'static_pages#home', as: :tag
+    get 'tags/:tag', to: 'static_pages#home', as: 'tugg'
 
 
   resources :contents do

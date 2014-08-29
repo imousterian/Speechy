@@ -116,17 +116,6 @@ $(function()
       }
     });
 
-    // $("#tabs").click(function(){
-    //         $.ajax({
-    //             dataType: 'html',
-    //             type: 'get',
-    //             url: $(this).attr('href'),
-    //             success: function(data){
-    //                        $("#test").html(data);
-    //                      }
-    //         })
-    //      });
-
     // to clear up an error form in students
     $('.remove_me').click(function(){
         $("#tabs-errors").html("");
@@ -137,22 +126,15 @@ $(function()
     });
 
     $('.submitme').on('click',function(){
-        // var url2 = $('.item.active').data('url');
-        // console.log("rest");
-        // console.log( "test " + url2);
-
-        // var data_id = $('.item.active').data('id');
-
-            var valuesToSubmit = $('.edit_tag').serialize();
-            // console.log(valuesToSubmit);
-            $.ajax({
-                url: $('.edit_tag').attr('action'),
-                data: valuesToSubmit,
-                // dataType: "JSON"
-            }).success(function(data){
-                $('.edit_tag').trigger('submit.rails');
-            });
-            return false;
+        var valuesToSubmit = $('.edit_tag').serialize();
+        $.ajax({
+            type: "POST",
+            url: $('.edit_tag').attr('action'),
+            data: valuesToSubmit,
+        }).success(function(data){
+            $('.edit_tag').trigger('submit.rails');
+        });
+        return false;
     });
 
     $('#show_graph').click(function(){
@@ -195,3 +177,16 @@ function createResponseForm(){
         }
     });
 };
+
+(function( $ ){
+      $.fn.valList = function(){
+            return $.map( this, function (elem) {
+                  return elem.value || "";
+            }).join( "," );
+      };
+      $.fn.idList = function(){
+            return $.map( this, function (elem) {
+                  return elem.id || "";
+            }).join( "," );
+      };
+})( jQuery );

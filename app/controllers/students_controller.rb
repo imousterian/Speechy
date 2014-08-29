@@ -15,7 +15,6 @@ class StudentsController < ApplicationController
         respond_to do |format|
             format.html
             format.csv { send_data @student.to_csv}
-            # format.xls
             format.xls { send_data @student.to_csv(col_sep: "\t") }
         end
     end
@@ -23,14 +22,14 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
     def show
-    # session.clear
+
         session[:current_student] = Hash.new
         session[:current_student] = @student.id
         # puts "#{current_user.id}"
         # @student_response = @student.student_responses.build
 
         @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)#.updated
-        puts "contents: #{@selected_contents.count}"
+        # puts "contents: #{@selected_contents.count} contents: #{@selected_contents.any?}"
         # contents = Content.belongs_to_user(current_user.id)#.joins(:tags).where(tags: { selected: '1' })
         # @selected_contents = contents.joins(:tags).where(tags: { selected: '1' })#.updated
         # @selected_contents = Content.where(['contents.user_id = ? OR is_public = ?', current_user.id, 'true']).joins(:tags).where(tags: { selected: '1' })
@@ -56,10 +55,6 @@ class StudentsController < ApplicationController
 
         respond_to do |format|
             format.html { render :layout => false }
-        # format.html(render partial: 'new')
-        # format.xml  { render :xml => @messages }
-        # format.json {render json: @student}
-        # format.js
         end
 
     end
@@ -81,39 +76,12 @@ class StudentsController < ApplicationController
     if @student.save
         flash[:notice] = "You've successfully added a student #{@student.name}"
         respond_to do |format|
-            # format.html { redirect_to students_url }
-            # format.json { render json: @student, status: :created, location: @student }
-            # format.js
+            format.html { redirect_to :back }
             format.js { render :js => "window.location = 'students'" }
         end
     else
         flash[:danger] = "boo"
-        # format.html { render :new }
-        # format.js { render :js => "window.location = 'new'" }
     end
-
-    # respond_with(@student) do |f|
-    #      f.html { redirect_to students_url }
-    #      f.js
-    #     #f.html { render :partial => "form"  }
-    #     # f.js { render :index }
-    #     # f.html { redirect_to root_path }
-    #     # f.html { render :index }
-    # end
-
-    # respond_to do |format|
-    #   if @student.save
-    #     # redirect_to :index
-    #      format.html { redirect_to(:action => 'index')}#, notice: 'Student was successfully created.' }
-    #     # format.json { render :show, status: :created, location: @student }
-    #      format.js
-    #   else
-    #       format.html { redirect_to(:controller => "students", :action => "create")}
-    #      # format.html { render :partial => 'form' }
-    #     # format.json { render json: @student.errors, status: :unprocessable_entity }
-    #format.js { render :js => @playlist.errors, :status => :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /students/1

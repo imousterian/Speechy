@@ -9,9 +9,9 @@ class Content < ActiveRecord::Base
     paginates_per 6
 
     belongs_to :user
-    has_many :taggings
+    has_many :taggings, :dependent => :destroy
 
-    has_many :tags, through: :taggings, :dependent => :destroy
+    has_many :tags, through: :taggings
     has_many :student_responses, through: :taggings
 
     has_attached_file :image
@@ -40,13 +40,11 @@ class Content < ActiveRecord::Base
     end
 
     def self.tag_counts(userid)
-         # Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("tags.id")
         Tag.joins(:contents).where(['contents.user_id = ? OR contents.is_public = ?', userid, 'true']).
             select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("tags.id")
     end
 
     def self.select_tags(userid)
-        # Tag.select("tags.*").joins(:taggings).group("tags.id")
         Tag.joins(:contents).where(['contents.user_id = ? OR contents.is_public = ?', userid, 'true']).
             select("tags.*").joins(:taggings).group("tags.id")
     end
@@ -56,9 +54,6 @@ class Content < ActiveRecord::Base
     end
 
     def tag_list=(tagnames)
-        # self.tags = tagnames.split(",").map do |n|
-        #     Tag.where(tagname: n.strip).first_or_create!
-        # end
         if !tagnames.nil?
             tagnames.downcase!
             tagnames = tagnames.split(',').collect(&:strip).uniq.join(',')
@@ -75,7 +70,6 @@ class Content < ActiveRecord::Base
     end
 
     def content_public_as_string
-        # response_correct? ? "Yes" : "No"
         self.is_public ? "Yes" : "No"
     end
 
