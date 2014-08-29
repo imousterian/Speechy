@@ -213,14 +213,6 @@ div.labelled{
      border-top: 4px solid transparent;
 }
 
-/* forms .uneditable-input*/
-// input, textarea, select {
-//     border: 1px solid #bbb;
-//     width: 100%;
-//     margin-bottom: 5px;
-//     margin-top: 5px;
-// }
-
 /* mixins, variables, etc */
 
 @mixin box_sizing{
@@ -245,22 +237,6 @@ textarea, .textfield {
 .errors{
     color: #f00;
 }
-
-input {
-    // height: auto !important;
-}
-
-textarea{
-    // resize: vertical;
-    // height: 100%;
-    }
-
-// .field_with_errors {
-//   @extend .form-group;
-//   // @extend .error;
-//   @extend .has-error;
-//   @extend .control-label;
-// }
 
 
 /* header */
@@ -297,11 +273,7 @@ textarea{
 
 .carousel-control:hover,
 .carousel-control:focus {
-  // outline: none;
-  // color: #fff;
-  // text-decoration: none;
   opacity: 100;
-  // filter: alpha(opacity=90);
 }
 
 .chevron {
@@ -318,46 +290,6 @@ textarea{
 .chevron-right {
     right:5%;
 }
-
-.carousel-control{
-    // opacity: 0
-}
-
-// .carousel-control.right {
-//   left: auto;
-//   right: 0;
-//   // background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-//   // background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-//   // background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.5)));
-//   // background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-//   // background-repeat: repeat-x;
-//   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
-// }
-
-// .item{
-//     height: 400px;
-// }
-// .carousel-caption{
-//     border: 1px solid green;
-//     top: 10%;
-//     bottom: 10%;
-//     text-align: center;
-//     img{
-//         margin: 0 auto;
-//     }
-// }
-
-// .inner-item {
-//     text-align: center;
-//     border: 1px solid green;
-//     height: 100%;
-
-//     img {
-//         margin: 0 auto;
-//         padding-top: 150px;
-//         padding-bottom: 150px;
-//     }
-// }
 
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -391,13 +323,6 @@ textarea{
     .l { font-size: 2.0em; color: darkblue; background-color: #fff;}
 }
 
-
-.tags_in_place{
-    // position:fixed;
-    // margin-right: 20px;
-    // margin-left: -10px;
-    // padding: 0px 0px 10px 10px;
-}
 /* footer */
 
 footer{
