@@ -23,6 +23,8 @@ class StudentsController < ApplicationController
         @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)
         respond_to do |format|
             format.html
+            # format.js { render :layout => false }
+            # format.js { render :js => "window.location.replace('#{url_for(:controller => :students, :action => :show)}');" }
         end
     end
 

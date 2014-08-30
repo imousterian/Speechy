@@ -18,7 +18,26 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.carousel-control.left {
+    // margin-top: 10%;
+    background-image: none;
+    color:#428bca;
+    // background:red;
 
+}
+
+// .carousel-control:hover, .carousel-control:focus {
+//   outline: 0;
+//   color: blue;
+//   text-decoration: none;
+//   opacity: 0;
+//   // filter: alpha(opacity=0);
+// }
+.carousel-control.right {
+  background-image: none;
+  color:#428bca;
+   // margin-top: 10%;
+}
 .navbar-inverse .navbar-brand {
   color: #fff;
 }

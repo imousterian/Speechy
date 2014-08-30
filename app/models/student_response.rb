@@ -54,8 +54,8 @@ class StudentResponse < ActiveRecord::Base
         end
 
         def only_letters
-            letters = emotion =~ /^[a-zA-Z]+$/
-            errors.add(:emotion, 'must have letters only')
+            # letters = emotion =~ /^[a-zA-Z]+$/
+            errors.add(:emotion, 'must have letters only') unless emotion =~ /^[a-zA-Z]+$/
         end
 
 end

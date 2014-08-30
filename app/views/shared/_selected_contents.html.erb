@@ -1,7 +1,7 @@
 <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner" >
         <% @selected_contents.each_with_index do |content, index| %>
-                <div class="item <% if index == 0 %> active <% end %> id<%=index%> "
+                <div class="item <% if index == 0 %> active <% end %> id<%=index%> slider-size"
                     data-url='<%= content_path(content) %>' data-id='<%=content.id%>'
                     data-tagging='<%= content.matching_taggings %>' >
 
@@ -14,10 +14,12 @@
     </div>
 
     <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false">
-        <%= image_tag 'carousel-arrow-left-hover.png', :class => "chevron chevron-left" %>
+        <%#= image_tag 'carousel-arrow-left-hover.png', :class => "chevron chevron-left" %>
+        <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next" data-interval="false">
-        <%= image_tag 'carousel-arrow-right-hover.png', :class => "chevron chevron-right" %>
+        <%#= image_tag 'carousel-arrow-right-hover.png', :class => "chevron chevron-right" %>
+        <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 
 </div><!-- /.carousel -->

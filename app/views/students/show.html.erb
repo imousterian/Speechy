@@ -1,26 +1,33 @@
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
+<p> <span class="student-name"><%= @student.name %></span>
+    &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+    <%= link_to 'Back to all', students_path,  "data-no-turbolink" => true %>
 </p>
 
-<p><%= link_to 'Back', :back,  "data-no-turbolink" => true %></p>
+<br />
+<div id="student-tabs">
+    <ul>
+        <li><a href="#test-tabs" class='test-tabs'>Test</a></li>
+        <li> <a href ='#emotion-tabs'> Select emotions</a></li>
+    </ul>
 
-<% if @selected_contents.count <= 0 %>
-    <%= render 'blank_response' %>
-<% else %>
-    <%= render 'shared/selected_contents' %>
-<% end %>
+    <div id="test-tabs">
+            <% if @selected_contents.count <= 0 %>
+                <%= render 'blank_response' %>
+            <% else %>
+                <%= render 'shared/selected_contents'%>
+            <% end %>
 
-<div id = "student_response">
-    <%#= render 'shared/student_response_form' %>
+        <div id = "student_response"></div>
+    </div>
+
+    <div id="emotion-tabs">
+        <%= render 'contents_form' %>
+    </div>
 </div>
 
-
-<%#= link_to 'Edit', edit_student_path(@student), :remote => true %>
-<%#= link_to 'Back', students_path %>
 <div id="dialog-wrong" title="Oh my!">
-  <p> Sorry! Not quite there. </p>
+    <p> Sorry! Not quite there. :((. </p>
 </div>
 <div id="dialog-correct" title="Oh joy!">
-  <p> Yippetteee! Happy dance! :)). </p>
+    <p> Yippetteee! Happy dance! :)). </p>
 </div>

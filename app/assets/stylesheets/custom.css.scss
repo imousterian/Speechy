@@ -10,6 +10,7 @@ body {
   // padding-top: 60px;
   /* Margin bottom by footer height */
     margin-bottom: 60px;
+    height:100%;
 }
 body > .container {
     padding: 60px 15px 80px;
@@ -355,45 +356,22 @@ textarea, .textfield {
     text-decoration: underline;
 }
 
+#student-tabs{
+    min-height: 400px;
+}
+
 .carousel-control.right{
-    width: 5%;
+    width: 0%;
 }
 
 .carousel-control.left{
-    width: 5%;
+    width: 0%;
 }
 
-.carousel-control:hover,
-.carousel-control:focus {
-  opacity: 100;
-}
-
-.chevron {
-    // width:30%;
-    position:absolute;
-    top:40%;
-}
-.carousel-inner {
-    // background-color:#343432;
-}
-.chevron-left {
-    left:5%;
-}
-
-.chevron-right {
-    right:5%;
-}
-
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-    z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
+// /* Declare heights because of positioning of img element */
 .carousel .item {
-    height: 400px;
-    background-color:white;
- }
+    height: 300px;
+}
 
 .carousel img {
     position: absolute;
@@ -407,17 +385,12 @@ textarea, .textfield {
     transform: translate(-50%, -50%);
 }
 
-
 #tag_cloud {
-    // width: 400px;
     line-height: 1.8em;
     .s { font-size: 1.0em; color: #21759b; background-color: #fff;}
     .m { font-size: 1.4em; color: mediumblue; background-color: #fff;}
     .l { font-size: 2.0em; color: darkblue; background-color: #fff;}
 }
-
-
-
 
 #student_response{
     width: 25%;
@@ -490,3 +463,5 @@ textarea, .textfield {
         padding-top:10px;
     }
 }
+
+

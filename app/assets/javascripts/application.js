@@ -116,9 +116,19 @@ $(function()
       }
     });
 
+    $( "#student-tabs" ).tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.error(function() {
+          ui.panel.html(
+            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+            "If this wouldn't be a demo." );
+        });
+      }
+    });
+
     // to clear up an error form in students
     $('.remove_me').click(function(){
-        $("#tabs-errors").html("");
+        // $("#tabs-errors").html("");
     });
 
     $('#myCarousel').on('slid.bs.carousel', function () {
@@ -133,6 +143,7 @@ $(function()
             data: valuesToSubmit,
         }).success(function(data){
             $('.edit_tag').trigger('submit.rails');
+            location.reload();
         });
         return false;
     });

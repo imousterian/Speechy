@@ -32,7 +32,7 @@ class TagsController < ApplicationController
         respond_to do |format|
             if @tag.update(tag_params)
                 format.html { redirect_to :back }
-                format.js { render :js => "window.location = 'students'" }
+                format.js { render layout: false } #{ render :js => "window.location = 'students'" }
             else
                 format.html { render :edit }
                 format.json { render json: @tag.errors, status: :unprocessable_entity }
