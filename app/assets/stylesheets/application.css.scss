@@ -80,6 +80,8 @@ a.btn-style{
     position: fixed;
     right:0;
     margin-right: 40px;
+    top: 60px;  //height of the nav
+    bottom: 0;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -146,3 +148,5 @@ a.btn-style{
     position:fixed;
     padding-bottom: 50px;
 }
+
+
