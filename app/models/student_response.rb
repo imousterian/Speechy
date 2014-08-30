@@ -6,6 +6,8 @@ class StudentResponse < ActiveRecord::Base
 
     validates :student_id, presence: true
 
+    scope :sorted_date,   ->   { order('created_at DESC') }
+
     def tagging_responses
         new_list = []
         taglist.split(",").map do |n|
@@ -20,11 +22,16 @@ class StudentResponse < ActiveRecord::Base
     end
 
     def set_correct_answer
+        set_downcase
         if response_correct?
             self.correct = true
         else
             self.correct = false
         end
+    end
+
+    def set_downcase
+        self.downcase!
     end
 
     def response_correct?

@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
     has_many :student_responses, :dependent => :destroy
 
     validates :name, :presence => true
+    scope :sorted_name,   ->   { order('name ASC') }
 
     def to_csv(options = {})
         CSV.generate(options) do |csv|

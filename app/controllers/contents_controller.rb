@@ -42,7 +42,7 @@ class ContentsController < ApplicationController
         @content = current_user.contents.build(content_params)
         if @content.save
             respond_to do |format|
-                format.html { redirect_to :back, notice: 'Content was successfully created.' }
+                format.html { redirect_to :back }
                 format.js
             end
         else
@@ -53,7 +53,7 @@ class ContentsController < ApplicationController
     def update
         respond_to do |format|
             if @content.update(content_params)
-                format.html { redirect_to @content, notice: 'Content was successfully updated.' }
+                format.html { redirect_to @content }
                 format.json { render :show, status: :ok, location: @content }
                 format.js { render :js => "window.location.replace('#{url_for(:controller => :contents, :action => :summary_index)}');" }
             else
@@ -67,7 +67,7 @@ class ContentsController < ApplicationController
     def destroy
         @content.destroy
         respond_to do |format|
-            format.html { redirect_to :back, notice: 'Content was successfully destroyed.' }
+            format.html { redirect_to :back, notice: 'Image was successfully destroyed.' }
             format.json { head :no_content }
         end
     end

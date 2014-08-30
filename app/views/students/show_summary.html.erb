@@ -1,16 +1,27 @@
-<p>
-  <strong>Report for:</strong>
-  <%= @student.name %>
+<p class="pull-right">
+    <%= link_to @student, 'data-no-turbolink' => true do %>
+        <span class="student-name"> Start test </span>
+    <% end %>
+    &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+    <%= link_to students_path, 'data-no-turbolink' => true do %>
+        <span class="student-name"> Back to all </span>
+    <% end %>
 </p>
-
 <p>
-    Download report:
-    <%= link_to "CSV", show_summary_path(format: "csv") %> |
-    <%= link_to "Excel", show_summary_path(format: "xls"), 'data-no-turbolink' => true %>
+    Download: &nbsp;&nbsp;
+    <%= link_to show_summary_path(format: "csv") do %>
+        <span class="student-name"> CSV </span>
+    <% end %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= link_to show_summary_path(format: "xls"), 'data-no-turbolink' => true do %>
+        <span class="student-name"> Excel </span>
+    <% end %>
 </p>
+<br />
 <p>
     <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button>
 </p>
+<br />
 <div id="responses_chart" style="width: 560px; height: 300px; display: none">
 
      <script type="text/javascript" charset="utf-8">

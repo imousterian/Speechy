@@ -5,11 +5,11 @@ class StudentsController < ApplicationController
     before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph]
 
     def index
-        @students = Student.where(:user_id => current_user.id)
+        @students = Student.where(:user_id => current_user.id).sorted_name
     end
 
     def show_summary
-        @responses = @student.student_responses
+        @responses = @student.student_responses.sorted_date
         respond_to do |format|
             format.html
             format.csv { send_data @student.to_csv}
@@ -49,7 +49,6 @@ class StudentsController < ApplicationController
         @student = current_user.students.build(student_params)
 
         if @student.save
-            flash[:notice] = "You've successfully added a student #{@student.name}"
             respond_to do |format|
                 format.html { redirect_to :back }
                 format.js { render :js => "window.location = 'students'" }
@@ -61,14 +60,14 @@ class StudentsController < ApplicationController
 
     def update
         respond_to do |format|
-        if @student.update(student_params)
-            format.html { redirect_to students_url, notice: 'Student was successfully updated.' }
-            format.js { render :js => "window.location = 'students'" }
-        else
-            format.html { render :edit }
-            format.json { render json: @student.errors, status: :unprocessable_entity }
-            format.js
-        end
+            if @student.update(student_params)
+                format.html { redirect_to students_url }
+                format.js { render :js => "window.location = 'students'" }
+            else
+                format.html { render :edit }
+                format.json { render json: @student.errors, status: :unprocessable_entity }
+                format.js
+            end
         end
     end
 

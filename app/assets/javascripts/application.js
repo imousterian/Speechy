@@ -155,7 +155,7 @@ $(function()
 
         setInterval(function(){
         $('.alert').slideUp(500);
-      }, 1000);
+      }, 2000);
 
 });
 
