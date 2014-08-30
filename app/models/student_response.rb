@@ -5,8 +5,12 @@ class StudentResponse < ActiveRecord::Base
     has_one :content, through: :tagging
 
     validates :student_id, presence: true
+    validates :emotion, presence: true
+    validate :only_letters
 
     scope :sorted_date,   ->   { order('created_at DESC') }
+
+    before_save :set_downcase
 
     def tagging_responses
         new_list = []
@@ -30,16 +34,11 @@ class StudentResponse < ActiveRecord::Base
         end
     end
 
-    def set_downcase
-        self.downcase!
-    end
-
     def response_correct?
         tagging_responses.include?(emotion)
     end
 
     def response_correct_as_string
-        # response_correct? ? "Yes" : "No"
         self.correct ? "Yes" : "No"
     end
 
@@ -47,5 +46,16 @@ class StudentResponse < ActiveRecord::Base
         this_tagging_id = taglist[0]
         Content.joins(:taggings).where(taggings: {id: this_tagging_id}).map(&:id).join(", ")
     end
+
+    private
+
+        def set_downcase
+            self.emotion.downcase!
+        end
+
+        def only_letters
+            letters = emotion =~ /^[a-zA-Z]+$/
+            errors.add(:emotion, 'must have letters only')
+        end
 
 end

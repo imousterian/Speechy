@@ -73,7 +73,6 @@ class Content < ActiveRecord::Base
         self.is_public ? "Yes" : "No"
     end
 
-
     private
 
         # dropbox was replaced with AWS. Code is left here in case it will be decided to bring it back later.

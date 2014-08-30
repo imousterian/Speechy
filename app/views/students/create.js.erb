@@ -6,4 +6,6 @@
 
     $("#tabs-errors").html("<%= escape_javascript(render 'shared/messages', object: @student) %>");
 
+    removeErrorExplanation();
+
 <% end %>

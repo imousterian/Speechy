@@ -2,6 +2,7 @@
   <strong>Name:</strong>
   <%= @student.name %>
 </p>
+
 <p><%= link_to 'Back', :back,  "data-no-turbolink" => true %></p>
 
 <% if @selected_contents.count <= 0 %>
@@ -12,7 +13,6 @@
 
 <div id = "student_response">
     <%#= render 'shared/student_response_form' %>
-
 </div>
 
 

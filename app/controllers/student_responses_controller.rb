@@ -13,6 +13,8 @@ class StudentResponsesController < ApplicationController
                     format.js { render :js => '$( "#dialog-correct" ).dialog( "open" );' }
                 end
                 format.js { render nothing: true }
+            else
+                format.js
             end
         end
     end

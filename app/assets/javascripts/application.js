@@ -154,10 +154,20 @@ $(function()
         });
 
         setInterval(function(){
-        $('.alert').slideUp(500);
-      }, 2000);
+            $('.alert').slideUp('slow', function(){
+               $(this).remove();
+            });
+        }, 2000);
 
 });
+
+function removeErrorExplanation(){
+    setInterval(function(){
+        $('#error_explanation').slideUp('slow', function(){
+            $(this).remove();
+        });
+    }, 2500);
+};
 
 function createResponseForm(){
     // console.log("loaded");

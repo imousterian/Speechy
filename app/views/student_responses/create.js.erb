@@ -1,0 +1,6 @@
+<% if @student_response.errors.any? %>
+    $("#student_response").prepend("<%= escape_javascript(render 'shared/messages', object: @student_response) %>");
+
+    removeErrorExplanation();
+
+<% end %>
