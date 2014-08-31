@@ -1,7 +1,6 @@
 class StudentsController < ApplicationController
 
     respond_to :html, :js, :json
-
     before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph]
 
     def index

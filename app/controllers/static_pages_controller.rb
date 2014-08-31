@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
 
-    def home
+    skip_before_filter :authenticate_user!
 
+    def home
         if user_signed_in?
             @content = current_user.contents.new(params[:content])
             if params[:tag]

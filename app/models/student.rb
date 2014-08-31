@@ -30,23 +30,27 @@ class Student < ActiveRecord::Base
 
     def dates
         results = self.student_responses.group("date(created_at)").count.keys
-        return results
+        # results = self.student_responses.order("date(created_at), DESC").group("date(created_at)").count.keys
+        # results = self.student_responses.where(:order => 'DATE(created_at) DESC').group("DATE(created_at)")#.each {|u| puts "#{u[0]} -> #{u[1]}" }
+        puts " dates: #{ results }"
+        return results.sort!
     end
 
     def percentages
 
         total_responses_by_day = self.student_responses.group("date(student_responses.created_at)").
                             select("student_responses.created_at").count
-
         responses_by_day = self.student_responses.group("date(student_responses.created_at)").group(:correct).count
 
         hsh = Hash.new
         hsh['Correct'] = []
         hsh['Not correct'] = []
-        responses_by_day.each do |resp|
+        responses_by_day.sort_by{|k,v| k[0]}.each do |resp|
             correctness = resp[0][1]
             this_date = resp[0][0]
             summary = resp[1]
+
+            # puts "#{correctness} #{this_date} #{summary}"
 
             summ = total_responses_by_day.fetch(this_date).to_f
 
@@ -59,17 +63,16 @@ class Student < ActiveRecord::Base
             else
                 hsh['Not correct'] += [ to_insert ]
                 if to_insert == 100
-                    hsh['Correct'] += [ 100 - to_insert ]
+                    hsh['Correct'] += [false]#[ 100 - to_insert ]
                 end
             end
-
         end
-
+        puts "hash: #{hsh}"
         ress = []
         hsh.each do |key, value|
             ex = Hash.new
             ex["name"] = key
-            ex["data"] = value.reverse!
+            ex["data"] = value
             ress.push(ex)
         end
 

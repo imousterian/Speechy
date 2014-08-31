@@ -33,13 +33,6 @@
                     type: 'column',
                     renderTo: 'responses_chart' },
                 title: { text: 'Responses' },
-                stackLabels: {
-                    enabled: true,
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                },
                 xAxis: {
                     categories: cats
                 },
@@ -47,17 +40,38 @@
                     min: 0,
                     title: {
                         text: 'Percentage'
-                    },
-
+                    }
+                    // ,stackLabels:
+                    //     {
+                    //         enabled: true,
+                    //         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                    //         style: {
+                    //             textShadow: '0 0 3px black, 0 0 3px black',
+                    //             formatter: function() {
+                    //                 console.log(this.total);
+                    //                 if(this.point.value == (100)) {
+                    //                     return '$' + Highcharts.numberFormat(this.total, 0, '', ',') + ' Gross Revenue';
+                    //                 }
+                    //             }
+                    //         }
+                    //     }
                 },
                 plotOptions:{
                     column:{
                         stacking: 'normal',
-                        dataLabels: {
+                        dataLabels:
+                        {
                             enabled: true,
                             color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                             style: {
                                 textShadow: '0 0 3px black, 0 0 3px black'
+                            },
+                            formatter: function() {
+                                 if(this.y > (0)) {
+                                    return this.y;
+                                }else{
+                                    return null;
+                                }
                             }
                         }
                     }
@@ -70,6 +84,7 @@
                 },
                 series:
                 [
+                    // { data: [null, null , 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4] }
                     <% @student.percentages.each do |key| %>
                         {
                             name: '<%= key['name'] %>',
