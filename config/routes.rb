@@ -68,7 +68,6 @@ Rails.application.routes.draw do
 
   match '/sign_in_guest', to: "application#create_guest_user", via: 'get'
 
-
   # match '/test', to: "students#new", via: 'get'
 
 

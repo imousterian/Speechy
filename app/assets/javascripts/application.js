@@ -18,7 +18,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap/modal
 //= require bootstrap/dropdown
-//= require turbolinks
+// require turbolinks
 //= require jquery.ui.all
 //= require highcharts
 //= require_tree .
@@ -127,9 +127,9 @@ $(function()
     });
 
     // to clear up an error form in students
-    $('.remove_me').click(function(){
+    // $('.remove_me').click(function(){
         // $("#tabs-errors").html("");
-    });
+    // });
 
     $('#myCarousel').on('slid.bs.carousel', function () {
         createResponseForm();
@@ -148,11 +148,7 @@ $(function()
         return false;
     });
 
-    $('#show_graph').click(function(){
-        $('#responses_chart').toggle("slow", function(){
 
-        });
-    });
 
     var jumboHeight = $('.jumbotron2').outerHeight();
         function parallax(){
@@ -169,6 +165,15 @@ $(function()
                $(this).remove();
             });
         }, 2000);
+
+        $('#show_graph').on('click',function(e)
+        {
+            e.preventDefault();
+            $('#responses_chart').toggle("show", function(){
+                console.log("add");
+                addChart();
+            });
+        });
 
 });
 
@@ -192,10 +197,7 @@ function createResponseForm(){
         url: my_url,
         success: function()
         {
-            // this.reset();
-            // $('input[type="text"],textarea').val('');
             $("input#student_response_taglist").val(taggings_data);
-            // return false;
         },
         error: function(){
             alert('Error occurred');
@@ -203,15 +205,107 @@ function createResponseForm(){
     });
 };
 
-(function( $ ){
-      $.fn.valList = function(){
-            return $.map( this, function (elem) {
-                  return elem.value || "";
-            }).join( "," );
-      };
-      $.fn.idList = function(){
-            return $.map( this, function (elem) {
-                  return elem.id || "";
-            }).join( "," );
-      };
-})( jQuery );
+// (function( $ ){
+//       $.fn.valList = function(){
+//             return $.map( this, function (elem) {
+//                   return elem.value || "";
+//             }).join( "," );
+//       };
+//       $.fn.idList = function(){
+//             return $.map( this, function (elem) {
+//                   return elem.id || "";
+//             }).join( "," );
+//       };
+// })( jQuery );
+
+
+
+function addChart(){
+    var pathname = window.location.pathname;
+    console.log(pathname);
+    data_path = pathname+"?datas=datas";
+    // '/students/1/show_summary?datas=datas'
+    $.getJSON(data_path, null, function(data)
+    {
+        bar_chart("responses_chart", data);
+    });
+}
+
+function processChartData(data){
+    results = [];
+    var seriesData = [];
+    var xCategories = [];
+    var i, cat;
+    for(i = 0; i < data.length; i++){
+        cat = data[i].unit;
+        if(xCategories.indexOf(cat) === -1){
+            xCategories[xCategories.length] = cat;
+        }
+    }
+    for(i = 0; i < data.length; i++){
+        if(seriesData){
+          var currSeries = seriesData.filter(function(seriesObject){ return seriesObject.name == data[i].status;});
+          if(currSeries.length === 0){
+              currSeries = seriesData[seriesData.length] = {name: data[i].status, data: []};
+          } else {
+              currSeries = currSeries[0];
+          }
+          var index = currSeries.data.length;
+          currSeries.data[index] = data[i].val;
+        } else {
+           seriesData[0] = {name: data[i].status, data: [data[i].val]}
+        }
+    }
+    results.push(seriesData, xCategories);
+    return results;
+}
+
+function bar_chart(div,data){
+
+    results = processChartData(data);
+    xCategories = results[1];
+    seriesData = results[0];
+
+    new Highcharts.Chart({
+                chart: {
+                    type: 'column',
+                    renderTo: div },
+                title: { text: 'Responses' },
+                xAxis: {
+                    categories: xCategories
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage'
+                    }
+                },
+                plotOptions:{
+                    column:{
+                        stacking: 'normal',
+                        dataLabels:
+                        {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black, 0 0 3px black'
+                            },
+                            formatter: function() {
+                                 if(this.y > (0)) {
+                                    return this.y;
+                                }else{
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                  formatter: function () {
+                    return '<b>' + this.series.name + ':</b> ' +
+                             + Highcharts.numberFormat(this.y,1, '.', ',') + '%';
+                  }
+                },
+                series: seriesData
+            });
+}

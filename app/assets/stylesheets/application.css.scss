@@ -18,6 +18,20 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+th .current {
+  padding-right: 16px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url(/assets/up_arrow.gif);
+}
+
+th .desc {
+  background-image: url(/assets/down_arrow.gif);
+}
+
 .carousel-control.left {
     // margin-top: 10%;
     background-image: none;

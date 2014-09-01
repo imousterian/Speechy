@@ -50,7 +50,7 @@ class Student < ActiveRecord::Base
             this_date = resp[0][0]
             summary = resp[1]
 
-            # puts "#{correctness} #{this_date} #{summary}"
+            puts "#{correctness} #{this_date} #{summary}"
 
             summ = total_responses_by_day.fetch(this_date).to_f
 
@@ -76,7 +76,50 @@ class Student < ActiveRecord::Base
             ress.push(ex)
         end
 
-        return ress
+        results = Array.new
+
+        # puts "responses_by_day #{responses_by_day}"
+
+        responses_by_day.sort_by{|k,v| k[0]}.each do |resp|
+            correctness = resp[0][1]
+            this_date = resp[0][0]
+            summary = resp[1]
+
+            summ = total_responses_by_day.fetch(this_date).to_f
+            to_insert = ((summary.to_f / summ) * 100.0).round(0)
+
+            if to_insert == 100
+                if correctness
+                    results << {:unit => this_date, :status => "Correct", :val => to_insert}
+                    results << {:unit => this_date, :status => "Not correct", :val => (100 - to_insert)}
+                else
+                    results << {:unit => this_date, :status => "Correct", :val => (100 - to_insert)}
+                    results << {:unit => this_date, :status => "Not correct", :val => to_insert}
+                end
+            else
+                if correctness
+                    results << {:unit => this_date, :status => "Correct", :val => to_insert}
+                    results << {:unit => this_date, :status => "Not correct", :val => (100- to_insert)}
+                else
+                    # results << {:unit => this_date, :status => "Correct", :val => (to_insert-100)}
+                    # results << {:unit => this_date, :status => "Not correct", :val => to_insert}
+
+                end
+            end
+
+        end
+        puts "STUFF #{results}"
+
+        # data = [{unit:'a', status:"Stopped / Idle", val: 21.2022222222222222},
+        #           {unit: "a", status: "Working", val: 53.3066666666666667}]
+        data =  [{:unit=>'Fri, 29 Aug 2014', :status=>"False", :val=>0.0},
+                 {:unit=>'Fri, 29 Aug 2014', :status=>"True", :val=>100},
+                 {:unit=>'Sat, 30 Aug 2014', :status=>"False", :val=>0.0},
+                 {:unit=>'Sat, 30 Aug 2014', :status=>"True", :val=>100},
+                 {:unit=>'Sun, 31 Aug 2014', :status=>"False", :val=>38},
+                 {:unit=>'Sun, 31 Aug 2014', :status=>"True", :val=>63}]
+        return results
+
 
     end
 end

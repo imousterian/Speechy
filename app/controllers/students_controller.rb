@@ -1,16 +1,21 @@
 class StudentsController < ApplicationController
 
     respond_to :html, :js, :json
-    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph, :show_chart]
+    helper_method :sort_column, :sort_direction
 
     def index
         @students = Student.where(:user_id => current_user.id).sorted_name
     end
 
     def show_summary
-        @responses = @student.student_responses.sorted_date
+        @responses = @student.student_responses.order(sort_column + ' ' + sort_direction)
+
+        params[:datas] = @student.percentages.to_json
+
         respond_to do |format|
             format.html
+            format.json { render json: params[:datas] }
             format.csv { send_data @student.to_csv}
             format.xls { send_data @student.to_csv(col_sep: "\t") }
         end
@@ -22,8 +27,6 @@ class StudentsController < ApplicationController
         @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)
         respond_to do |format|
             format.html
-            # format.js { render :layout => false }
-            # format.js { render :js => "window.location.replace('#{url_for(:controller => :students, :action => :show)}');" }
         end
     end
 
@@ -89,5 +92,13 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
         def student_params
             params.require(:student).permit(:name)
+        end
+
+        def sort_column
+            @student.student_responses.column_names.include?(params[:order_to_sort_by]) ? params[:order_to_sort_by] : "created_at"
+        end
+
+        def sort_direction
+            %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
         end
 end

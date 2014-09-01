@@ -1,9 +1,9 @@
 <p class="pull-right">
-    <%= link_to @student, 'data-no-turbolink' => true do %>
+    <%= link_to @student do %> <!--, 'data-no-turbolink' => true do %>-->
         <span class="student-name"> Start test </span>
     <% end %>
     &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-    <%= link_to students_path, 'data-no-turbolink' => true do %>
+    <%= link_to students_path do %> <!--, 'data-no-turbolink' => true do %>-->
         <span class="student-name"> Back to all </span>
     <% end %>
 </p>
@@ -13,115 +13,46 @@
         <span class="student-name"> CSV </span>
     <% end %>
     &nbsp;&nbsp; | &nbsp;&nbsp;
-    <%= link_to show_summary_path(format: "xls"), 'data-no-turbolink' => true do %>
+    <%= link_to show_summary_path(format: "xls") do %> <!--, 'data-no-turbolink' => true do %>-->
         <span class="student-name"> Excel </span>
     <% end %>
 </p>
 <br />
 <p>
-    <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button>
+    <!-- <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button> -->
+    <%= link_to "Show Graph", {:datas => "datas"}, {id: "show_graph", class: 'btn btn-default btn-sm'} %>
+    <%#= link_to "Show Graph", show_chart_path, {id: "show_graph", class: 'btn btn-default btn-sm'} %>
 </p>
 <br />
-<div id="responses_chart" style="width: 560px; height: 300px; display: none">
 
-     <script type="text/javascript" charset="utf-8">
-
-     var cats = <%= raw @student.dates.to_json %>;
-
-        var chart = new Highcharts.Chart({
-                chart: {
-                    type: 'column',
-                    renderTo: 'responses_chart' },
-                title: { text: 'Responses' },
-                xAxis: {
-                    categories: cats
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Percentage'
-                    }
-                    // ,stackLabels:
-                    //     {
-                    //         enabled: true,
-                    //         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                    //         style: {
-                    //             textShadow: '0 0 3px black, 0 0 3px black',
-                    //             formatter: function() {
-                    //                 console.log(this.total);
-                    //                 if(this.point.value == (100)) {
-                    //                     return '$' + Highcharts.numberFormat(this.total, 0, '', ',') + ' Gross Revenue';
-                    //                 }
-                    //             }
-                    //         }
-                    //     }
-                },
-                plotOptions:{
-                    column:{
-                        stacking: 'normal',
-                        dataLabels:
-                        {
-                            enabled: true,
-                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                            style: {
-                                textShadow: '0 0 3px black, 0 0 3px black'
-                            },
-                            formatter: function() {
-                                 if(this.y > (0)) {
-                                    return this.y;
-                                }else{
-                                    return null;
-                                }
-                            }
-                        }
-                    }
-                },
-                tooltip: {
-                  formatter: function () {
-                    return '<b>' + this.series.name + ':</b> ' +
-                             + Highcharts.numberFormat(this.y,0, '.', ',') + '%';
-                  }
-                },
-                series:
-                [
-                    // { data: [null, null , 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4] }
-                    <% @student.percentages.each do |key| %>
-                        {
-                            name: '<%= key['name'] %>',
-                            data: <%= key['data'] %>
-                        },
-
-                    <% end %>
-                ]
-            });
+<div id="responses_chart" style="width: 560px; height: 300px; display: none; margin-bottom:100px;">
 
 
-    </script>
+
 </div>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-        <th>Date</th>
-        <th>Image ID</th>
-        <th>Recorded Emotion</th>
-        <th>Matched</th>
-        <th>Possible Answers</th>
-      <!-- <th colspan="3"></th> -->
-    </tr>
-  </thead>
+    <table class='table table-striped text-center'>
+      <thead>
+        <tr >
+            <th class="text-center"> <%= sortable "created_at", "Date" %> </th>
+            <th class="text-center"> <%= sortable "emotion", "Emotions" %> </th>
+            <th class="text-center">Matched</th>
+            <th class="text-center"s>Possible Answers</th>
+            <th class="text-center">Associated Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @responses.each do |response| %>
+          <tr>
+            <td><%= l response.created_at, :format => :date_format %></td>
+            <td><%= response.emotion %></td>
+            <td><%= response.response_correct_as_string %></td>
+            <td><%= response.possible_answers %></td>
+            <td><%= response.matched_image_id %></td>
+            <!-- <td><%#= image_tag Content.find(response.matched_image_id).image.url(:thumb) %></td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <tbody>
-    <% @responses.each do |response| %>
-      <tr>
-        <td><%= l response.created_at, :format => :date_format %></td>
-        <td><%= response.matched_image_id %></td>
-        <td><%= response.emotion %></td>
-        <td><%= response.response_correct_as_string %></td>
-        <td><%= response.possible_answers %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+    <br>
