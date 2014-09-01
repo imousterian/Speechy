@@ -1,13 +1,12 @@
 
 <tr>
     <td>
-        <%= link_to student %> <!--, 'data-no-turbolink' => true do %>-->
-            Start test for
-            <span class="student-name"> <%= student.name %> </span>
+        <%= link_to student do %>
+            Start test for <span class="student-name"> <%= student.name %> </span>
         <% end %>
     </td>
 
-    <td class="col-sm-2"><%= link_to 'Show summary', show_summary_path(student) %></td> <!--'data-no-turbolink' => true -->
+    <td class="col-sm-2"><%= link_to 'Show summary', show_summary_path(student) %></td>
     <td class="col-sm-1"> <%= link_to 'Edit', edit_student_path(student), remote: true, class: "btn btn-primary btn-xs btn-style" %></td>
     <td class="col-sm-1"> <%= link_to 'Del', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs btn-style" %></td>
 

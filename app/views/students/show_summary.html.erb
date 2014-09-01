@@ -1,9 +1,9 @@
 <p class="pull-right">
-    <%= link_to @student do %> <!--, 'data-no-turbolink' => true do %>-->
+    <%= link_to @student do %>
         <span class="student-name"> Start test </span>
     <% end %>
     &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-    <%= link_to students_path do %> <!--, 'data-no-turbolink' => true do %>-->
+    <%= link_to students_path do %>
         <span class="student-name"> Back to all </span>
     <% end %>
 </p>
@@ -13,7 +13,7 @@
         <span class="student-name"> CSV </span>
     <% end %>
     &nbsp;&nbsp; | &nbsp;&nbsp;
-    <%= link_to show_summary_path(format: "xls") do %> <!--, 'data-no-turbolink' => true do %>-->
+    <%= link_to show_summary_path(format: "xls") do %>
         <span class="student-name"> Excel </span>
     <% end %>
 </p>

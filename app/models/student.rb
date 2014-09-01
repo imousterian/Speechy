@@ -86,7 +86,7 @@ class Student < ActiveRecord::Base
             summary = resp[1]
 
             summ = total_responses_by_day.fetch(this_date).to_f
-            to_insert = ((summary.to_f / summ) * 100.0).round(0)
+            to_insert = ((summary.to_f / summ) * 100.0).floor #round(1)
 
             if to_insert == 100
                 if correctness
@@ -99,7 +99,7 @@ class Student < ActiveRecord::Base
             else
                 if correctness
                     results << {:unit => this_date, :status => "Correct", :val => to_insert}
-                    results << {:unit => this_date, :status => "Not correct", :val => (100- to_insert)}
+                    results << {:unit => this_date, :status => "Not correct", :val => (100.0 - to_insert)}
                 else
                     # results << {:unit => this_date, :status => "Correct", :val => (to_insert-100)}
                     # results << {:unit => this_date, :status => "Not correct", :val => to_insert}
