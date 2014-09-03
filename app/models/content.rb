@@ -31,6 +31,8 @@ class Content < ActiveRecord::Base
 
     serialize :dimensions
 
+    before_save :redelegate_to_admin
+
     def matching_taggings
         taggings.map(&:id).join(', ')
     end
@@ -126,4 +128,13 @@ class Content < ActiveRecord::Base
                 self.height = geometry.height.to_i
             end
         end
+
+        def redelegate_to_admin
+            if self.is_public
+                admin = User.where(:admin => true).first
+                admin_id = admin.id
+                self.user_id = admin_id
+            end
+        end
+
 end

@@ -42,7 +42,7 @@ class ContentsController < ApplicationController
         @content = current_user.contents.build(content_params)
         if @content.save
             respond_to do |format|
-                format.html { redirect_to :back }
+                format.html { redirect_to :back, notice: 'Content was successfully created.' }
                 format.js
             end
         else
@@ -96,5 +96,6 @@ class ContentsController < ApplicationController
             u = params[:commit]
             submission = { :ctype => u }
         end
+
 
 end
