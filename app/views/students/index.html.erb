@@ -2,7 +2,6 @@
     <ul>
         <li><a href="#tabs-1" class="remove_me">Students:</a></li>
         <li><%= link_to "Add a student", new_student_path, :remote => true, :class => "remove_me" %></li>
-        <li> <a href = '#tabs-3'> Select emotions</a></li>
     </ul>
     <div id="tabs-2"></div>
     <div id="tabs-errors"></div>
@@ -26,8 +25,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="tabs-3">
-        <%= render 'contents_form' %>
     </div>
 </div>

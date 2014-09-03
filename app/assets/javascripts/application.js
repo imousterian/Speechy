@@ -43,7 +43,7 @@ $(function()
         },
         hide: {
             effect: "explode",
-            duration: 1000
+            duration: 500
         }
     });
 
@@ -57,7 +57,7 @@ $(function()
         },
         hide: {
             effect: "explode",
-            duration: 1000
+            duration: 500
         }
     });
 
@@ -131,20 +131,54 @@ $(function()
         // $("#tabs-errors").html("");
     // });
 
-    $('#myCarousel').on('slid.bs.carousel', function () {
-        createResponseForm();
+    // been moved to show_selected.jserb
+    // $('#myCarousel').on('slid.bs.carousel', function () {
+    //     console.log("tes");
+    //     createResponseForm();
+    // });
+
+    $('.test-tabs-button').click(function(){
+        // location.reload();
     });
 
     $('.submitme').on('click',function(){
-        var valuesToSubmit = $('.edit_tag').serialize();
+        // console.log("test");
+        // var serializedArray = $("input:checked").serializeArray();
+        // var itemIdsArray = [];
+
+        // for (var i = 0; i < serializedArray.length; i++) {
+        //    itemIdsArray.push(serializedArray[i]['value']);
+        // }
+        // console.log(itemIdsArray);
+        var tag_array = $('input:checked').valList().split(',');
+        // $('input:checked').valList()
+        // alert(tag_array);
+
+        var pathname = window.location.pathname;
         $.ajax({
-            type: "POST",
-            url: $('.edit_tag').attr('action'),
-            data: valuesToSubmit,
-        }).success(function(data){
-            $('.edit_tag').trigger('submit.rails');
-            location.reload();
+            type: "GET",
+            url: pathname+'/show_selected',
+            data: { tag_ids: tag_array },
+            success: function()
+            {
+                // alert('Success occurred');
+                // $("input#student_response_taglist").val(taggings_data);
+            },
+            error: function(){
+                // alert('Error occurred' + data);
+            }
         });
+
+
+        // var valuesToSubmit = $('.edit_tag').serialize();
+        // $.ajax({
+        //     type: "POST",
+        //     url: $('.edit_tag').attr('action'),
+        //     data: valuesToSubmit,
+        // }).success(function(data){
+        //     $('.edit_tag').trigger('submit.rails');
+        //     location.reload();
+        // });
         return false;
     });
 
@@ -192,6 +226,7 @@ function createResponseForm(){
     taggings_data = $('.item.active').data('tagging');
     // my_url = '/students/'+data_id+'/show_response';
     my_url = pathname + '/show_response';
+    // console.log(taggings_data);
     $.ajax({
         type: 'GET',
         url: my_url,
@@ -205,24 +240,24 @@ function createResponseForm(){
     });
 };
 
-// (function( $ ){
-//       $.fn.valList = function(){
-//             return $.map( this, function (elem) {
-//                   return elem.value || "";
-//             }).join( "," );
-//       };
-//       $.fn.idList = function(){
-//             return $.map( this, function (elem) {
-//                   return elem.id || "";
-//             }).join( "," );
-//       };
-// })( jQuery );
+(function( $ ){
+      $.fn.valList = function(){
+            return $.map( this, function (elem) {
+                  return elem.value || "";
+            }).join( "," );
+      };
+      $.fn.idList = function(){
+            return $.map( this, function (elem) {
+                  return elem.id || "";
+            }).join( "," );
+      };
+})( jQuery );
 
 
 
 function addChart(){
     var pathname = window.location.pathname;
-    console.log(pathname);
+    // console.log(pathname);
     data_path = pathname+"?datas=datas";
     // '/students/1/show_summary?datas=datas'
     $.getJSON(data_path, null, function(data)

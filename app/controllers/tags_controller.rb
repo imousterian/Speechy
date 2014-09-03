@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
+
     before_action :set_tag, only: [:edit, :update, :destroy]
+
 
     def index
         @tags = Tag.all
@@ -17,6 +19,7 @@ class TagsController < ApplicationController
     end
 
     def create
+        console.log("create tag")
         @tag = Tag.new(tag_params)
         respond_to do |format|
             if @tag.save
@@ -31,7 +34,7 @@ class TagsController < ApplicationController
     def update
         respond_to do |format|
             if @tag.update(tag_params)
-                format.html { redirect_to :back }
+                # format.html { redirect_to :back }
                 format.js { render layout: false } #{ render :js => "window.location = 'students'" }
             else
                 format.html { render :edit }
@@ -39,6 +42,19 @@ class TagsController < ApplicationController
             end
         end
     end
+
+    # def update_multiple
+    #     # @tags = Tag.find(params[:tag_ids])
+    #     # puts @tags
+    #     # respond_to do |format|
+    #     #     @tags.each do |tag|
+    #     #     # tag.update_attributes(params[:tag].reject { |k,v| v.blank? })
+    #     #     puts "selected: #{tag.selected}"
+    #     #     tag.update_attributes!(:selected => 1)
+    #     #     format.html { redirect_to :back }
+    #     # end
+    #     # end
+    # end
 
     def destroy
         @tag.destroy
@@ -52,6 +68,10 @@ class TagsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
         def set_tag
             @tag = Tag.find(params[:id])
+        end
+
+        def set_many_tags
+            @tags = Tag.find(params[:tag_ids])
         end
 
     # Never trust parameters from the scary internet, only allow the white list through.

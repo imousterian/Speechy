@@ -11,7 +11,7 @@ class Content < ActiveRecord::Base
     belongs_to :user
     has_many :taggings, :dependent => :destroy
 
-    has_many :tags, through: :taggings
+    has_many :tags, through: :taggings, :dependent => :destroy
     has_many :student_responses, through: :taggings
 
     has_attached_file :image
@@ -58,7 +58,12 @@ class Content < ActiveRecord::Base
             tagnames.downcase!
             tagnames = tagnames.split(',').collect(&:strip).uniq.join(',')
             self.tags = tagnames.split(",").map do |t|
+                # puts ("before creating a tag")
+                # tagg = self.tags.find_by(t.strip)
+                # puts "tagg: #{tagg}"
                 Tag.where(tagname: t.strip).first_or_create!
+                # Tag.create_with(tagname: t.strip).find_or_create_by(tagname: t.strip)
+                # puts ("after creating a tag")
             end
         end
     end

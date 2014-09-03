@@ -5,20 +5,17 @@
                     data-url='<%= content_path(content) %>' data-id='<%=content.id%>'
                     data-tagging='<%= content.matching_taggings %>' >
 
-                    <a href='<%= content_path(content) %>' >
+                    <!-- <a href='<%= content_path(content) %>' > -->
                         <%= image_tag content.image.url(:original) %>
-                    </a>
-
+                    <!-- </a> -->
                 </div>
         <% end %>
     </div>
 
     <a class="left carousel-control" href="#myCarousel" data-slide="prev" data-interval="false">
-        <%#= image_tag 'carousel-arrow-left-hover.png', :class => "chevron chevron-left" %>
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next" data-interval="false">
-        <%#= image_tag 'carousel-arrow-right-hover.png', :class => "chevron chevron-right" %>
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 
@@ -26,6 +23,9 @@
 
 </br>
 </br>
+
+<div id = "student_response"></div>
+
 <script type="text/javascript">
-   createResponseForm();
+    createResponseForm();
 </script>

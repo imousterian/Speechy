@@ -1,0 +1,9 @@
+<% if @selected_contents.count <= 0 %>
+    $("#test-tabs").html("<%= escape_javascript(render 'blank_response') %>");
+<% else %>
+    $("#test-tabs").html("<%= escape_javascript(render 'shared/selected_contents') %>");
+<% end %>
+
+$('#myCarousel').on('slid.bs.carousel', function () {
+    createResponseForm();
+});

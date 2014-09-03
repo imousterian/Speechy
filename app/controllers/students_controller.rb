@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
 
     respond_to :html, :js, :json
-    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph, :show_chart]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :show_response, :show_summary, :show_graph, :show_chart, :show_selected]
     helper_method :sort_column, :sort_direction
 
     def index
@@ -24,9 +24,16 @@ class StudentsController < ApplicationController
     def show
         session[:current_student] = Hash.new
         session[:current_student] = @student.id
-        @selected_contents = Content.joins(:tags).where(tags: { selected: '1' }).belongs_to_user(current_user.id)
+
         respond_to do |format|
             format.html
+        end
+    end
+
+    def show_selected
+        @selected_contents = Content.joins(:tags).where(tags: { id: params[:tag_ids]}).belongs_to_user(current_user.id)
+        respond_to do |format|
+            format.js
         end
     end
 

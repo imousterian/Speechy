@@ -8,18 +8,17 @@
 <br />
 <div id="student-tabs">
     <ul>
-        <li><a href="#test-tabs" class='test-tabs'>Test</a></li>
+        <li><a href="#test-tabs" class='test-tabs-button'>Test</a></li>
         <li> <a href ='#emotion-tabs'> Select emotions</a></li>
     </ul>
 
     <div id="test-tabs">
-            <% if @selected_contents.count <= 0 %>
+            <%# if @selected_contents.count <= 0 %>
                 <%= render 'blank_response' %>
-            <% else %>
-                <%= render 'shared/selected_contents'%>
-            <% end %>
-
-        <div id = "student_response"></div>
+            <%# else %>
+                <%#= render 'shared/selected_contents'%>
+            <%# end %>
+        <!-- <div id = "student_response"></div> -->
     </div>
 
     <div id="emotion-tabs">
@@ -33,3 +32,5 @@
 <div id="dialog-correct" title="Oh joy!">
     <p> Yippetteee! Happy dance! :)). </p>
 </div>
+
+

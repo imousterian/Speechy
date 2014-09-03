@@ -4,8 +4,16 @@ Rails.application.routes.draw do
   resources :student_responses, only: [:create,:new]
   resources :tags, except: [:show]
 
+  # resources :students do
+  #   resources :tags do
+  #       collection do
+  #           get :update_multiple
+  #       end
+  #   end
+  # end
 
-  # root :to => redirect('/contents')
+  # get 'tags/update_multiple', :to => 'tags#update_multiple', :as => 'update_multiple'
+
 
   # resources :contents, :path_names => { :set_new_content => 'new' }
 
@@ -15,6 +23,7 @@ Rails.application.routes.draw do
     scope 'contents' do
          # get 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
     end
+
 
     get 'tags/:tag', to: 'static_pages#home', as: 'tugg'
 
@@ -65,12 +74,9 @@ Rails.application.routes.draw do
 
   get 'students/:id/show_response' => "students#show_response", as: "show_response"
   get 'students/:id/show_summary' => "students#show_summary", as: "show_summary"
+  get 'students/:id/show_selected' => "students#show_selected", as: "show_selected"
 
   match '/sign_in_guest', to: "application#create_guest_user", via: 'get'
-
-  # match '/test', to: "students#new", via: 'get'
-
-
 
   # match '/contents/set_new_content', to: "contents#set_new_content", via: 'get'
 
