@@ -1,16 +1,5 @@
 <%= form_for @content, remote: true, :html => { :multipart => true }  do |f| %>
 
-    <!-- <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" align="center">Upload a new image</h4>
-            </div>
-
-            <div class="modal-body" id="modal-body">
-
-                <div class = "errors"></div> -->
-
                     <div class = "form-group" >
                         <%= f.label "Please enter tags separated by comma:" %>
                         <%= f.text_field :tag_list, :class => "form-control", :value => @content.tag_list %>

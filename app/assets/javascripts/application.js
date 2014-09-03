@@ -141,6 +141,17 @@ $(function()
         // location.reload();
     });
 
+    $('#content_is_public').on('change', function() {
+        alert("checked");
+        // From the other examples
+        if (!this.checked) {
+            // var sure = confirm("Are you sure?");
+            // this.checked = !sure;
+            // $('#textbox1').val(sure.toString());
+        }
+    });
+
+
     $('.submitme').on('click',function(){
         // console.log("test");
         // var serializedArray = $("input:checked").serializeArray();
@@ -165,7 +176,7 @@ $(function()
                 // $("input#student_response_taglist").val(taggings_data);
             },
             error: function(){
-                // alert('Error occurred' + data);
+                alert('Error occurred');
             }
         });
 

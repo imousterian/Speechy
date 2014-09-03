@@ -18,6 +18,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+
+.addendum{
+    margin-left:10px; margin-top:14px;
+    span{
+        font-size:10px;
+    }
+}
+
 th .current {
   padding-right: 16px;
   background-repeat: no-repeat;

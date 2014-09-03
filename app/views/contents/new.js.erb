@@ -1,4 +1,26 @@
-// $("#content-modal").html("<%#= escape_javascript(render 'new') %>")
 $("#content-modal-title").html("Upload an image");
 $("#modal-body").html("<%= escape_javascript(render 'new') %>")
 $("#content-modal").modal("show")
+
+$('#content_is_public').on('change', function() {
+    if (this.checked)
+    {
+        var dial =  "<div><br/><p>All content set to public will only be available for editing by the admin.</p></div>";
+
+        $(dial).appendTo('body').dialog({
+            title: 'Reminder',
+            autoOpen: true,
+            width: 550,
+            resizable: false,
+            buttons: {
+                OK: function () {
+                    $(this).dialog("close");
+                }
+            },
+                close: function (event, ui) {
+                    $(this).remove();
+            }
+        }).parent().appendTo($("#content-modal"));
+        $(".ui-dialog-buttonpane").append("<p class='addendum'><span>Please see About section.</span></p>");
+    }
+});
