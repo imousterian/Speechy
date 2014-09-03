@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class = "col-sm-6 col-sm-offset-3" >
-        <table class='table table-striped ' id="table-list-images">
+        <table class='table table-striped' id="table-list-images">
           <thead>
             <tr>
               <th class="col-sm-3">Image</th>
@@ -18,8 +18,17 @@
                 <td><%= image_tag content.image.url(:thumb) %></td>
                 <td><%=raw content.tags.map(&:tagname).map { |t| t }.join(', ') %></td>
                 <td><%= content.content_public_as_string %></td>
-                <td><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-xs' %></td>
-                <td><%= link_to 'Del', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-xs" %></td>
+                <% if content.is_public %>
+                    <% if current_user.admin %>
+                        <td align="center"><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-xs' %></td>
+                        <td align="center"><%= link_to 'Del', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-xs" %></td>
+                    <% else %>
+                        <td colspan="2" align="center"> <%= link_to 'Email Admin', "#", :class => 'btn btn-success btn-xs' %> </td>
+                    <% end %>
+                <% else %>
+                    <td align="center"><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-xs' %></td>
+                    <td align="center"><%= link_to 'Del', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-xs" %></td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

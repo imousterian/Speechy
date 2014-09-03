@@ -31,7 +31,7 @@ class Content < ActiveRecord::Base
 
     serialize :dimensions
 
-    before_save :redelegate_to_admin
+    # before_save :redelegate_to_admin
 
     def matching_taggings
         taggings.map(&:id).join(', ')
