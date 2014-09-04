@@ -1,28 +1,28 @@
 <%= form_for @content, remote: true, :html => { :multipart => true }  do |f| %>
 
-                    <div class = "form-group" >
-                        <%= f.label "Please enter tags separated by comma:" %>
-                        <%= f.text_field :tag_list, :class => "form-control", :value => @content.tag_list %>
-                    </div>
+    <div class = "form-group" >
+        <%= f.label "Please enter tags separated by comma:" %>
+        <%= f.text_field :tag_list, :class => "form-control", :value => @content.tag_list %>
+    </div>
 
-                    <div class = "form-group">
-                        <%= f.label "Select image:" %>
-                        <%= f.file_field :image %>
-                    </div>
+    <div class = "form-group">
+        <%= f.label "Select image:" %>
+        <%= f.file_field :image %>
+    </div>
 
-                    <div class = "checkbox">
-                        <label>
-                            <%= f.check_box :is_public %> Make publicly accessible
-                        </label>
-                    </div>
+    <div class = "checkbox">
+        <label>
+            <%= f.check_box :is_public %> Make publicly accessible
+        </label>
+    </div>
 
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id unless current_user.admin %>
             <!-- </div> -->
 
             <!-- <div class="modal-footer">
                 <div class="row text-center">
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button> -->
-                    <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
+    <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
    <!--              </div>
             </div>
         </div>

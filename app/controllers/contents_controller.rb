@@ -5,9 +5,14 @@ class ContentsController < ApplicationController
     before_filter :authorized_user?, only: [:new]
     before_action :set_content, only: [:show, :edit, :update, :destroy]
     skip_before_filter :verify_authenticity_token, :only => :create
+    before_action :authorized_as_admin_or_not, only: [:destroy, :update]
 
     def summary_index
-        @contents = current_user.contents
+        if current_user.admin
+            @contents = Content.visible_to_admin
+        else
+            @contents = current_user.contents
+        end
     end
 
     def index
@@ -87,15 +92,24 @@ class ContentsController < ApplicationController
             end
         end
 
+        def authorized_as_admin_or_not
+            if current_user.admin
+                @content = Content.find(params[:id])
+            else
+                @content = current_user.contents.find_by(:id => params[:id])
+                redirect_to root_url if @content.nil?
+            end
+        end
+
         # Never trust parameters from the scary internet, only allow the white list through.
         def content_params
             params.require(:content).permit(:ctype, :is_public, :dblink, :user_id, :image, :tag_list)
         end
 
-        def update_selected
-            u = params[:commit]
-            submission = { :ctype => u }
-        end
+        # def update_selected
+        #     u = params[:commit]
+        #     submission = { :ctype => u }
+        # end
 
 
 end
