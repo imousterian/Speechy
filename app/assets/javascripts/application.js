@@ -210,9 +210,9 @@ $(function()
 });
 
 function appendPreRegistrationMessage(){
-    var dial =  "<div><br/><p><b>Dearest User:</b> <br />We currently do not support email confirmations and password resets. "+
-                "Please make sure you write down your password and email. "+
-                "You can register with any email you wish (even a fake one!!) as long as it is unique in our database."+
+    var dial =  "<div><br/><p><b>Dearest User:</b> <br /><br />We currently do not support email confirmation and password reset. "+
+                "Please make sure you write down your password and email! "+
+                "You can register with any email you wish (even a <u>fake</u> one!!) as long as it is unique in our database."+
                 "</p></div>";
     $(dial).appendTo('#registration-message');
 }
