@@ -196,6 +196,7 @@ $(function()
                $(this).remove();
             });
         }, 2000);
+        removeErrorExplanation();
 
         $('#show_graph').on('click',function(e)
         {
