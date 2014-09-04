@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :students
-  resources :student_responses, only: [:create,:new]
-  resources :tags, except: [:show]
-
-  # resources :students do
-  #   resources :tags do
-  #       collection do
-  #           get :update_multiple
-  #       end
-  #   end
-  # end
+    resources :students
+    resources :student_responses, only: [:create,:new]
+    resources :tags, except: [:show]
 
   # get 'tags/update_multiple', :to => 'tags#update_multiple', :as => 'update_multiple'
 
@@ -46,13 +38,6 @@ Rails.application.routes.draw do
   # /contents/tagname
   devise_for :users
 
-  devise_scope :user do
-      # get "sessions/dropbox_callback", to: "devise/sessions#dropbox_callback"
-      # match 'sessions/dropbox_callback', :controller => 'sessions', :action => 'dropbox_callback', via: :get
-      # resources :adsget 'tags/:tagname', :to => 'contents#summary', :as => 'summary'
-
-  end
-
   # resources :users do
   #   resources :contents
   # end
@@ -77,6 +62,7 @@ Rails.application.routes.draw do
   get 'students/:id/show_selected' => "students#show_selected", as: "show_selected"
 
   match '/sign_in_guest', to: "application#create_guest_user", via: 'get'
+
 
   # match '/contents/set_new_content', to: "contents#set_new_content", via: 'get'
 

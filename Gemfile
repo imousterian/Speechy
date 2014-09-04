@@ -15,8 +15,8 @@ gem 'kaminari'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
-# gem "nokogiri", github: "sparklemotion/nokogiri", branch: "libxml2-2.9.1"
-
+# for d3
+gem 'd3-rails'
 
 # for protecting api keys
 gem 'figaro'

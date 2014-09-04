@@ -12,7 +12,6 @@ class StaticPagesController < ApplicationController
                 @contents = Content.belongs_to_user(current_user.id).by_height.page(params[:page])
             end
         end
-
     end
 
     def help
