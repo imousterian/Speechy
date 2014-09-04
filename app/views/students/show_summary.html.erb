@@ -48,7 +48,11 @@
             <td><%= response.emotion %></td>
             <td><%= response.response_correct_as_string %></td>
             <td><%= response.possible_answers %></td>
-            <td><%= response.matched_image_id %></td>
+            <% if !response.matched_image_id.blank? %>
+                <td><%= response.matched_image_id %></td>
+            <% else %>
+                <td>Image deleted from the database by owner</td>
+            <% end %>
             <!-- <td><%#= image_tag Content.find(response.matched_image_id).image.url(:thumb) %></td> -->
           </tr>
         <% end %>
