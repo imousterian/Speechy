@@ -31,7 +31,9 @@ class StudentsController < ApplicationController
     end
 
     def show_selected
-        @selected_contents = Content.joins(:tags).where(tags: { id: params[:tag_ids]}).belongs_to_user(current_user.id)
+        @selected_contents = Content.joins(:tags).
+                                    where(tags: { id: params[:tag_ids]}).
+                                    belongs_to_user(current_user.id).distinct
         respond_to do |format|
             format.js
         end

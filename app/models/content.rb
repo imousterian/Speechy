@@ -130,12 +130,12 @@ class Content < ActiveRecord::Base
             end
         end
 
-        def redelegate_to_admin
-            if self.is_public
-                admin = User.where(:admin => true).first
-                admin_id = admin.id
-                self.user_id = admin_id
-            end
-        end
+        # def redelegate_to_admin
+        #     if self.is_public
+        #         admin = User.where(:admin => true).first
+        #         admin_id = admin.id
+        #         self.user_id = admin_id
+        #     end
+        # end
 
 end
