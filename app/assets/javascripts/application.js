@@ -61,7 +61,7 @@ $(function()
         }
     });
 
-
+    appendPreRegistrationMessage();
 
 
     var $container = $('.masonry-container');
@@ -137,20 +137,6 @@ $(function()
     //     createResponseForm();
     // });
 
-    $('.test-tabs-button').click(function(){
-        // location.reload();
-    });
-
-    $('#content_is_public').on('change', function() {
-        alert("checked");
-        // From the other examples
-        if (!this.checked) {
-            // var sure = confirm("Are you sure?");
-            // this.checked = !sure;
-            // $('#textbox1').val(sure.toString());
-        }
-    });
-
 
     $('.submitme').on('click',function(){
         // console.log("test");
@@ -221,6 +207,15 @@ $(function()
         });
 
 });
+
+function appendPreRegistrationMessage(){
+    var dial =  "<div><br/><p><b>Dearest User:</b> <br />We currently do not support email confirmations and password resets. "+
+                "Please make sure you write down your password and email. "+
+                "You can register with any email you wish (even a fake one!!) as long as it is unique in our database."+
+                "</p></div>";
+    $(dial).appendTo('#registration-message');
+}
+
 
 function removeErrorExplanation(){
     setInterval(function(){
