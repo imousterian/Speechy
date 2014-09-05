@@ -5,7 +5,7 @@ $("#content-modal").modal("show")
 $('#content_is_public').on('change', function() {
     if (this.checked)
     {
-        var dial =  "<div><br/><p>All content set to public will only be available for editing by admin.</p></div>";
+        var dial =  "<div><p><br/>All content set to public will only be available for editing by admin.</p></div>";
 
         $(dial).appendTo('body').dialog({
             title: 'Reminder',

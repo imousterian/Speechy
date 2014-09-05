@@ -15,9 +15,20 @@ class Content < ActiveRecord::Base
     has_many :tags, through: :taggings, :dependent => :destroy
     has_many :student_responses, through: :taggings
 
-    has_attached_file :image
+    has_attached_file :image, :styles => { :original => ["100%", :jpg],
+                                                                  # :small => ["100x100#", :jpg],
+                                                                  :thumb => ["100x100#", :jpg] },
+                                                    :storage => :s3,
+                                                    :s3_credentials => {
+                                                            :bucket => ENV['S3_BUCKET_NAME'],
+                                                            :access_key_id => ENV['AWS_ACCESS_KEY'],
+                                                            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                                                        }, #"#{Rails.root}/config/aws.yml",
 
-    after_initialize :init_attachment
+                                                    :path => '/:class/:attachment/:id_partition/:style/:filename',
+                                                    :url => ':s3_domain_url'
+
+    # after_initialize :init_attachment
 
     validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg',
                                    'image/jpg', 'image/png', 'image/tif', 'image/gif'], :message => "has to be in a proper format"
