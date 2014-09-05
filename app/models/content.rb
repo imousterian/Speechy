@@ -84,29 +84,29 @@ class Content < ActiveRecord::Base
     private
 
         # dropbox was replaced with AWS. Code is left here in case it will be decided to bring it back later.
-        def init_attachment_dropbox
+        # def init_attachment_dropbox
 
-                self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
-                                                                  :small => ["100x100#", :jpg],
-                                                                  :thumb => ["100x100#", :jpg] },
-                                :storage => :dropbox,
-                                :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
-                                                          :app_secret => DROPBOX_APP_KEY_SECRET,
-                                                          :access_token => self.user.access_token,
-                                                          :access_token_secret => self.user.access_secret,
-                                                          :user_id => self.user.uid,
-                                                          :access_type => "dropbox" },
-                                :dropbox_options => {},
-                                :path => "SLPAPP/:style/:id_:filename",
-                                :unique_filename => true,
-                                :dropbox_visibility => 'private'
+        #         self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
+        #                                                           :small => ["100x100#", :jpg],
+        #                                                           :thumb => ["100x100#", :jpg] },
+        #                         :storage => :dropbox,
+        #                         :dropbox_credentials => { :app_key => DROPBOX_APP_KEY,
+        #                                                   :app_secret => DROPBOX_APP_KEY_SECRET,
+        #                                                   :access_token => self.user.access_token,
+        #                                                   :access_token_secret => self.user.access_secret,
+        #                                                   :user_id => self.user.uid,
+        #                                                   :access_type => "dropbox" },
+        #                         :dropbox_options => {},
+        #                         :path => "SLPAPP/:style/:id_:filename",
+        #                         :unique_filename => true,
+        #                         :dropbox_visibility => 'private'
 
-        end
+        # end
 
         def init_attachment
 
             self.class.has_attached_file :image, :styles => { :original => ["100%", :jpg],
-                                                                  :small => ["100x100#", :jpg],
+                                                                  # :small => ["100x100#", :jpg],
                                                                   :thumb => ["100x100#", :jpg] },
                                                     :storage => :s3,
                                                     :s3_credentials => {
