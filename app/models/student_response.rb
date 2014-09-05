@@ -43,8 +43,8 @@ class StudentResponse < ActiveRecord::Base
     end
 
     def matched_image_id
-        this_tagging_id = taglist[0]
-        Content.joins(:taggings).where(taggings: {id: this_tagging_id}).map(&:id).join(", ")
+        this_tagging_id = taglist.split(",")[0]
+        Content.joins(:taggings).where(taggings: {id: this_tagging_id}).map(&:id).join(",")
     end
 
     private
@@ -54,7 +54,6 @@ class StudentResponse < ActiveRecord::Base
         end
 
         def only_letters
-            # letters = emotion =~ /^[a-zA-Z]+$/
             errors.add(:emotion, 'must have letters only') unless emotion =~ /^[a-zA-Z]+$/
         end
 

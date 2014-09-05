@@ -245,6 +245,7 @@ function createResponseForm(){
     // my_url = '/students/'+data_id+'/show_response';
     my_url = pathname + '/show_response';
     // console.log(taggings_data);
+
     $.ajax({
         type: 'GET',
         url: my_url,
