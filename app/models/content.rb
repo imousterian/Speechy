@@ -16,17 +16,14 @@ class Content < ActiveRecord::Base
     has_many :student_responses, through: :taggings
 
     has_attached_file :image, :styles => { :original => ["100%", :jpg],
-                                                                  # :small => ["100x100#", :jpg],
-                                                                  :thumb => ["100x100#", :jpg] },
-                                                    :storage => :s3,
-                                                    :s3_credentials => {
-                                                            :bucket => ENV['S3_BUCKET_NAME'],
-                                                            :access_key_id => ENV['AWS_ACCESS_KEY'],
-                                                            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-                                                        }, #"#{Rails.root}/config/aws.yml",
-
-                                                    :path => '/:class/:attachment/:id_partition/:style/:filename',
-                                                    :url => ':s3_domain_url'
+                                            :thumb => ["100x100#", :jpg] },
+                                        :storage => :s3,
+                                        :s3_credentials => {
+                                            :bucket => ENV['S3_BUCKET_NAME'],
+                                            :access_key_id => ENV['AWS_ACCESS_KEY'],
+                                            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'] },
+                                        :path => '/:class/:attachment/:id_partition/:style/:filename',
+                                        :url => ':s3_domain_url'
 
     # after_initialize :init_attachment
 
@@ -85,7 +82,7 @@ class Content < ActiveRecord::Base
     # Helper method to determine whether or not an attachment is an image.
     # @note Use only if you have a generic asset-type model that can handle different file types.
     def image?
-        upload_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+        image_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
     end
 
     def content_public_as_string
