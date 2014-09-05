@@ -5,9 +5,9 @@ $("#content-modal").modal("show")
 $('#content_is_public').on('change', function() {
     if (this.checked)
     {
-        var dial =  "<div><p><br/>All content set to public will only be available for editing by admin.</p></div>";
+        var dial =  "<div><p><br />All content set to public will only be available for editing by admin.</p></div>";
 
-        $(dial).appendTo('body').dialog({
+        $(dial).dialog({
             title: 'Reminder',
             autoOpen: true,
             width: 550,
@@ -21,6 +21,8 @@ $('#content_is_public').on('change', function() {
                     $(this).remove();
             }
         }).parent().appendTo($("#content-modal"));
+
         $(".ui-dialog-buttonpane").append("<p class='addendum'><span>Please see <b>About</b> section.</span></p>");
+        $(".ui-dialog").css({'top': 176});
     }
 });
