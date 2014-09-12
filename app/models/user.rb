@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
         self.guest
     end
 
+    def admin?
+        self.admin
+    end
+
 end

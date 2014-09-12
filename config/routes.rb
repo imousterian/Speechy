@@ -1,5 +1,29 @@
 Rails.application.routes.draw do
 
+
+    # get 'users/index'
+    # get 'users/', :to => 'tags#update_multiple', :as => 'update_multiple'
+
+    #resources :users
+    devise_for :users#, :skip => [:registrations, :sessions]
+    match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
+    match '/users', :to => 'users#index',    :as => :users,         :via => :get
+    match '/users/:id', :to => 'users#destroy', :as => :destroy_user, :via => :delete
+
+    # as :user do
+    #     get '/users/:id' => 'users#show'
+    #     get '/users' => 'users#index'
+
+    # end
+
+    # as :user do
+    #     get "/login" => "devise/sessions#new", :as => :new_user_session
+    #     post "/login" => "devise/sessions#create", :as => :user_session
+    #     delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
+
+    #     get "/edit" => "devise/registrations#edit", :as => :edit_user_registration
+    # end
+
     resources :students
     resources :student_responses, only: [:create,:new]
     resources :tags, except: [:show]
@@ -36,7 +60,7 @@ Rails.application.routes.draw do
     # end
 
   # /contents/tagname
-  devise_for :users
+
 
   # resources :users do
   #   resources :contents

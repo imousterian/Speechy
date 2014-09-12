@@ -106,10 +106,4 @@ class ContentsController < ApplicationController
             params.require(:content).permit(:ctype, :is_public, :dblink, :user_id, :image, :tag_list)
         end
 
-        # def update_selected
-        #     u = params[:commit]
-        #     submission = { :ctype => u }
-        # end
-
-
 end
