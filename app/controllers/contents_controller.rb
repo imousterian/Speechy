@@ -1,5 +1,3 @@
-require 'dropbox_sdk'
-
 class ContentsController < ApplicationController
 
     before_filter :authorized_user?, only: [:new]
@@ -22,21 +20,8 @@ class ContentsController < ApplicationController
         @content = Content.find(params[:id])
     end
 
-      # def summary
-      # not to be used anymore??, as of Tue 26
-      #   @contents = Content.joins(:tags).where(tags: {tagname: params[:tagname]}).updated
-      #   respond_to do |format|
-      #       format.html
-      #   end
-      # end
-
     def new
         @content = current_user.contents.new(params[:content])
-    end
-
-    # GET /contents/set_new_content
-    def set_new_content
-        # @content = current_user.contents.new(params[:content])
     end
 
     def edit
@@ -47,7 +32,7 @@ class ContentsController < ApplicationController
         @content = current_user.contents.build(content_params)
         if @content.save
             respond_to do |format|
-                format.html { redirect_to :back, notice: 'Content was successfully created.' }
+                format.html { redirect_to :back }
                 format.js
             end
         else

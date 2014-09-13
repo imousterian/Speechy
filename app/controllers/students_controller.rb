@@ -10,9 +10,7 @@ class StudentsController < ApplicationController
 
     def show_summary
         @responses = @student.student_responses.order(sort_column + ' ' + sort_direction)
-
         params[:datas] = @student.percentages.to_json
-
         respond_to do |format|
             format.html
             format.json { render json: params[:datas] }
@@ -24,7 +22,6 @@ class StudentsController < ApplicationController
     def show
         session[:current_student] = Hash.new
         session[:current_student] = @student.id
-
         respond_to do |format|
             format.html
         end
@@ -58,9 +55,7 @@ class StudentsController < ApplicationController
     end
 
     def create
-
         @student = current_user.students.build(student_params)
-
         if @student.save
             respond_to do |format|
                 format.html { redirect_to :back }

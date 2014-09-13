@@ -1,8 +1,5 @@
 <% if @tag.errors.any? %>
-    // $("#student-modal-body").prepend("<%#= escape_javascript(render 'shared/messages', object: @student) %>");
+    // nothing
 <% else %>
-    console.log('calling here');
     $("#tag_modal").modal("hide");
-    // location.reload();
-
 <% end %>

@@ -19,20 +19,14 @@
 </p>
 <br />
 <p>
-    <!-- <button id="show_graph" class='btn btn-default btn-sm'> Show Graph </button> -->
     <%= link_to "Show Graph", {:datas => "datas"}, {id: "show_graph", class: 'btn btn-default btn-sm'} %>
-    <%#= link_to "Show Graph", show_chart_path, {id: "show_graph", class: 'btn btn-default btn-sm'} %>
 </p>
 <br />
 
-<div id="responses_chart" style="width: 560px; height: 300px; display: none; margin-bottom:100px;">
+<div id="responses_chart"></div>
 
-
-
-</div>
-
-    <table class='table table-striped text-center'>
-      <thead>
+<table class='table table-striped text-center'>
+    <thead>
         <tr >
             <th class="text-center"> <%= sortable "created_at", "Date" %> </th>
             <th class="text-center"> <%= sortable "emotion", "Emotions" %> </th>
@@ -40,8 +34,8 @@
             <th class="text-center">Possible Answers</th>
             <th class="text-center">Associated Image ID</th>
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         <% @responses.each do |response| %>
           <tr>
             <td><%= l response.created_at, :format => :date_format %></td>
@@ -53,10 +47,8 @@
             <% else %>
                 <td>Image deleted from the database by owner</td>
             <% end %>
-            <!-- <td><%#= image_tag Content.find(response.matched_image_id).image.url(:thumb) %></td> -->
           </tr>
         <% end %>
-      </tbody>
-    </table>
-
-    <br>
+    </tbody>
+</table>
+<br>

@@ -21,26 +21,6 @@
     <%= image_tag @content.image.url(:thumb) %>
 </p>
 
-<%#= raw @content.tags.map(&:tagname).map { |t| link_to t, tag_path(t) }.join(', ') %>
-<%#= raw @content.tags.map(&:tagname).map %>
-
-        <%#= render @content.tags %>
-
-<!-- h3>Tags</h3>
-<%# @tags.each do |tag| %>
-  <div>
-    <strong><%#= tag.user_id %></strong>
-    <br />
-    <p><%#= tag.tagname %></p>
-        <%# if user_signed_in? %>
-            <%# if current_user.id == tag.user_id %>
-                <p><%#= link_to 'Delete', tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %></p>
-            <%# end %>
-        <%# end %>
-  </div>
-<%# end %>
-<%#= render 'tags/form' %> -->
-
 <%= link_to 'Edit', edit_content_path(@content) %> |
 <%= link_to 'Back', root_path, "data-no-turbolink" => true %>
 

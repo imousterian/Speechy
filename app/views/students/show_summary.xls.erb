@@ -1,46 +1,18 @@
-<%# @headers = ["Date", "Image ID", "Recorded Emotion", "Matched", "Possible Answers"] %>
-<!-- <?#xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
-  xmlns:o="urn:schemas-microsoft-com:office:office"
-  xmlns:x="urn:schemas-microsoft-com:office:excel"
-  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
-  xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
-    <Table>
-      <Row> -->
-        <%# @headers.each do |column| %>
-            <!-- <Cell><Data ss:Type="String"><%#=column%></Data></Cell> -->
-        <%# end %>
-      <!-- </Row> -->
-    <%# @responses.each do |response| %>
-        <!-- <Row> -->
-            <!-- <Cell><Data ss:Type="DateTime"><%#= l response.created_at, :format => :date_format %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%#= response.matched_image_id %></Data></Cell>
-            <Cell><Data ss:Type="String"><%#= response.emotion %></Data></Cell>
-            <Cell><Data ss:Type="String"><%#= response.response_correct_as_string %></Data></Cell>
-            <Cell><Data ss:Type="String"><%#= response.possible_answers %></Data></Cell>
-        </Row> -->
-    <%# end %>
-   <!--  </Table>
-  </Worksheet>
-</Workbook>
- -->
-
 <table>
-  <tr>
-    <th>Date</th>
-    <th>Image ID</th>
-    <th>Recorded Emotion</th>
-    <th>Matched</th>
-    <th>Possible Answers </th>
-  </tr>
-  <% @responses.each do |response| %>
-  <tr>
-    <td><%= l response.created_at, :format => :date_format %></td>
-    <td><%= response.matched_image_id %></td>
-    <td><%= response.emotion %></td>
-    <td><%= response.response_correct_as_string %></td>
-    <td><%= response.possible_answers %></td>
-  </tr>
-  <% end %>
+    <tr>
+        <th>Date</th>
+        <th>Image ID</th>
+        <th>Recorded Emotion</th>
+        <th>Matched</th>
+        <th>Possible Answers </th>
+    </tr>
+    <% @responses.each do |response| %>
+    <tr>
+        <td><%= l response.created_at, :format => :date_format %></td>
+        <td><%= response.matched_image_id %></td>
+        <td><%= response.emotion %></td>
+        <td><%= response.response_correct_as_string %></td>
+        <td><%= response.possible_answers %></td>
+    </tr>
+    <% end %>
 </table>

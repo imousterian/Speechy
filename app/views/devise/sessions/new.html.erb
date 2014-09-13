@@ -1,32 +1,31 @@
-
-    <div class="row">
-        <div class="col-sm-7">
-            <div class="logo-image container-fluid"> </div>
-        </div>
-        <div class="col-sm-2 col-sm-offset-1">
-            <div class="sign-in-form">
-                <p class="wrapper"> Sign in </p>
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                    <div><%= f.label :email %><br />
-                    <%= f.email_field :email, autofocus: true %></div>
-
-                    <div><%= f.label :password %><br />
-                    <%= f.password_field :password, autocomplete: "off" %></div>
-
-                    <% if devise_mapping.rememberable? %>
-                        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-                    <% end -%>
-                    </br>
-                    <div><%= f.submit "Sign in" %></div>
-
-                <% end %>
-
-            </br><%#= link_to "Forgot your password?", new_password_path(resource_name) %>
-        </div>
+<div class="row">
+    <div class="col-sm-7">
+        <div class="logo-image container-fluid"> </div>
+    </div>
+    <div class="col-sm-2 col-sm-offset-1">
+        <div class="sign-in-form">
+            <p class="wrapper"> Sign in </p>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div>
+                    <%= f.label :email %><br />
+                    <%= f.email_field :email, autofocus: true %>
+                </div>
+                <div>
+                    <%= f.label :password %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+                <% if devise_mapping.rememberable? %>
+                    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+                <% end -%>
+                </br>
+                <div><%= f.submit "Sign in" %></div>
+            <% end %>
+            </br>
         </div>
     </div>
+</div>
 
 <script type="text/javascript">
-    var w = $('.logo-image').width();
-    d3test(w, '.logo-image');
+    var wid = $('.logo-image').width();
+    d3DrawWordCloud(wid, '.logo-image');
 </script>

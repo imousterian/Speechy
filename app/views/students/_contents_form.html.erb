@@ -1,17 +1,10 @@
 <h3> Selecting emotions </h3>
-<%#= form_tag(update_multiple_tags_path, :method => :put) do %>
-    <% tag_selection Content.select_tags(current_user.id) do |tag| %>
-        <li>
-            <%#= form_for(tag, remote: true) do |f| %>
-                <%#= f.check_box :selected, class: 'submittable' %>
-                <%#= tag.tagname %>
-            <%# end %>
-            <%= check_box_tag "tag_ids[]", tag.id, false, class: 'submittable' %>
-            <%= tag.tagname %>
-        </li>
-    <% end %>
-    <br/>
-    <%#= submit_tag 'Select', class: "btn btn-primary btn-xs btn-style" %>
-    <!-- <a href='' class="btn btn-primary btn-xs btn-style submitme">Select </a> -->
-    <%= link_to "Select", show_selected_path(@student), remote: true, class: "btn btn-primary btn-xs btn-style submitme" %>
-<%# end %>
+<% tag_selection Content.select_tags(current_user.id) do |tag| %>
+    <li>
+        <%= check_box_tag "tag_ids[]", tag.id, false, class: 'submittable' %>
+        <%= tag.tagname %>
+    </li>
+<% end %>
+<br/>
+<%= link_to "Select", show_selected_path(@student), remote: true, class: "btn btn-primary btn-xs btn-style submitme" %>
+

@@ -17,14 +17,6 @@
     </div>
 
     <%= f.hidden_field :user_id, :value => current_user.id unless current_user.admin %>
-            <!-- </div> -->
-
-            <!-- <div class="modal-footer">
-                <div class="row text-center">
-                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button> -->
     <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
-   <!--              </div>
-            </div>
-        </div>
-    </div> -->
+
 <% end %>

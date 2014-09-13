@@ -4,10 +4,7 @@
                 <div class="item <% if index == 0 %> active <% end %> id<%=index%> slider-size"
                     data-url='<%= content_path(content) %>' data-id='<%=content.id%>'
                     data-tagging='<%= content.matching_taggings %>' >
-
-                    <!-- <a href='<%= content_path(content) %>' > -->
                         <%= image_tag content.image.url(:original) %>
-                    <!-- </a> -->
                 </div>
         <% end %>
     </div>

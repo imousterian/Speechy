@@ -15,8 +15,7 @@ class StudentResponse < ActiveRecord::Base
     def tagging_responses
         new_list = []
         taglist.split(",").map do |n|
-            # new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).map(&:tagname).join(", ")
-            new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).pluck(:tagname)#map(&:tagname).join(", ")
+            new_list <<  Tag.joins(:taggings).where(taggings: {id: n.strip}).pluck(:tagname)
         end
         new_list.flatten!
     end
