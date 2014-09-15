@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
         u = User.new { |user| user.guest = true }
         u.email = "guest_#{Time.now.to_i}#{rand(100)}@example.com"
         u.save!(:validate => false)
+
+        # create a fake student
+        u.students.build(name: "Sample Student")
+
         sign_in(:user, u)
         flash[:notice] = 'Welcome, Guest! Your guest account will be available for 24 hours or until you close the browser.'
         redirect_to root_path

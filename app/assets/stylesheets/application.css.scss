@@ -109,7 +109,6 @@ a.btn-style{
     right:0;
     margin-right: 45px;
     top: 60px;
-    // bottom: 70px;
 }
 
 @media (max-width: 767px) {
@@ -117,19 +116,8 @@ a.btn-style{
         position: static;
         width:auto;
         margin-left: 45px;
-
-        // top: 60px;  //height of the nav
-        // bottom: -60px;
     }
 }
-
-// @media (max-width: 979px) {
-//     .fixed {
-//         top:70px;
-//     }
-// }
-
-// .row { margin: 0; padding: 0 }
 
 .navbar-inverse .navbar-nav > li > a {
   color: #fff;
