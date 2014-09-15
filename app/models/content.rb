@@ -13,13 +13,13 @@ class Content < ActiveRecord::Base
     has_many :tags, through: :taggings, :dependent => :destroy
     has_many :student_responses, through: :taggings
 
-    has_attached_file :image, :styles => { :original => ["100%", :jpg],
-                                            :thumb => ["100x100#", :jpg] },
+    has_attached_file :image, :styles => { :original => ["100%", :jpg], :thumb => ["100x100#", :jpg] },
                                         :storage => :s3,
                                         :s3_credentials => {
                                             :bucket => ENV['S3_BUCKET_NAME'],
                                             :access_key_id => ENV['AWS_ACCESS_KEY'],
-                                            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'] },
+                                            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                                        },
                                         :path => '/:class/:attachment/:id_partition/:style/:filename',
                                         :url => ':s3_domain_url'
 

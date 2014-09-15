@@ -2,6 +2,8 @@
     $("#test-tabs").html("<%= escape_javascript(render 'blank_response') %>");
 <% else %>
     $("#test-tabs").html("<%= escape_javascript(render 'shared/selected_contents') %>");
+    var message =  "<div class='message'><p><br />Thank you for making your selection! Please click on the 'Test' tab now.</p></div>";
+    $("#emotion-tabs").prepend($(message));
 <% end %>
 
 $('#myCarousel').on('slid.bs.carousel', function () {

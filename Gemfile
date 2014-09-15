@@ -13,6 +13,8 @@ gem 'kaminari'
 gem 'pg'
 # for d3.js
 gem 'd3-rails'
+# for protecting api keys
+gem 'figaro'
 # for easier upload of contents to dropbox and elsewhere
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Use Boostrap saas
