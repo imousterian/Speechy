@@ -1,28 +1,8 @@
-== README
+== SPEECHY
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app inspired by my friend, - a speech language pathologist, - who frequently works with children with autism spectrum disorders.
+These children have difficulty in recognizing human emotions, and the app allows to perform training sessions, and record and analyze students' success over time. The app also allows the users to share training data (currently, images only).
 
-Things you may want to cover:
+Built with: Ruby, Rails 4.1, jQuery, Devise, Paperclip, Bootstrap, Javascript, D3.js.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Available at [Heroku](https://speechy.herokuapp.com).
