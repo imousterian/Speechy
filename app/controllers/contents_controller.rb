@@ -1,5 +1,7 @@
 class ContentsController < ApplicationController
 
+    include ContentsHelper
+
     before_filter :authorized_user?, only: [:new]
     before_action :set_content, only: [:show, :edit, :update, :destroy]
     skip_before_filter :verify_authenticity_token, :only => :create
@@ -30,13 +32,16 @@ class ContentsController < ApplicationController
 
     def create
         @content = current_user.contents.build(content_params)
-        if @content.save
-            respond_to do |format|
+
+        respond_to do |format|
+            if @content.save
                 format.html { redirect_to :back }
                 format.js
+            else
+                flash[:alert] = "There was a problem uploading your image: #{errors_helper(@content)}"
+                format.html {redirect_to :back}
+                format.js
             end
-        else
-            flash[:danger] = "boo"
         end
     end
 

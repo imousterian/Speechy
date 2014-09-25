@@ -5,7 +5,7 @@ class Content < ActiveRecord::Base
     scope :belongs_to_user, ->(userid) { where(['contents.user_id = ? OR is_public = ?', userid, 'true']) }
     scope :visible_to_admin, -> {where(['is_public=?', 'true'])}
 
-    paginates_per 6
+    paginates_per 12
 
     belongs_to :user
     has_many :taggings, :dependent => :destroy
@@ -23,12 +23,12 @@ class Content < ActiveRecord::Base
                                         :path => '/:class/:attachment/:id_partition/:style/:filename',
                                         :url => ':s3_domain_url'
 
+    validates_attachment :image, :presence => true
+
     validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg',
-                                   'image/jpg', 'image/png', 'image/tif', 'image/gif'], :message => "has to be in a proper format"
+                                   'image/jpg', 'image/png', 'image/gif'], :message => "Image has to be in a valid format: only JPG, PNG, GIF, or JPEG is allowed."
 
-    validates_attachment_presence :image
-
-    validates_attachment_size :image, :less_than => 1.megabytes
+    validates_attachment :image, :size => {:in => 0..2.megabytes, :message => "Image must be less than 2 MB in size."}
 
     validates :tag_list, :presence => true
 
@@ -89,4 +89,5 @@ class Content < ActiveRecord::Base
                 self.height = geometry.height.to_i
             end
         end
+
 end

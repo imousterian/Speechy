@@ -29,4 +29,5 @@ module ApplicationHelper
         direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
         link_to title, {:order_to_sort_by => column, :direction => direction}, {:class => css_class}
     end
+
 end

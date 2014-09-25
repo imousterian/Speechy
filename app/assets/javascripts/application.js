@@ -49,7 +49,7 @@ $(function()
         $('.alert').slideUp('slow', function(){
             $(this).remove();
         });
-    }, 2000);
+    }, 10000);
 
 });
 
@@ -200,7 +200,7 @@ function removeErrorExplanation(){
         $('#error_explanation').slideUp('slow', function(){
             $(this).remove();
         });
-    }, 2500);
+    }, 5500);
 };
 
 function createResponseForm(){
