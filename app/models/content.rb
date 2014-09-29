@@ -30,7 +30,7 @@ class Content < ActiveRecord::Base
 
     validates_attachment :image, :size => {:in => 0..2.megabytes, :message => "Image must be less than 2 MB in size."}
 
-    validates :tag_list, :presence => true
+    validate :tags_present
 
     before_save :extract_dimensions
 
@@ -59,12 +59,10 @@ class Content < ActiveRecord::Base
     end
 
     def tag_list=(tagnames)
-        if !tagnames.nil?
-            tagnames.downcase!
-            tagnames = tagnames.split(',').collect(&:strip).uniq.join(',')
-            self.tags = tagnames.split(",").map do |t|
-                Tag.where(tagname: t.strip).first_or_create!
-            end
+        tagnames.downcase!
+        tagnames = tagnames.split(',').collect(&:strip).uniq.join(',')
+        self.tags = tagnames.split(",").map do |t|
+            Tag.where(tagname: t.strip).first_or_create!
         end
     end
 
@@ -87,6 +85,12 @@ class Content < ActiveRecord::Base
                 geometry = Paperclip::Geometry.from_file(tempfile)
                 self.dimensions = [geometry.width.to_i, geometry.height.to_i]
                 self.height = geometry.height.to_i
+            end
+        end
+
+        def tags_present
+            if tag_list.empty?
+                errors.add(:image, "tag labels must be present")
             end
         end
 
