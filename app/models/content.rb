@@ -3,7 +3,9 @@ class Content < ActiveRecord::Base
     scope :updated,   ->   { order('updated_at DESC') }
     scope :by_height, ->   { order('height DESC') }
     scope :belongs_to_user, ->(userid) { where(['contents.user_id = ? OR is_public = ?', userid, 'true']) }
-    scope :visible_to_admin, -> {where(['is_public=?', 'true'])}
+    # scope :visible_to_admin, -> {where(['is_public=?', 'true'])}
+    # same as belongs_to_user hence not DRY but keeping it separate for the time being
+    scope :visible_to_admin, -> (userid) { where(['contents.user_id = ? OR is_public = ?', userid, 'true']) }
 
     paginates_per 12
 

@@ -8,6 +8,9 @@
               <th class="col-sm-3">Image</th>
               <th class="col-sm-2">Tags</th>
               <th class="col-sm-1">Public?</th>
+                <% if current_user.admin %>
+                    <th class="col-sm-1">User email</th>
+                <% end %>
               <th colspan="2" class="col-sm-1"></th>
             </tr>
           </thead>
@@ -18,6 +21,9 @@
                 <td><%= image_tag content.image.url(:thumb) %></td>
                 <td><%=raw content.tags.map(&:tagname).map { |t| t }.join(', ') %></td>
                 <td><%= content.content_public_as_string %></td>
+                <% if current_user.admin %>
+                    <td><%=User.find(content.user_id).email%></td>
+                <% end %>
                 <% if content.is_public %>
                     <% if current_user.admin %>
                         <td align="center"><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-xs' %></td>
@@ -28,7 +34,7 @@
                 <% else %>
                     <td align="center"><%= link_to 'Edit', edit_content_path(content), remote: true, :class => 'btn btn-primary btn-xs' %></td>
                     <td align="center"><%= link_to 'Del', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-xs" %></td>
-                <% end %>
+                <% end % %>
               </tr>
             <% end %>
           </tbody>

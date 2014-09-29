@@ -9,7 +9,7 @@ class ContentsController < ApplicationController
 
     def summary_index
         if current_user.admin
-            @contents = Content.visible_to_admin
+            @contents = Content.visible_to_admin(current_user.id)
         else
             @contents = current_user.contents
         end
