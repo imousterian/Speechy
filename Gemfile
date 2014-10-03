@@ -46,6 +46,10 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'capybara' #, :git => "git://github.com/jnicklas/capybara.git"
+  # for checking test coverage
+  gem 'simplecov', :require => false
+  gem "faker", "~> 1.4.3"
+  gem "launchy", "~> 2.4.2"
 end
 
 group :development, :test do

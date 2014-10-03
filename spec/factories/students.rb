@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :student do
-    name "MyString"
+    name "SuperStudent"
   end
 end

@@ -19,6 +19,8 @@
 /config/application.yml
 /config/dropbox.yml
 /config/aws.yml
+/config/secrets.yml
+/config/initializers
 
 # Ignore deprecations from Capybara
 /deprecations.txt
@@ -28,3 +30,6 @@
 
 # ignore seed data
 /db/seeds.rb
+
+# ignore test results
+coverage

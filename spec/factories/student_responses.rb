@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :student_response do
-    emotion "MyString"
+    emotion "sad"
   end
 end
