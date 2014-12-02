@@ -42,9 +42,10 @@ class Content < ActiveRecord::Base
         taggings.map(&:id).join(', ')
     end
 
-    def self.tagged_with(name)
-        Tag.find_by_name!(tagname).contents
-    end
+    # currently, not being used
+    # def self.tagged_with(name)
+    #     Tag.find_by_name!(tagname).contents
+    # end
 
     def self.tag_counts(userid)
         Tag.joins(:contents).where(['contents.user_id = ? OR contents.is_public = ?', userid, 'true']).
