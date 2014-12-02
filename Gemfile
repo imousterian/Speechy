@@ -50,6 +50,7 @@ group :test do
   gem 'simplecov', :require => false
   gem "faker", "~> 1.4.3"
   gem "launchy", "~> 2.4.2"
+  gem 'shoulda-matchers', require: false
 end
 
 group :development, :test do
@@ -57,6 +58,8 @@ group :development, :test do
     gem 'rspec-rails', '~> 3.0.0'
     gem "factory_girl_rails"
     gem "lol_dba" #for finding missed indices
+    # rspec-its provides support for its calls in rspec 3
+    gem 'rspec-its'
 end
 
 group :production do

@@ -177,6 +177,9 @@ GEM
     rspec-expectations (3.0.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
+    rspec-its (1.1.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-rails (3.0.2)
@@ -203,6 +206,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    shoulda-matchers (2.7.0)
+      activesupport (>= 3.0.0)
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json
@@ -263,10 +268,12 @@ DEPENDENCIES
   railroady
   rails (= 4.1.1)
   rails_12factor
+  rspec-its
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  shoulda-matchers
   simplecov
   spring
   uglifier (>= 1.3.0)
